@@ -1,0 +1,325 @@
+
+body{
+    background-color: black;
+}
+
+.logoDiv{
+    width: 100%;
+}
+
+.aRegister{
+    color: white;
+}
+
+.header .nav .logo
+{
+    color: #fff;
+    font-size: 40px;
+}
+
+.header {
+    position: static;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 10px 20px;
+    z-index: 99;
+}
+
+.header .nav {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.header .listaOpcionesPag{
+    padding-right: 10px;
+    padding-top: 5px;
+    text-align: end;
+    width: 100%;
+    height: 70px;
+}
+
+.header .listaOpcionesPag a {
+
+    padding-top: 15px;
+    padding-left: 20px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.header .nav a:hover {
+    color: #ffc508;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.header .search {
+    color: transparent;
+    position: relative;
+    flex: 1;
+    max-width: 300px;
+}
+
+.header .search input {
+    background: transparent;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    outline: none;
+}
+
+.header .search i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    cursor: pointer;
+}
+
+
+::placeholder
+{
+    padding-top: 1000px;
+    color: #fff;
+    font-size: 18px;
+}
+::placeholder:active
+{
+    box-shadow: 0 0 50px rgba(232, 232, 232, 0.8);
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .header .nav {
+        margin-top: 10px;
+    }
+
+    .header .search {
+        margin-top: 10px;
+    }
+}
+
+.home
+{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 75%;
+    height: 75%;
+    transform: translate(-50% , - 50%);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 10px;
+    border: none;
+}
+
+
+/* TEXTO IZQUIERDA */
+
+.content
+{
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    padding: 30px;
+}
+
+.content a
+{
+    padding-top: -10%;
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    font-size: 3em;
+    font-weight: 700;
+    top: -40px;
+    left: 80px;
+}
+
+.content h2
+{
+    font-size: 3.5em;
+    text-align: center;
+    color: #fff;
+}
+
+.content h3
+{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2em;
+    text-align: center;
+    color: #fff;
+}
+
+.content pre
+{
+    font-family:Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1em;
+    color: #fff;
+}
+
+.pre
+{
+    font-family:Arial, Helvetica, sans-serif;
+    margin-top: 3px;
+    text-align: center;
+    font-size: 1em;
+    color: #fff;
+}
+
+.content .icon
+{
+    margin-top: 20px;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+}
+
+.content .icon i
+{
+    margin-left: 20px;
+    color: #fff;
+}
+
+
+/* BOX DE LOGIN */
+
+/* Este .div es para agregar marcos responsivos al box */
+div.login 
+{
+    position:relative;
+    padding: 30px 30px;
+}
+
+.login
+{
+    width:  450px;
+    height: 450px;
+    position: relative;
+    padding: 70px 0px;
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    border: 5px solid rgba(178, 178, 178, 0.165);
+
+}
+
+.login h2
+{
+    margin-top: -100;
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.login .input
+{
+    position: relative;
+    width: 100%;
+    height:  30px;
+    margin-bottom: 50px;
+}
+
+.login .input .input1
+{
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+}
+.login .input .input1:active
+{
+    box-shadow: 0 0 50px rgba(232, 232, 232, 0.8);
+}
+
+::placeholder
+{
+    padding-top: 1000px;
+    color: #fff;
+    font-size: 18px;
+}
+::placeholder:active
+{
+    box-shadow: 0 0 50px rgba(232, 232, 232, 0.8);
+}
+
+.login .input i
+{
+    position:absolute;
+    right: -20px;
+    bottom: 27px;
+    color: #fff;
+}
+
+.check
+{
+    position: relative;
+    margin-top: -10px;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    color: #fff;
+}
+.check a:hover
+{
+    text-decoration: underline;
+    box-shadow: 0 0 50px rgba(232, 232, 232, 0.8);
+
+}
+
+
+.login .button
+{
+    position: relative;
+    width: 100%;
+    height: 40%;
+
+}
+
+button {
+    box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5);
+    width: 200px;
+    height: 50px;
+    background-color: crimson;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 7px;
+    color: #fff;
+    margin: auto;
+    display: block; /* Añade este estilo para asegurar el centrado */
+}
+
+
+button:active
+{
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.8);
+    font-size: 25px;
+}
