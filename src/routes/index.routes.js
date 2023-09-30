@@ -14,6 +14,16 @@ router.get("/register",renderRegister)
 
 router.post("/register/user", registerUser)
 
+router.get("/logout", (req,res)=>{
+    req.session.destroy((err)=>{
+        if(err){
+            console.log("Hay un error perrito!")
+        }
+        res.redirect('/')
+    })
+})
+
+//products
 router.get("/allProducts", requireAuth , async (req,res)=>{
     connection.query('SELECT * FROM products', (err, products)=>{
         if(err){

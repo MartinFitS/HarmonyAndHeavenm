@@ -1,7 +1,7 @@
 import connection from "../bd/bdConfig";
 import bcrypt from "bcrypt"
 import {ADMINROLEPASSWORD, VENDEDORROLEPASSWORD} from "../config"
-import session from "express-session";
+
 export const renderLogin = async(req,res) => {
     res.render("index.hbs")
 }
@@ -22,24 +22,31 @@ export const loginUser = async(req,res) => {
         const user = results[0];
 
         const passwordMatch = await bcrypt.compare(password, user.password)
-        
-        if(passwordMatch){
+        console.log(user)
+        if(passwordMatch && user.name_role == "invitado"){
             req.session.loggedIn = true;
             req.session.userId = user.id;
-            return res.status(200).json({ message: 'Inicio de sesión exitoso' });
+            
+            return res.render("invitadoPrincipalView.hbs");
+        }else if(passwordMatch && user.name_role == "admin"){
+            req.session.loggedIn = true;
+            req.session.userId = user.id;
+            
+            return res.render("adminPrincipalView.hbs")
         }else {
             return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
     })
 }
 
-export function authenticate(req,res,next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-
-    res.status(401).json({
-        error: 'no autenticado'
+export const logoutUser = async (req,res) =>{
+    await req.session.destroy((err)=>{
+        try{
+            res.redirect('/')
+        }catch(e){
+            console.log("Hay un error perrito!" , e)
+        }
+        
     })
 }
 

@@ -5,10 +5,28 @@
         <h1>Agrega Un Producto</h1>
         <form action="/products/add" method="post">
             <div class="inputAdd">
+                
                 <input type="text" id="modelo" name="modelo" placeholder="Nombre Del Modelo">
             </div>
             <div class="inputAdd">
-                <input type="text" id="marca" name="marca" placeholder="Marca">
+                <span>Marca:</span>
+                <select name="marca" id="marca">
+                    <option>Yamaha</option>
+                    <option>Fender</option>
+                    <option>Takamine</option>
+                    <option>Marshall</option>
+                    <option>Gibson</option>
+                    <option>Casio</option>
+                </select>
+            </div>
+            <div>
+                <span>Instrumento:</span>
+                <select name="instrumentoTipo" id="instrumentoTipo">
+                    <option>Guitarra</option>
+                    <option>Piano</option>
+                    <option>Bateria</option>
+                    <option>Violin</option>
+                </select>
             </div>
             <div class="inputAdd">
                 <input type="number" id="precioPublico" name="precioPublico" placeholder="Precio Publico">
