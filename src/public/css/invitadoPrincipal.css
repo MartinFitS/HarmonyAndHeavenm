@@ -1,0 +1,156 @@
+.header{
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    display: flex;
+}
+
+ul{
+    list-style: none;
+}
+
+.titulo{
+    width: 30%;
+    height: auto;
+}
+
+.header .titulo .title{
+    padding: 20px;
+    color: #734C29;
+}
+
+.options{
+    width: 70%;
+    height: auto;
+}
+
+.options ul li {
+    padding: 20px;
+    text-align: end;
+}
+
+.options a{
+    font-weight: 600;
+    color: #734C29;
+    text-decoration: none;
+}
+
+/* Main de la vista */
+.body{
+    width: 100%;
+    height: auto;
+}
+
+.titulos{
+    width: 100%;
+    height: 50px;
+}
+
+.titulos h2{
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight: 300;
+    color: #734C29;
+    text-align: left;
+    margin-left: 5%;
+}
+
+.main{
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+.listaOrganizacion{
+    width: 20%;
+    height: 300px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.listaOrganizacion h1{
+    font-size: 17px;
+    font-weight: 600;
+    color: #753806;
+}
+
+.listaOrganizacion h2{
+    margin-top: 7px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #734C29;
+}
+
+.listadoDeProdu{
+    display: flex;
+    flex-wrap: wrap;
+    width: 65%;
+    height: auto;
+    margin-right: 5%;
+}
+
+.filtrarPrecio{
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.minimo{
+    width: 25%;
+    height: 20px;
+}
+
+.maximo{
+    width: 25%;
+    height: 20px;
+}
+.buscarBtn{
+    margin-left: 5px;
+    border: none;
+    width: 20%;
+    height: 20px;
+    background-color: #734C29;
+    color: white;
+}
+.productoCard{
+    border: 3px solid #734C29;
+    background-color: white;
+    margin-left: 3%;
+    width: 30%;
+    height: 400px;
+    margin-bottom: 20px;
+}
+
+.productoCard .imgProduct{
+    width: 100%;
+    height: 250px;
+}
+
+.productoCard .productModel{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #734C29;
+    text-align: center;
+}
+
+.productoCard  .productMarca{
+    font-size: 17px;
+    font-weight: 100;
+    color: #734C29;
+    text-align: center;
+}
+
+.productoCard .productPrice{
+    font-size: 17px;
+    font-weight: 600;
+    color: #734C29;
+    text-align: center;
+}
+
+.productoCard .productUnidades{
+    font-size: 15px;
+    font-weight: 600;
+    color: #734C29;
+    text-align: center;
+}

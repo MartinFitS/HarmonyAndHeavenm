@@ -27,15 +27,36 @@ export const loginUser = async(req,res) => {
             req.session.loggedIn = true;
             req.session.userId = user.id;
             
-            return res.render("invitadoPrincipalView.hbs");
+            return res.redirect("/login/user/invitado/view/");
         }else if(passwordMatch && user.name_role == "admin"){
             req.session.loggedIn = true;
             req.session.userId = user.id;
-            
-            return res.render("adminPrincipalView.hbs")
+            req.user = username;
+            return res.redirect("/login/user/admin/view/")
         }else {
             return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
+    })
+}
+
+export const invitadoView = async(req,res)=>{
+    
+    connection.query('SELECT * FROM products', (err, products)=>{
+        if(err){
+             res.json(err)
+        }
+        res.render("invitadoPrincipalView.hbs", {products: products})
+        console.log(products)
+    })
+}
+
+export const adminView = async(req,res)=>{
+    connection.query('SELECT * FROM products', (err, products)=>{
+        if(err){
+             res.json(err)
+        }
+        res.render("adminPrincipalView.hbs", {products: products})
+        console.log(products)
     })
 }
 

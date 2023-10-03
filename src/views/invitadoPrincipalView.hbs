@@ -1,4 +1,39 @@
+<link rel="stylesheet" href="/css/invitadoPrincipal.css">
 <div class="header">
-    <a href="/logout">Cerrar Sesión</a>
-    <p>Soy Invitado</p>
+    <div class="titulo">
+            <h1 class="title">H&H</h1>
+    </div>
+
+    <div class="options">
+        <ul>
+            <li><a href="/logout">Cerrar Sesión</a></li>
+        </ul>
+    </div>
 </div>
+
+<div class="body">
+    <div class="titulos"><h2>Listado de productos</h2></div>
+    <div class="main">
+    <div class="listaOrganizacion">
+        <h1>Ordernar</h1>
+        
+        <h2>Precio</h2>
+        <div class="filtrarPrecio">
+        <input type="text" placeholder="Minimo" class="minimo"> <span> - </span><input placeholder="Maximo" class="maximo"type="text"><button class="buscarBtn">Buscar</button>
+        </div>
+    </div>
+    <div class="listadoDeProdu">
+        {{#each products}}
+            <div class="productoCard">
+                <img class="imgProduct" src={{foto}} alt="">
+                <h3 class="productModel">{{modelo}}</h3>
+                <h4 class="productMarca">{{marca}}</h4>
+                <h5 class="productPrice">{{instrumentoTipo}}</h5>
+                <h5 class="productPrice">{{precioPublico}}$</h5>
+                <h5 class="productUnidades">{{unidades}} unidades</h5>
+            </div>
+        {{/each}}
+    </div>
+    </div>      
+</div>
+
