@@ -30,8 +30,60 @@ export const renderProducts = async(req,res) =>{
         res.render("addProduct.hbs")
 }
 
+async function obtenerProductoPorId(productId){
+  return new Promise((resolve,reject) =>{
+    console.log(productId)
+    const sql = 'SELECT * FROM products WHERE id = ?';
+
+    connection.query(sql, [productId], (err, result)=>{
+      if(err){
+        reject(err);
+      }else{
+        if(result.length > 0){
+          resolve(result[0]);
+        }else{
+          resolve(null)
+        }
+      }
+    })
+  })
+}
+
 export const renderEditProduct = async(req,res) => {
-  res.send("Hola")
+  const productId = req.params.id;
+
+  const product = await obtenerProductoPorId(productId);
+
+  const marcas = ['Yamaha', 'Fender', 'Takamine', 'Marshall', 'Gibson', 'Casio'];
+  const marcaSeleccionada = marcas.find((marca) => marca === product.marca);
+
+  console.log(product)
+  res.render("editProductRender.hbs", {product,marcaSeleccionada})
+  
+}
+
+export const editProduct = async(req,res) =>{
+  try{
+    const productId = req.params.id;
+    const product = req.body
+    const sql = 'UPDATE products SET modelo = ?, marca = ?, instrumentoTipo = ?, precioPublico = ?, precioTienda = ?, unidades = ?, foto = ? WHERE id = ?';
+    
+    connection.query(
+      sql,
+      [product.modelo, product.marca, product.instrumentoTipo, product.precioPublico, product.precioTienda, product.unidades,product.foto, productId],(err,result) => {
+        if (err) {
+          console.error('Error al actualizar el producto: ' + err.message);
+          res.status(500).json({ error: 'No se pudo actualizar el producto' });
+        } else {
+          console.log(result)
+          console.log('Producto actualizado con éxito');
+          res.redirect('/login/user/admin/view/'); // Puedes redirigir a una página de éxito u otra ubicación
+        }
+      }
+    )
+  }catch(e){
+    console.error("error", e)
+  }
 }
 
 export const deleteProduct = async(req,res)=>{

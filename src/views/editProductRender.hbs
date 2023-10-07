@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="/css/addProduct.css">
+
+<div class="addProductDivPrincipal">
+    <div class="formAddProduct">
+        <h1>Editar Un Producto</h1>
+        <form action="/product/edit/{{product.id}}" method="post">
+            <div class="inputAdd">
+                
+                <input type="text" value="{{product.modelo}}" id="modelo" name="modelo" placeholder="Nombre Del Modelo">
+            </div>
+            <div class="inputAdd">
+                <select class="marcaInput" name="marca" id="marca" value={{product.marca}}>
+                    <option>Yamaha</option>
+                    <option>Fender</option>
+                    <option>Takamine</option>
+                    <option>Marshall</option>
+                    <option>Gibson</option>
+                    <option>Casio</option>
+                </select>
+            </div>
+            <div>
+                <select value={{product.instrumentoTipo}} class="instrumentoTipo" name="instrumentoTipo" id="instrumentoTipo">
+                    <option>Guitarra</option>
+                    <option>Piano</option>
+                    <option>Bateria</option>
+                    <option>Violin</option>
+                </select>
+            </div>
+            <div class="inputAdd">
+                <input type="number" value={{product.precioPublico }} id="precioPublico" name="precioPublico" placeholder="Precio Publico">
+            </div>
+            <div class="inputAdd">
+                <input type="number" value={{product.precioTienda}} id="precioTienda" name="precioTienda" placeholder="Precio Tienda">
+            </div>
+            <div class="inputAdd">
+                <input type="number" value={{product.unidades}} id="unidades" name="unidades" placeholder="Unidades Disponibles">
+            </div>
+            <div class="inputAdd">
+                <input type="text" value="{{product.foto}}" id="foto" name="foto" placeholder="Foto">
+            </div>
+            <button type="submit">Editar Producto</button>
+            
+
+        </form>
+    </div>
+    <div class="imageAndMessage">
+            <div class="fraseArriba">
+                <h4>Harmony Heaven</h4>
+            </div>
+            <div class="cuadradoImagenes">
+
+                <div class="lineaArriba">
+                    <div class="img1">
+                    <h1>"Si no fuera por la música, habría más razones para volverse loco".</h1>
+                    <p>Piotr Ilich Chaikovski</p>
+                    </div>
+                    <div class="img2"></div>
+                </div>
+                <div class="lineaAbajo">
+                    <div class="img3"></div>
+                    <div class="img4">
+                        <h1>"Sin música, la vida sería un error".</h1>
+                        <p>Friederich Nietzcche</p>
+                    </div>
+                </div>
+            </div>
+            <div class="fraseAbajo">
+                Para regresar a el listado de productos da <a href="/login/user/admin/view/">click aqui</a>
+            </div>
+    </div>
+</div>

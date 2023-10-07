@@ -1,6 +1,6 @@
 import {Router} from "express";
 import {renderLogin, renderRegister,registerUser,loginUser,invitadoView, adminView, logoutUser} from "../controllers/users.controller"
-import {allProducts,renderProducts ,addProduct,succesCreateProduct,deleteProduct,renderEditProduct} from "../controllers/products.controller";
+import {allProducts,editProduct,renderProducts ,addProduct,succesCreateProduct,deleteProduct,renderEditProduct} from "../controllers/products.controller";
 import connection from "../bd/bdConfig"
 import {requireAuth} from "../middlewares/auth"
 import {adminCheck} from "../middlewares/adminCheck"
@@ -32,6 +32,8 @@ router.post("/products/add",requireAuth,addProduct);
 router.get("/product/create/succes",requireAuth, succesCreateProduct)
 
 router.get("/product/edit/:id", renderEditProduct)
+
+router.post("/product/edit/:id", editProduct)
 
 router.get("/delete/:id",requireAuth, deleteProduct)
 export default router;
