@@ -24,6 +24,10 @@ ul{
     height: auto;
 }
 
+.options ul{
+    display: flex;
+    margin-left: 48%;
+}
 
 .options ul li {
     padding: 20px;
@@ -31,7 +35,7 @@ ul{
 }
 
 .options a{
-    font-weight: 600;
+    font-weight: 100;
     color: #734C29;
     text-decoration: none;
 }
@@ -114,11 +118,10 @@ ul{
     color: white;
 }
 .productoCard{
-    border: 3px solid #734C29;
     background-color: white;
     margin-left: 3%;
     width: 30%;
-    height: 400px;
+    height: auto;
     margin-bottom: 20px;
 }
 
@@ -154,4 +157,32 @@ ul{
     font-weight: 600;
     color: #734C29;
     text-align: center;
+}
+
+.funciones{
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.edit{
+    border-radius: 7px;
+    font-weight: 100;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    margin-left: 7%;
+    background-color: #33922c;
+    padding: 3%;
+}
+
+.delete{
+    border-radius: 7px;
+    font-weight: 100;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+
+    background-color: #921111;
+    padding: 3%; 
 }

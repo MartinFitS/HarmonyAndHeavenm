@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/invitadoPrincipal.css">
+<link rel="stylesheet" href="/css/adminPrincipal.css">
 <div class="header">
     <div class="titulo">
             <h1 class="title">H&H</h1>
@@ -6,6 +6,7 @@
 
     <div class="options">
         <ul>
+            <li><a href="">Punto de venta</a></li>
             <li><a href="/products">Agrega un producto</a></li>
             <li><a href="/logout">Cerrar Sesión</a></li>
         </ul>
@@ -32,6 +33,10 @@
                 <h5 class="productPrice">{{instrumentoTipo}}</h5>
                 <h5 class="productPrice">{{precioPublico}}$</h5>
                 <h5 class="productUnidades">{{unidades}} unidades</h5>
+                <div class="funciones">
+                    <a class="edit" href="">Editar Producto</a>
+                    <a class="delete" href="/delete/{{id}}">Eliminar Producto</a>
+                </div>
             </div>
         {{/each}}
     </div>

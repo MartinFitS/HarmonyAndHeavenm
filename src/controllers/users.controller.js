@@ -61,14 +61,12 @@ export const adminView = async(req,res)=>{
 }
 
 export const logoutUser = async (req,res) =>{
-    await req.session.destroy((err)=>{
-        try{
+        req.session.destroy((err)=>{
+            if(err){
+                console.log("Hay un error perrito!")
+            }
             res.redirect('/')
-        }catch(e){
-            console.log("Hay un error perrito!" , e)
-        }
-        
-    })
+        })
 }
 
 export const renderRegister = async(req,res) => {
