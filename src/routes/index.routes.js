@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {renderLogin, renderRegister,masterView,registerUser,loginUser,invitadoView, adminView, logoutUser, gestionarUsuarios,deleteUser} from "../controllers/users.controller"
+import {renderLogin, renderRegister,masterView,registerFromRoot,registerUser,loginUser,invitadoView, adminView, logoutUser, gestionarUsuarios,deleteUser} from "../controllers/users.controller"
 import {allProducts,editProduct,renderProducts ,addProduct,succesCreateProduct,deleteProduct,renderEditProduct} from "../controllers/products.controller";
 import {requireAuth} from "../middlewares/auth"
 
@@ -23,6 +23,8 @@ router.post("/register/user", registerUser)
 router.get("/logout", logoutUser)
 
 router.get("/master/user/gestionar", requireAuth,gestionarUsuarios)
+
+router.post("/master/user/products/add/root", requireAuth, registerFromRoot);
 
 router.get("/master/user/gestionar/delete/:id", requireAuth, deleteUser)
 

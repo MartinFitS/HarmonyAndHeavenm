@@ -1,0 +1,210 @@
+#formProduct{
+    background-color: #f7f7f7;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    height: auto;
+  }
+  
+  .addProductDivPrincipal{
+    width: 100%;
+    height: auto;
+    display: flex;
+  }
+  
+  .addProductDivPrincipal h1 {
+    font-weight: 100;
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+    color: #734C29;
+    text-align: left;
+  }
+  
+  /* Estilos Input */
+  
+  .inputAdd {
+    margin-bottom: 10px;
+  }
+  
+  .inputAdd input,
+  .inputAdd select {
+    padding: 10px;
+    border: none;
+    outline: none;
+    background: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #734C29;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .inputAdd input{
+    width: 95%;
+  }
+  
+  .inputAdd input[type="number"] {
+    appearance: textfield;
+  }
+  
+  .inputAdd select {
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .button-container {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button-container button {
+    width: 50%;
+    height: 43px;
+    margin-left: 20%;
+    background-color: #5a3b1f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .button-container button:hover {
+    background-color: #442a14;
+  }
+  
+  .formAddProduct{
+    margin-top: 50px;
+    height: 550px;
+    margin-left: 10%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    max-width: 400px;
+    padding: 3em 2em;
+    color: white;
+  }
+  
+  .inputForm{
+     margin-top: 3em;
+     display: grid;
+  }
+  
+  /* Imagenes */
+  
+  .imageAndMessage{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-left: 10%;
+    max-width: 800px;
+    padding: 0px;
+    color: white;
+    height: 550px;
+    margin-top: 50px;
+  }
+  
+  .button-container2 {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+
+  .button-container2 a{
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    font-style: none;
+    text-decoration: none;
+    background-color: #331f0e;
+    cursor: pointer;
+    color: white;
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
+
+  .button-container2 a:hover{
+    transform: 120%;
+    border: 2px solid #331f0e;
+    background-color: transparent;
+    cursor: pointer;
+    color: #331f0e;
+    transition: 250ms;
+  }
+  /* .instrumentoTipo{
+    padding: 10px;
+    border: none;
+    outline: none;
+    background: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #734C29;
+    font-family: 'Poppins', sans-serif;
+  } */
+  .button-container2 button {
+    background-color: #f5ceab;
+    color: white;
+    border: none;
+    padding: 10px 100px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    color: #442a14;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .button-container2 button:hover {
+    background-color: #ecbc92;
+    color: #331f0e;
+  }
+  
+  /* Carrousel */
+  
+  .slider-frame {
+      width: 320px;
+    height: auto;
+      margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+      overflow: hidden;
+  }
+  
+  .slider-frame ul {
+      display: flex;
+      padding: 0;
+      width: 400%;
+      
+      animation: slide 20s infinite alternate ease-in-out;
+  }
+  
+  .slider-frame li {
+      width: 100%;
+      list-style: none;
+  }
+  
+  .slider-frame img {
+    width: 100%;
+    height: 455px;
+  }
+  
+  @keyframes slide {
+      0% {margin-left: 0;}
+      20% {margin-left: 0;}
+      
+      25% {margin-left: -100%;}
+      45% {margin-left: -100%;}
+      
+      50% {margin-left: -200%;}
+      70% {margin-left: -200%;}
+      
+      75% {margin-left: -300%;}
+      100% {margin-left: -300%;}
+  }

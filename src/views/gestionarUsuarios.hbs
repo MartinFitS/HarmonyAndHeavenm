@@ -19,10 +19,10 @@
         <h1>Agrega un nuevo usuario</h1>
         <div class="imgUsuario"></div>
         <div class="form">
-            <form action="">
-                <input type="text" placeholder="Username">
-                <input type="text" placeholder="Password">
-                <select name="" id="">
+            <form action="products/add/root" method="post">
+                <input type="text" placeholder="Username" name="username" id="username">
+                <input type="password" placeholder="Password"  name="password" id="password">
+                <select name="rol" id="rol">
                     <option value="invitado">invitado</option>
                     <option value="vendedor">vendedor</option>
                     <option value="admin">admin</option>

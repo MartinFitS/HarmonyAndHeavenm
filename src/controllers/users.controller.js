@@ -92,7 +92,7 @@ export const renderRegister = async(req,res) => {
 export const registerUser = async(req,res) => {
     try{
         const {username, password,roles} = req.body;
-
+        console.log(roles)
         const hashedPassword = await bcrypt.hash(password ,10)
 
         const hashedRoles = await bcrypt.hash(roles, 10)
@@ -120,6 +120,35 @@ export const registerUser = async(req,res) => {
         }
     }catch(e){
         console.err(e)
+    }
+}
+
+export const registerFromRoot = async(req,res) => {
+    try{
+        const {username, password,rol} = req.body;
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+
+    if(rol == "admin"){
+        await connection.query('INSERT INTO users set ?', { username: username, password: hashedPassword, roles:"admin", name_role: "admin"}, (err, user)=>{
+            console.log("se creó",user)
+            res.redirect("/master/user/gestionar")
+        })
+    }else if(rol == "vendedor"){
+        await connection.query('INSERT INTO users set ?', { username: username, password: hashedPassword, roles:"vendedor", name_role: "vendedor"}, (err, user)=>{
+            console.log("se creó",user)
+            res.redirect("/master/user/gestionar")
+        })
+    }else{
+            await connection.query('INSERT INTO users set ?', { username: username, password: hashedPassword, roles:"invitado", name_role: "invitado"}, (err, user)=>{
+                console.log("se creó", user)
+                res.redirect("/master/user/gestionar")
+            })
+        
+    }
+    }catch(e){
+        console.error(e)
     }
 }
 

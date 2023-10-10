@@ -1,0 +1,379 @@
+/* html
+{
+    margin-top: -1%;
+    width: 99.8%;
+    background-color: #e1e1e1;
+} */
+
+.header 
+{
+    margin-left: 0;
+    background-color: #96785d;
+    position: static;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo
+{
+    margin: 0px;
+    padding-left: 15%;
+    color: #fffefe;
+    font-size: 40px;
+}
+
+.header .nav {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    gap: 20px;
+}
+
+.menu
+{
+    margin-right: 10px;
+    height: 80%;
+    text-align: end;
+    width: 101%;
+    padding-top: 1.2%;
+}
+
+.menu a
+{
+    padding-left: 1%;
+    padding-right: 1%;
+    text-align: end;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+
+.header .nav a:hover {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    outline: none;
+    color: var(--Fprimaria);
+    background: transparent;
+}
+
+.header .search {
+    color: black;
+    position: relative;
+    flex: 1;
+    max-width: 300px;
+}
+
+.header .search input {
+    background: black;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid var(--Fprimaria);
+    border-radius: 5px;
+    outline: none;
+}
+
+.header .search i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--Fprimaria);
+    cursor: pointer;
+}
+
+
+::placeholder
+{
+    text-align: center;
+    width: auto;
+    color: #7538067a;
+    font-size: 12px;
+}
+::placeholder:active
+{
+    box-shadow: 0 0 50px rgba(232, 232, 232, 0.8);
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+    .header .nav {
+        margin-top: 10px;
+    }
+
+    .header .search {
+        margin-top: 10px;
+    }
+}
+ul{
+    list-style: none;
+}
+
+.titulo{
+    width: 30%;
+    height: auto;
+}
+
+.header .titulo .title
+{
+    color: #000000;
+    padding: 20px;
+    color: #734C29;
+}
+
+.options{
+    width: 70%;
+    height: auto;
+}
+
+.options ul{
+    display: flex;
+    margin-left: 48%;
+}
+
+.options ul li {
+    padding: 20px;
+    text-align: end;
+}
+
+.options a{
+    font-weight: 100;
+    color: #734C29;
+    text-decoration: none;
+}
+
+/* Main de la vista */
+.body
+{
+    width: 100%;
+    height: auto;
+    height: auto;
+
+}
+
+.titulos
+{
+    margin-left: 0;
+    margin-top: 0%;
+    padding-top: 0px;
+    padding-bottom: 0%;
+    background-color: #cacaca;
+    width: 100%;
+    height: auto;
+}
+
+.titulos h2
+{
+    margin-top: 0%;
+    margin-bottom: 0%;
+    margin-left: 2%;
+    height: auto;
+    padding-top: 1.6%;
+    padding-bottom: 1.5%;
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.main
+{
+    margin-left: -1%;
+    background-color: #ffffff;
+    display: flex;
+    width: 101%;
+}
+
+.listaOrganizacion
+{
+    min-height: 536px;
+    width: 21%;
+    height: auto;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: #d9d9d9;
+    border-top: dashed 1px #ebebeb;
+}
+
+.listaOrganizacion h1
+{
+    margin-left: 5PX;
+    text-align: left;
+    padding-top: 10%;
+    font-size: 17px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.listaOrganizacion h2
+{
+    margin-left: 5px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 100;
+    color: #000000;
+}
+
+.filtrarPrecio
+{
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.minimo
+{
+    background-color: #f7f0e582;
+    border: 1px solid #00000055;
+    border-radius: 7px;
+    margin-left: 2.5%;
+    margin-right: 1.5%;
+    width: 45%;
+    height: 20px;
+}
+
+.maximo
+{    
+    border: 1px solid #00000055;
+    border-radius: 7px;
+    background-color: #f7f0e582;
+    margin-left: 2.5%;
+    width: 45%;
+    height: 20px;
+}
+
+.buscarBtn
+{
+    border: 1px solid #00000055;
+    border-radius: 7px;
+    margin-top: 3%;
+    margin-left: 31%;
+    margin-right: 37%;
+    border: none;
+    width: auto;
+    height: 19px;
+    background-color: #734c29a7;
+    color: white;
+    box-shadow: #734C29;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 5%
+}
+
+.listadoDeProdu
+{
+    border: solid #84848400;
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 1%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+}
+
+.productoCard
+{
+    width: 24%;
+    text-align: center;
+    padding: 2%;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 7px;
+    backdrop-filter: blur(10px);
+    background-color: white;
+    padding-right: 5px;
+    margin-left: 5%;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    height: 398px;
+}
+
+.productoCard .imgProduct
+{
+    text-align: center;
+    width: 100%;
+    height: 240px;
+}
+
+.productoCard .productModel
+{
+    padding-right: 2%;
+    padding-left: 0%;
+    text-align: center;
+    margin-top: 0px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+    text-align: center;
+}
+
+.productoCard  .productMarca
+{
+    padding-right: 2%;
+    padding-left: 0%;
+    color: #000000;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.productoCard .productPrice
+{
+    font-weight: 600;
+    padding-right: 2%;
+    padding-left: 0%;
+    color: #c61717;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.productoCard .productUnidades
+{
+    padding-right: 2%;
+    padding-left: 0%;
+    color: #000000;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.funciones 
+{
+    width: 100%;
+    height: auto;
+    margin-top: 1px; /* Puedes ajustar este valor según el espacio que desees entre los botones */
+    margin-bottom: 1px;
+}
+
+.edit, .delete {
+    display: block; /* Hacer que los botones sean elementos de bloque para que aparezcan uno debajo del otro */
+    width: 60%; /* Ajusta el ancho del botón según tus necesidades */
+    text-align: center; /* Centra el texto dentro del botón */
+    border-radius: 7px;
+    font-weight: 100;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    margin: 0 auto 7px auto; /* Margen inferior para separar los botones verticalmente y centrarlos horizontalmente */
+}
+
+.edit 
+{
+    padding: 3%;
+    background-color: #33922c;
+}
+
+.delete 
+{
+    padding: 3%;
+    background-color: #922c2c;
+}

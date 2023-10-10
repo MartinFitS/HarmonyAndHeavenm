@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/addProduct.css">
+<link rel="stylesheet" href="/css/editProduct.css">
 
 <div class="addProductDivPrincipal">
     <div class="formAddProduct">
@@ -18,7 +18,7 @@
                     <option>Casio</option>
                 </select>
             </div>
-            <div>
+            <div class="inputAdd">
                 <select value={{product.instrumentoTipo}} class="instrumentoTipo" name="instrumentoTipo" id="instrumentoTipo">
                     <option>Guitarra</option>
                     <option>Piano</option>
@@ -38,34 +38,36 @@
             <div class="inputAdd">
                 <input type="text" value="{{product.foto}}" id="foto" name="foto" placeholder="Foto">
             </div>
-            <button type="submit">Editar Producto</button>
+            <div class="button-container">
+                <button type="submit">Editar Producto</button>
+            </div>
+            
             
 
         </form>
     </div>
     <div class="imageAndMessage">
-            <div class="fraseArriba">
-                <h4>Harmony Heaven</h4>
-            </div>
-            <div class="cuadradoImagenes">
 
-                <div class="lineaArriba">
-                    <div class="img1">
-                    <h1>"Si no fuera por la música, habría más razones para volverse loco".</h1>
-                    <p>Piotr Ilich Chaikovski</p>
-                    </div>
-                    <div class="img2"></div>
+                <div class="slider-frame">
+                    <ul>
+                        <li><img src="/img/carro1.jpg" alt=""></li>
+                        <li><img src="/img/carro2.jpg" alt=""></li>
+                        <li><img src="/img/carro3.jpg" alt=""></li>
+                        <li><img src="/img/carro4.jpg" alt=""></li>
+                    </ul>
                 </div>
-                <div class="lineaAbajo">
-                    <div class="img3"></div>
-                    <div class="img4">
-                        <h1>"Sin música, la vida sería un error".</h1>
-                        <p>Friederich Nietzcche</p>
-                    </div>
+
+                <div class="button-container2">
+                    <a  onclick ="goBack()">Ver Productos</a>
                 </div>
-            </div>
-            <div class="fraseAbajo">
-                Para regresar a el listado de productos da <a href="/login/user/admin/view/">click aqui</a>
-            </div>
+
+        </div>
+    </div>
+    <script>
+        function goBack() {
+            // Utiliza el método `history.back()` para regresar a la página anterior
+            window.history.back();
+        }
+    </script>
     </div>
 </div>
