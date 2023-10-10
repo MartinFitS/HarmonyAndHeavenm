@@ -1,6 +1,6 @@
 import connection from "../bd/bdConfig";
 import bcrypt from "bcrypt"
-import {ADMINROLEPASSWORD, VENDEDORROLEPASSWORD} from "../config"
+import {ADMINROLEPASSWORD, VENDEDORROLEPASSWORD,MASTER} from "../config"
 
 export const renderLogin = async(req,res) => {
     res.render("index.hbs")
@@ -33,6 +33,12 @@ export const loginUser = async(req,res) => {
             req.session.userId = user.id;
             req.user = username;
             return res.redirect("/login/user/admin/view/")
+        }else if(passwordMatch && user.name_role == "master"){
+            req.session.loggedIn = true;
+            req.session.userId = user.id;
+            req.user = username;
+
+            return res.redirect("/login/user/master/view/")
         }else {
             return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
@@ -46,6 +52,16 @@ export const invitadoView = async(req,res)=>{
              res.json(err)
         }
         res.render("invitadoPrincipalView.hbs", {products: products})
+        console.log(products)
+    })
+}
+
+export const masterView = async(req,res)=>{
+    connection.query('SELECT * FROM products', (err, products)=>{
+        if(err){
+             res.json(err)
+        }
+        res.render("masterPrincipalView.hbs", {products: products})
         console.log(products)
     })
 }
@@ -91,6 +107,11 @@ export const registerUser = async(req,res) => {
                 console.log(user)
                 res.render('index.hbs')
             })
+        }else if(await bcrypt.compare(MASTER, hashedRoles)){
+            await connection.query('INSERT INTO users set ?', { username: username, password: hashedPassword, roles:hashedRoles, name_role: "master"}, (err, user)=>{
+                console.log(user)
+                res.render('index.hbs')
+            })
         }else{
             await connection.query('INSERT INTO users set ?', { username: username, password: hashedPassword, roles:hashedRoles, name_role: "invitado"}, (err, user)=>{
                 console.log(user)
@@ -100,4 +121,35 @@ export const registerUser = async(req,res) => {
     }catch(e){
         console.err(e)
     }
+}
+
+export const gestionarUsuarios = async(req,res) => {
+    connection.query('SELECT * FROM users', (err, user)=>{
+        if(err){
+             res.json(err)
+        }
+        res.render("gestionarUsuarios.hbs", {user: user})
+        console.log(user)
+    })
+}
+
+export const deleteUser = async(req,res)=>{
+    const {id} = req.params;
+    
+    const sql = 'DELETE FROM users WHERE id = ?'; 
+
+    await connection.query(sql, id, (err, result) => {
+        if (err) {
+          console.error('Error al eliminar el producto:', err);
+          res.status(500).json({ error: 'Error al eliminar el producto' });
+        } else {
+          if (result.affectedRows === 0) {
+            // Si no se encontró ningún registro para eliminar
+            res.status(404).json({ error: 'Producto no encontrado' });
+          } else {
+            res.redirect("/master/user/gestionar")
+            console.log('Producto eliminado correctamente');
+          }
+        }
+      });
 }

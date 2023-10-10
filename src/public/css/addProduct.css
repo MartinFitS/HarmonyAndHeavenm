@@ -1,201 +1,202 @@
-
-.addProductDivPrincipal{
-    width: 100%;
-    height: 656px;
+#formProduct{
+    background-color: #f7f7f7;
+    font-family: 'Poppins', sans-serif;
     display: flex;
-}
-
-.marcaInput{
-    border: none;
-    border-bottom: 1px solid rgb(151, 109, 42);
-    width: 60%;
-    height: 30px;
-    margin-left: 20%;
-    margin-top: 20px;
-}
-
-.instrumentoTipo{
-    border: none;
-    border-bottom: 1px solid rgb(151, 109, 42);
-    width: 60%;
-    height: 30px;
-    margin-left: 20%;
-    margin-top: 20px;
-}
-
-.formAddProduct{
-    border-right: 3px solid rgb(151, 109, 42);
-    margin-left: 10%;
-    width: 30%;
-    height: 450px;
-    margin-top: 100px;
-}
-
-.formAddProduct h1{
-    color: rgb(151, 109, 42);
-    font-size: 30px;
-    padding-top: 10px;
-    padding-left:15%;
-    font-weight: 100;
-}
-
-.formAddProduct form{
+    min-height: 100vh;
     width: 100%;
     height: auto;
-}
-
-.formAddProduct input{
-    border: none;
-    border-bottom: 1px solid rgb(151, 109, 42);
-    width: 60%;
-    height: 30px;
-    margin-left: 20%;
-    margin-top:20px;
-}
-
-.formAddProduct button{
-    margin-top: 15px;
-    width: 40%;
-    height: 40px;
-    margin-left: 25%;
-    background-color: transparent;
-    border-radius: 20px;
-    font-weight: 700;
-    color: rgb(151, 109, 42);
-    border: 2px solid rgb(151, 109, 42);
-}
-
-.imageAndMessage{
-    margin-right: 10%;
-    width: 50%;
-    height: 450px;
-    margin-top: 100px;
-}
-
-.fraseArriba{
-    width: 90%;
-    height: 40px;
-    margin-left: 10%;
-}
-
-.cuadradoImagenes{
-    margin-top: 10px;
-    width: 90%;
-    height: 350px;
-    margin-left: 10%;
-    background-color: black;
+  }
+  
+  .addProductDivPrincipal{
+    width: 100%;
+    height: auto;
+    display: flex;
+  }
+  
+  .addProductDivPrincipal h1 {
+    font-weight: 100;
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+    color: #734C29;
+    text-align: left;
+  }
+  
+  /* Estilos Input */
+  
+  .inputAdd {
     margin-bottom: 10px;
-}
-
-.fraseAbajo{
-    width: 90%;
-    height: 40px;
-
+  }
+  
+  .inputAdd input,
+  .inputAdd select {
+    padding: 10px;
+    border: none;
+    outline: none;
+    background: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #734C29;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .inputAdd input{
+    width: 95%;
+  }
+  
+  .inputAdd input[type="number"] {
+    appearance: textfield;
+  }
+  
+  .inputAdd select {
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .button-container {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button-container button {
+    width: 50%;
+    height: 43px;
+    margin-left: 20%;
+    background-color: #5a3b1f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .button-container button:hover {
+    background-color: #442a14;
+  }
+  
+  .formAddProduct{
+    margin-top: 50px;
+    height: 550px;
     margin-left: 10%;
-}
-
-.lineaArriba{
-    display: flex;
-    width: 100%;
-    height: 175px;
-    background-color: #734C29;
-}
-
-.lineaAbajo{
-    display: flex;
-    width: 100%;
-    height: 175px;
-    background-color: #734C29;
-}
-
-.img1{
-    opacity: 0.9;
-    width: 50%;
-    height: 175px;
-    background-color: brown;
-    background-image: url("/img/piano.jpg");
-    background-size: cover;
-}
-
-.img1:hover{
-    scale: 102%;
-    cursor: pointer;
-    transition: 250ms;
-}
-.img2:hover{
-    scale: 102%;
-    cursor: pointer;
-    transition: 250ms;
-}
-.img3:hover{
-    scale: 102%;
-    cursor: pointer;
-    transition: 250ms;
-}
-.img4:hover{
-    scale: 102%;
-    cursor: pointer;
-    transition: 250ms;
-}
-
-.img1 h1{
-    font-weight: 100;
-    font-size: 25px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    max-width: 400px;
+    padding: 3em 2em;
     color: white;
-}
-
-.img1 p{
-    margin-top: 10px;
-    font-weight: 100;
-    color: white;  
-}
-.img2{
-    width: 50%;
-    height: 175px;
-    background-image: url("/img/imagen1.jpg");
-    background-size: cover;
-    background-position-y: -55px;
-}
-.img3{
-    width: 50%;
-    height: 175px;
-    background-image: url("https://cdn.pixabay.com/photo/2022/11/28/00/42/man-7620937_1280.jpg");
-    background-size: cover;
-}
-.img4{
-    opacity: 0.9;
-    width: 50%;
-    height: 175px;
-    background-image: url("/img/img4.jpg");
-    background-size: cover;
-}
-
-.img4 h1{
-    text-align: end;
-    font-size: 25px;
-    font-weight: 100;
+  }
+  
+  .inputForm{
+     margin-top: 3em;
+     display: grid;
+  }
+  
+  /* Imagenes */
+  
+  .imageAndMessage{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-left: 10%;
+    max-width: 800px;
+    padding: 0px;
     color: white;
-}
+    height: 550px;
+    margin-top: 50px;
+  }
+  
+  .button-container2 {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
 
-.img4 p{
-    text-align: end;
-    margin-top: 10px;
-    font-weight: 100;
-    color: white;  
-}
+  .button-container2 a{
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    font-style: none;
+    text-decoration: none;
+    background-color: #331f0e;
+    cursor: pointer;
+    color: white;
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
 
-.fraseArriba h4{
-    color: #734C29;
+  .button-container2 a:hover{
+    transform: 120%;
+    border: 2px solid #331f0e;
+    background-color: transparent;
+    cursor: pointer;
+    color: #331f0e;
+    transition: 250ms;
+  }
+  
+  .button-container2 button {
+    background-color: #f5ceab;
+    color: white;
+    border: none;
+    padding: 10px 100px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    color: #442a14;
+    font-size: 20px;
     font-weight: 600;
-    font-size: 25px;
-}
-
-.fraseAbajo {
-    font-size: 16px;
-    color: #734C29;
-}
-
-.fraseAbajo a{
-    color: #3b2512;
-    font-weight: 700;
-}
+  }
+  
+  .button-container2 button:hover {
+    background-color: #ecbc92;
+    color: #331f0e;
+  }
+  
+  /* Carrousel */
+  
+  .slider-frame {
+      width: 320px;
+    height: auto;
+      margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+      overflow: hidden;
+  }
+  
+  .slider-frame ul {
+      display: flex;
+      padding: 0;
+      width: 400%;
+      
+      animation: slide 20s infinite alternate ease-in-out;
+  }
+  
+  .slider-frame li {
+      width: 100%;
+      list-style: none;
+  }
+  
+  .slider-frame img {
+    width: 100%;
+    height: 455px;
+  }
+  
+  @keyframes slide {
+      0% {margin-left: 0;}
+      20% {margin-left: 0;}
+      
+      25% {margin-left: -100%;}
+      45% {margin-left: -100%;}
+      
+      50% {margin-left: -200%;}
+      70% {margin-left: -200%;}
+      
+      75% {margin-left: -300%;}
+      100% {margin-left: -300%;}
+  }

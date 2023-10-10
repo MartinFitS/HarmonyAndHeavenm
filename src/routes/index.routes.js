@@ -1,9 +1,7 @@
 import {Router} from "express";
-import {renderLogin, renderRegister,registerUser,loginUser,invitadoView, adminView, logoutUser} from "../controllers/users.controller"
+import {renderLogin, renderRegister,masterView,registerUser,loginUser,invitadoView, adminView, logoutUser, gestionarUsuarios,deleteUser} from "../controllers/users.controller"
 import {allProducts,editProduct,renderProducts ,addProduct,succesCreateProduct,deleteProduct,renderEditProduct} from "../controllers/products.controller";
-import connection from "../bd/bdConfig"
 import {requireAuth} from "../middlewares/auth"
-import {adminCheck} from "../middlewares/adminCheck"
 
 const router = Router();
 
@@ -16,11 +14,17 @@ router.get("/login/user/invitado/view/",requireAuth , invitadoView)
 
 router.get("/login/user/admin/view/", requireAuth , adminView)
 
+router.get("/login/user/master/view/", requireAuth, masterView)
+
 router.get("/register",renderRegister)
 
 router.post("/register/user", registerUser)
 
 router.get("/logout", logoutUser)
+
+router.get("/master/user/gestionar", requireAuth,gestionarUsuarios)
+
+router.get("/master/user/gestionar/delete/:id", requireAuth, deleteUser)
 
 //products
 router.get("/allProducts", requireAuth , allProducts)
@@ -31,9 +35,10 @@ router.post("/products/add",requireAuth,addProduct);
 
 router.get("/product/create/succes",requireAuth, succesCreateProduct)
 
-router.get("/product/edit/:id", renderEditProduct)
+router.get("/product/edit/:id",requireAuth, renderEditProduct)
 
-router.post("/product/edit/:id", editProduct)
+router.post("/product/edit/:id", requireAuth, editProduct)
 
 router.get("/delete/:id",requireAuth, deleteProduct)
+
 export default router;

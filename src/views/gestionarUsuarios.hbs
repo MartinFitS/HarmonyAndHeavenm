@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="/css/gestionarUsuarios.css">
+
+<header>
+    <div class="titulo">
+            <h1 class="title">H&H</h1>
+    </div>
+
+    <div class="options">
+        <ul>
+            <li><a href="">Punto de venta</a></li>
+            <li><a href="/products">Agrega un producto</a></li>
+            <li><a href="/logout">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="mainUsers">
+    <div class="leftSideUsers">
+        <h1>Agrega un nuevo usuario</h1>
+        <div class="imgUsuario"></div>
+        <div class="form">
+            <form action="">
+                <input type="text" placeholder="Username">
+                <input type="text" placeholder="Password">
+                <select name="" id="">
+                    <option value="invitado">invitado</option>
+                    <option value="vendedor">vendedor</option>
+                    <option value="admin">admin</option>
+                </select>
+                <button>Crear Usuario</button>
+            </form>
+        </div>
+    </div>
+    <div class="tablaSide">
+        <table class="dataTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>USERNAME</th>
+                    <th>ROL</th>
+                    <th>OPCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each user}}
+            <tr>
+                <td>{{@index}}</td>
+                <td>{{username}}</td>
+                <td>{{name_role}}</td>
+                <td><a class="editBtn" href="">Editar</a><a class="deleteBtn" href="/master/user/gestionar/delete/{{id}}">Eliminar</a></td>
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

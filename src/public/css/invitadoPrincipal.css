@@ -1,157 +1,199 @@
-.header{
-    width: 100%;
-    height: 60px;
-    background-color: white;
-    display: flex;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppin&display=swap');
 
-ul{
-    list-style: none;
-}
-
-.titulo{
-    width: 30%;
-    height: auto;
-}
-
-.header .titulo .title{
-    padding: 20px;
-    color: #734C29;
-}
-
-.options{
-    width: 70%;
-    height: auto;
+body, ul, h1, h2, h3, h4, h5, p {
+    margin: 0;
+    padding: 0;
 }
 
 
-.options ul li {
-    padding: 20px;
-    text-align: end;
-}
-
-.options a{
-    font-weight: 600;
-    color: #734C29;
-    text-decoration: none;
-}
-
-/* Main de la vista */
-.body{
-    width: 100%;
-    height: auto;
-}
-
-.titulos{
-    width: 100%;
-    height: 50px;
-}
-
-.titulos h2{
-    margin-top: 30px;
-    font-size: 25px;
-    font-weight: 300;
-    color: #734C29;
-    text-align: left;
-    margin-left: 5%;
+#listProduct {   /* Color de fondo */
+  background-color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  height: 100%;
 }
 
 .main{
-    display: flex;
-    width: 100%;
-    height: auto;
+width: 100%;
+height: auto;
+display: flex;
 }
 
-.listaOrganizacion{
+.body {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin-top: 50px;
+}
+
+/* Header = "Nav" */
+.header {
+  background-color: #734C29;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.title {
+  font-size: 24px;
+  margin-left: 195%;
+}
+
+.options ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.options li {
+  margin-right: 33px;
+}
+
+.options a {
+    text-decoration: none;
+    color: white;
+    font-weight: 100;
+
+}
+/* Fin_Header */
+
+.listaOrganizacion {
     width: 20%;
-    height: 300px;
-    margin-left: 5%;
+    height: auto;
     margin-right: 5%;
+    background-color: #a56c3a;
+    color: white;
+    padding: 30px;
+    border-radius: 0px;
+    overflow-y: auto;
+    margin-bottom: 0;
+    min-height: 593px;
 }
 
-.listaOrganizacion h1{
-    font-size: 17px;
-    font-weight: 600;
-    color: #753806;
+.listaOrganizacion h1, .listaOrganizacion h2 {
+  color: white;
+  font-weight: bold;
 }
 
-.listaOrganizacion h2{
-    margin-top: 7px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #734C29;
+.listaOrganizacion h1 {
+    font-size: 24px;
+    font-weight: 100;
+    margin-bottom: 10px;
+    text-align: left;
 }
 
-.listadoDeProdu{
+.listaOrganizacion h2 {
+  font-size: 18px;
+  margin-top: 20px;
+  font-weight: 100;
+}
+
+/*----------------------------------------------------*/
+
+.filtrarPrecio {
+  margin-top: 20px;
+}
+
+.minimo, .maximo {
+  width: 40%;
+  padding: 5px;
+  margin-bottom: 10px;
+  height: 24px;
+}
+
+.buscarBtn {
+    border-radius: 23px;
+  background-color: #5a3b1f;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  width: 87%;
+  margin-top: 10px;
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+.buscarBtn:hover {
+  background-color: #442a14;
+}
+
+/*----------------------------------------------------*/
+
+.listadoDeProdu {
+    margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
     width: 65%;
     height: auto;
-    margin-right: 5%;
 }
 
-.filtrarPrecio{
-    width: 100%;
-    height: auto;
-    display: flex;
-}
-
-.minimo{
-    width: 25%;
-    height: 20px;
-}
-
-.maximo{
-    width: 25%;
-    height: 20px;
-}
-.buscarBtn{
-    margin-left: 5px;
-    border: none;
-    width: 20%;
-    height: 20px;
-    background-color: #734C29;
-    color: white;
-}
-.productoCard{
-    border: 3px solid #734C29;
+/* #product{
     background-color: white;
     margin-left: 3%;
     width: 30%;
-    height: 400px;
+    height: auto;
     margin-bottom: 20px;
-}
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); */
+/* } */
 
-.productoCard .imgProduct{
-    width: 100%;
-    height: 250px;
-}
-
-.productoCard .productModel{
-    margin-top: 10px;
-    font-size: 20px;
-    font-weight: 600;
-    color: #734C29;
+.productoCard {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 40px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    width: 30%;
+    height: auto;
     text-align: center;
+    margin-bottom: 20px;
+    margin-left: 3%;
+
 }
 
-.productoCard  .productMarca{
-    font-size: 17px;
-    font-weight: 100;
-    color: #734C29;
-    text-align: center;
+.imgProduct {
+  width: 100%;
+  height: 170px;
 }
 
-.productoCard .productPrice{
-    font-size: 17px;
-    font-weight: 600;
-    color: #734C29;
-    text-align: center;
+.productModel {
+  font-size: 18px;
+  margin: 10px 0;
 }
 
-.productoCard .productUnidades{
-    font-size: 15px;
-    font-weight: 600;
-    color: #734C29;
-    text-align: center;
+.productMarca {
+  color: #734C29;
 }
+
+.productPrice {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.productUnidades {
+  font-size: 14px;
+  color: #777;
+}
+
+.funciones {
+  margin-top: 10px;
+}
+
+.edit, .delete {
+  text-decoration: none;
+  padding: 10px 15px;
+  background-color: #734C29;
+  color: white;
+  border: 1px solid #734C29;
+  border-radius: 30px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.edit:hover, .delete:hover {
+  background-color: #5a3b1f; 
+    color: white;
+}
+
