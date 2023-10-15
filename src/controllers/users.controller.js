@@ -7,41 +7,40 @@ export const renderLogin = async(req,res) => {
 }
 
 export const loginUser = async(req,res) => {
-    const {username, password} = req.body;
+    const { username, password } = req.body;
 
-    await connection.query('SELECT * FROM users WHERE username = ?', [username], async(err, results)=>{
-        if(err){
-            console.err(err);
-            return res.status(500).json({error: 'Error al iniciar sesión'})
+    await connection.query('SELECT * FROM users WHERE username = ?', [username], async (err, results) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Error al iniciar sesión' });
+      }
+  
+      if (results.length === 0) {
+        return res.status(401).json({ error: 'Usuario no encontrado' });
+      }
+  
+     const user = results[0];
+  
+      const passwordMatch = await bcrypt.compare(password, user.password);
+  
+      if (passwordMatch) {
+        req.session.loggedIn = true;
+        req.session.userId = user.id;
+        req.session.userRole = user.name_role;
+        console.log("UsuarioActual: ", user.name_role)
+        if (user.name_role === "invitado") {
+
+          return res.redirect("/login/user/invitado/view/");
+        } else if (user.name_role === "admin") {
+
+          return res.redirect("/login/user/admin/view/");
+        } else if (user.name_role === "master") {
+
+          return res.redirect("/login/user/master/view/");
         }
-
-        if(results.length === 0){
-            return res.status(401).json({error: 'Ususario no encontrado'})
-        }
-
-        const user = results[0];
-
-        const passwordMatch = await bcrypt.compare(password, user.password)
-        console.log(user)
-        if(passwordMatch && user.name_role == "invitado"){
-            req.session.loggedIn = true;
-            req.session.userId = user.id;
-            
-            return res.redirect("/login/user/invitado/view/");
-        }else if(passwordMatch && user.name_role == "admin"){
-            req.session.loggedIn = true;
-            req.session.userId = user.id;
-            req.user = username;
-            return res.redirect("/login/user/admin/view/")
-        }else if(passwordMatch && user.name_role == "master"){
-            req.session.loggedIn = true;
-            req.session.userId = user.id;
-            req.user = username;
-
-            return res.redirect("/login/user/master/view/")
-        }else {
-            return res.status(401).json({ error: 'Contraseña incorrecta' });
-        }
+      } else {
+        return res.status(401).json({ error: 'Contraseña incorrecta' });
+      }
     })
 }
 

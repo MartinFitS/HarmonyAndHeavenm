@@ -4,17 +4,17 @@ export const addProduct = async(req,res) => {
     try{
         const data = req.body;
         await connection.query('INSERT INTO products set ?', [data], (err, product) =>{
-            console.log(product);
-            res.redirect("/login/user/admin/view/")
+            if(req.session.userRole === "master"){
+              res.redirect("/login/user/master/view/")
+            }else{
+              res.redirect("/login/user/admin/view/")
+              console.log('Producto eliminado correctamente');
+            }
         })
 
     }catch(e){
         console.err(e)
     }
-}
-
-export const succesCreateProduct = async (req,res) => {
-  res.render("succesProduct.hbs")
 }
 
 export const allProducts = async(req,res) => {
@@ -75,9 +75,11 @@ export const editProduct = async(req,res) =>{
           console.error('Error al actualizar el producto: ' + err.message);
           res.status(500).json({ error: 'No se pudo actualizar el producto' });
         } else {
-          console.log(result)
-          console.log('Producto actualizado con éxito');
-          res.redirect('/login/user/admin/view/'); // Puedes redirigir a una página de éxito u otra ubicación
+          if(req.session.userRole === "master"){
+            res.redirect("/login/user/master/view/")
+          }else{
+            res.redirect("/login/user/admin/view/")
+          } 
         }
       }
     )
@@ -88,7 +90,7 @@ export const editProduct = async(req,res) =>{
 
 export const deleteProduct = async(req,res)=>{
     const {id} = req.params;
-    
+
     const sql = 'DELETE FROM products WHERE id = ?'; // Consulta SQL para eliminar el producto por su ID
 
     await connection.query(sql, id, (err, result) => {
@@ -100,8 +102,14 @@ export const deleteProduct = async(req,res)=>{
           // Si no se encontró ningún registro para eliminar
           res.status(404).json({ error: 'Producto no encontrado' });
         } else {
-          res.redirect("/login/user/admin/view/")
-          console.log('Producto eliminado correctamente');
+
+          if(req.session.userRole === "master"){
+            res.redirect("/login/user/master/view/")
+          }else{
+            res.redirect("/login/user/admin/view/")
+            console.log('Producto eliminado correctamente');
+          }
+
         }
       }
     });

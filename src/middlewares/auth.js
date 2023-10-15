@@ -6,3 +6,13 @@ export const requireAuth = (req,res,next) => {
         res.redirect("/")
     }
 }
+
+
+export const checkRole =(role) => (req,res,next) => {
+    console.log(req.user)
+    if(req.session.loggedIn && req.user && req.user.name_role === role){
+        next();
+    }else{
+        res.redirect("/")
+    }
+}
