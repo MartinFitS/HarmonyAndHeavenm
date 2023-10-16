@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {renderLogin, renderRegister,masterView,registerFromRoot,registerUser,loginUser,invitadoView, adminView, logoutUser, gestionarUsuarios,deleteUser} from "../controllers/users.controller"
+import {renderLogin, renderRegister,masterView,registerFromRoot,registerUser,loginUser,invitadoView, adminView, logoutUser, gestionarUsuarios,deleteUser,editUser,editUserToDatabase} from "../controllers/users.controller"
 import {allProducts,editProduct,renderProducts ,addProduct,succesCreateProduct,deleteProduct,renderEditProduct} from "../controllers/products.controller";
 import {requireAuth} from "../middlewares/auth"
 import {roleCheck} from "../middlewares/roleCheck"
@@ -17,17 +17,21 @@ router.get("/login/user/admin/view/",  roleCheck("admin"), adminView)
 
 router.get("/login/user/master/view/",  roleCheck("master"),masterView)
 
-router.get("/register",requireAuth, renderRegister)
+router.get("/register", renderRegister)
 
 router.post("/register/user", registerUser)
 
 router.get("/logout", logoutUser)
 
-router.get("/master/user/gestionar", roleCheck("master"),gestionarUsuarios)
+router.get("/master/user/gestionar", roleCheck("master"),gestionarUsuarios);
 
 router.post("/master/user/products/add/root", roleCheck("master"), registerFromRoot);
 
-router.get("/master/user/gestionar/delete/:id", roleCheck("master"), deleteUser)
+router.get("/master/user/gestionar/editar/:id", roleCheck("master"),editUser);
+
+router.post("/master/user/gestionar/editar/:id", roleCheck("master"), editUserToDatabase);
+
+router.get("/master/user/gestionar/delete/:id", roleCheck("master"), deleteUser);
 
 //products
 router.get("/allProducts", requireAuth , allProducts)

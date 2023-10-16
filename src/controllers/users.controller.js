@@ -152,13 +152,67 @@ export const registerFromRoot = async(req,res) => {
 }
 
 export const gestionarUsuarios = async(req,res) => {
-    connection.query('SELECT * FROM users', (err, user)=>{
-        if(err){
-             res.json(err)
+    connection.query('SELECT * FROM users WHERE name_role <> \'master\'', (err, users) => {
+        if (err) {
+            res.json(err);
         }
-        res.render("gestionarUsuarios.hbs", {user: user})
-        console.log(user)
+        res.render("gestionarUsuarios.hbs", { user: users });
+        console.log(users);
+    });
+}
+
+async function obtenerUserById(userId){
+    return new Promise((resolve,reject) =>{
+
+      const sql = 'SELECT * FROM users WHERE id = ?';
+  
+      connection.query(sql, [userId], (err, result)=>{
+        if(err){
+          reject(err);
+        }else{
+          if(result.length > 0){
+            resolve(result[0]);
+          }else{
+            resolve(null)
+          }
+        }
+      })
     })
+  }
+
+export const editUser = async(req,res) => {
+    const {id} = req.params;
+
+    const user = await obtenerUserById(id);
+
+    res.render("editUserFromMaster.hbs", {user})
+}
+
+export const editUserToDatabase = async(req,res) => {
+    try{
+        const userId = req.params.id;
+        const user = req.body
+        const sql = 'UPDATE users SET roles = ?, name_role = ? WHERE id = ?';
+        
+        connection.query(
+          sql,
+          [user.name_role,user.name_role, userId],(err,result) => {
+            if (err) {
+              console.error('Error al actualizar el producto: ' + err.message);
+              res.status(500).json({ error: 'No se pudo actualizar el usuario' });
+            } else {
+              if(req.session.userRole === "master"){
+                res.redirect("/master/user/gestionar")
+              }else{
+                res.redirect("/login/user/admin/view/")
+              } 
+            }
+          }
+        )
+    }catch(e){
+        console.error(e)
+    }
+
 }
 
 export const deleteUser = async(req,res)=>{
