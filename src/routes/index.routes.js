@@ -1,9 +1,11 @@
 import {Router} from "express";
 import {renderLogin, renderRegister,masterView,registerFromRoot,registerUser,loginUser,invitadoView, adminView, logoutUser, gestionarUsuarios,deleteUser,editUser,editUserToDatabase} from "../controllers/users.controller"
 import {allProducts,editProduct,renderProducts ,addProduct,succesCreateProduct,deleteProduct,renderEditProduct} from "../controllers/products.controller";
+import {allProveedores, renderProveedores, addProveedor, proveedorAdd, renderEditProveedor, editProveedor, deleteProveedor } from "../controllers/proveedores.controller";
 import {requireAuth} from "../middlewares/auth"
 import {roleCheck} from "../middlewares/roleCheck"
-import {multipleRoleCheck} from "../middlewares/multipleRoleCheck"
+import {multipleRoleCheck,multipleRoleCheckVendedor} from "../middlewares/multipleRoleCheck"
+import {renderPuntoDeVenta} from "../controllers/puntodeventa.controller"
 const router = Router();
 
 //users
@@ -45,5 +47,22 @@ router.get("/product/edit/:id",multipleRoleCheck, renderEditProduct)
 router.post("/product/edit/:id",requireAuth,editProduct)
 
 router.get("/delete/:id", multipleRoleCheck,deleteProduct)
+
+//proveedores
+router.get("/proveedores", requireAuth , allProveedores)
+
+router.get("/proveedoresAdd", requireAuth, proveedorAdd);
+
+router.post("/proveedores/add",multipleRoleCheck, addProveedor);
+
+router.get("/proveedor/edit/:id", multipleRoleCheck, renderEditProveedor);
+
+router.post("/proveedor/edit/:id", requireAuth, editProveedor);
+
+router.get("/proveedor/delete/:id", multipleRoleCheck,deleteProveedor) 
+
+//Punto de venta
+
+router.get("/p-v", requireAuth, multipleRoleCheckVendedor, renderPuntoDeVenta)
 
 export default router;

@@ -6,10 +6,10 @@
         <form action="/product/edit/{{product.id}}" method="post">
             <div class="inputAdd">
                 
-                <input type="text" value="{{product.modelo}}" id="modelo" name="modelo" placeholder="Nombre Del Modelo">
+                <input type="text" value="{{product.modelo}}" id="modelo" name="modelo" placeholder="Nombre Del Modelo" required>
             </div>
             <div class="inputAdd">
-                <select class="marcaInput" name="marca" id="marca" value={{product.marca}}>
+                <select class="marcaInput" name="marca" id="marca" value={{product.marca}} required>
                     <option>Yamaha</option>
                     <option>Fender</option>
                     <option>Takamine</option>
@@ -20,7 +20,7 @@
                 </select>
             </div>
             <div class="inputAdd">
-                <select value={{product.instrumentoTipo}} class="instrumentoTipo" name="instrumentoTipo" id="instrumentoTipo">
+                <select value={{product.instrumentoTipo}} class="instrumentoTipo" name="instrumentoTipo" id="instrumentoTipo" required>
                     <option>Guitarra</option>
                     <option>Piano</option>
                     <option>Bateria</option>
@@ -28,16 +28,16 @@
                 </select>
             </div>
             <div class="inputAdd">
-                <input type="number" value={{product.precioPublico }} id="precioPublico" name="precioPublico" placeholder="Precio Publico">
+                <input type="number" value={{product.precioPublico }} id="precioPublico" name="precioPublico" placeholder="Precio Publico" required>
             </div>
             <div class="inputAdd">
-                <input type="number" value={{product.precioTienda}} id="precioTienda" name="precioTienda" placeholder="Precio Tienda">
+                <input type="number" value={{product.precioTienda}} id="precioTienda" name="precioTienda" placeholder="Precio Tienda" required>
             </div>
             <div class="inputAdd">
-                <input type="number" value={{product.unidades}} id="unidades" name="unidades" placeholder="Unidades Disponibles">
+                <input type="number" value={{product.unidades}} id="unidades" name="unidades" placeholder="Unidades Disponibles" required>
             </div>
             <div class="inputAdd">
-                <input type="text" value="{{product.foto}}" id="foto" name="foto" placeholder="Foto">
+                <input type="text" value="{{product.foto}}" id="foto" name="foto" placeholder="Foto" required>
             </div>
             <div class="button-container">
                 <button type="submit">Editar Producto</button>

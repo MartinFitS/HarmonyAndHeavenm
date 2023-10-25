@@ -9,12 +9,12 @@
             <form class="inputForm" action="/products/add" method="post">
 
                 <div class="inputAdd">
-                    <input type="text" id="modelo" name="modelo" placeholder="Nombre Del Modelo">
+                    <input type="text" id="modelo" name="modelo" placeholder="Nombre Del Modelo" required>
                     <span class="line"></span>
                 </div>
 
                 <div class="inputAdd">
-                    <select class="marcaInput" name="marca" id="marca">
+                    <select class="marcaInput" name="marca" id="marca" required>
                         <option>Yamaha</option>
                         <option>Fender</option>
                         <option>Takamine</option>
@@ -27,7 +27,7 @@
                 </div>
                 
                 <div class="inputAdd">
-                    <select class="instrumentoTipo" name="instrumentoTipo" id="instrumentoTipo">
+                    <select class="instrumentoTipo" name="instrumentoTipo" id="instrumentoTipo" required>
                         <option>Guitarra</option>
                         <option>Piano</option>
                         <option>Bateria</option>
@@ -37,22 +37,27 @@
                 </div>
 
                 <div class="inputAdd">
-                    <input type="number" id="precioPublico" name="precioPublico" placeholder="Precio Publico">
+                    <input type="number" id="precioPublico" name="precioPublico" placeholder="Precio Publico" required>
                     <span class="line"></span>
                 </div>
 
                 <div class="inputAdd">
-                    <input type="number" id="precioTienda" name="precioTienda" placeholder="Precio Tienda">
+                    <input type="number" id="precioTienda" name="precioTienda" placeholder="Precio Tienda" required>
                     <span class="line"></span>
                 </div>
 
                 <div class="inputAdd">
-                    <input type="number" id="unidades" name="unidades" placeholder="Unidades Disponibles">
+                    <input type="number" id="unidades" name="unidades" placeholder="Unidades Disponibles"required>
                     <span class="line"></span>
                 </div>
 
                 <div class="inputAdd">
-                    <input type="text" id="foto" name="foto" placeholder="Foto">
+                    <input type="text" id="foto" name="foto" placeholder="Foto" required>
+                    <span class="line"></span>
+                </div>
+
+                <div class="inputAdd">
+                    <input type="text" id="clave" name="clave" placeholder="clave" minlength="5" maxlength="5" required>
                     <span class="line"></span>
                 </div>
 
