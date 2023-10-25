@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="/css/addProduct.css">
+<body id="formProduct">
+
+    <div class="addProductDivPrincipal">
+        <div class="formAddProduct">
+
+            <h1>Agrega Un Proveedor</h1>
+
+            <form class="inputForm" action="/proveedores/add" method="post">
+
+                <div class="inputAdd">
+                    <input type="text" id="proveedor" name="nombreProveedor" placeholder="Nombre Del Proveedor">
+                    <span class="line"></span>
+                </div>
+
+                <div class="inputAdd">
+                    <input type="text" id="producto" name="producto" placeholder="Nombre Del Producto">
+                    <span class="line"></span>
+                </div>
+
+                <div class="inputAdd">
+                    <input type="number" id="precioProveedor" name="precioProveedor" placeholder="Precio Del Proveedor">
+                    <span class="line"></span>
+                </div>
+
+                <div class="inputAdd">
+                    <input type="email" id="email" name="correo" placeholder="Email">
+                    <span class="line"></span>
+                </div>
+
+                <div class="inputAdd">
+                    <input type="number" id="telefono" name="telefono" placeholder="Telefono">
+                    <span class="line"></span>
+                </div>
+
+
+                <div class="button-container">
+                    <button type="submit">Agregar Proveedor</button>
+                </div>
+                
+            </form>
+        </div>
+
+
+        <div class="imageAndMessage">
+
+                <div class="slider-frame">
+                    <ul>
+                        <li><img src="/img/carro1.jpg" alt=""></li>
+                        <li><img src="/img/carro2.jpg" alt=""></li>
+                        <li><img src="/img/carro3.jpg" alt=""></li>
+                        <li><img src="/img/carro4.jpg" alt=""></li>
+                    </ul>
+                </div>
+
+                <div class="button-container2">
+                    <a  onclick ="goBack()">Regresar</a>
+                </div>
+
+        </div>
+    </div>
+    <script>
+        function goBack() {
+            // Utiliza el método `history.back()` para regresar a la página anterior
+            window.history.back();
+        }
+    </script>
+</body>

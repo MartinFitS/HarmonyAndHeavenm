@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="/css/editProduct.css">
+
+<div class="addProductDivPrincipal">
+    <div class="formAddProduct">
+    <h1>Editar Proveedor</h1>
+<form action="/proveedor/edit/{{proveedor.id}}" method="post">
+    <div class="inputAdd">
+        <input type="text" value="{{proveedor.nombreProveedor}}" id="precioPublico" name="precioPublico" placeholder="Nombre Del Proveedor">
+    </div>
+    <div class="inputAdd">
+        <input type="text" value="{{proveedor.producto}}" id="precioTienda" name="producto" placeholder="Producto">
+    </div>
+    <div class="inputAdd">
+        <input type="number" value="{{proveedor.precioProveedor}}" id="unidades" name="precioProveedor" placeholder="Precio Del Proveedor">
+    </div>
+    <div class="inputAdd">
+        <input type="text" value="{{proveedor.correo}}" id="foto" name="correo" placeholder="Correo">
+    </div>
+    <div class="inputAdd">
+        <input type="number" value="{{proveedor.telefono}}" id="foto" name="telefono" placeholder="Telefono">
+    </div>
+    <div class="button-container">
+        <button type="submit">Editar Producto</button>
+    </div>
+</form>
+
+    </div>
+</form>
+    </div>
+    <div class="imageAndMessage">
+
+                <div class="slider-frame">
+                    <ul>
+                        <li><img src="/img/carro1.jpg" alt=""></li>
+                        <li><img src="/img/carro2.jpg" alt=""></li>
+                        <li><img src="/img/carro3.jpg" alt=""></li>
+                        <li><img src="/img/carro4.jpg" alt=""></li>
+                    </ul>
+                </div>
+
+                <div class="button-container2">
+                    <a  onclick ="goBack()">Ver Productos</a>
+                </div>
+
+        </div>
+    </div>
+    <script>
+        function goBack() {
+            // Utiliza el método `history.back()` para regresar a la página anterior
+            window.history.back();
+        }
+    </script>
+    </div>
+</div>

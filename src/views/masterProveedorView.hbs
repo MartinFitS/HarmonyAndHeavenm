@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/css/masterPrincipalView.css">
+<div class="header">
+    <div class="titulo">
+            <h1 class="title">H&H</h1>
+    </div>
+
+    <div class="options">
+        <ul>
+            <li><a href="">Punto de venta</a></li>
+            <li><a href="/master/user/gestionar">Gestionar Usuarios</a></li>
+            <li><a href="/proveedoresAdd">Agrega un proveedor</a></li>
+            <li><a href="/">Productos</a></li>
+            <li><a href="/pedidos">Pedidos</a></li>
+            <li><a href="/logout">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="body">
+    <div class="titulos"><h2>Listado de proveedores</h2></div>
+    <div class="main">
+    <div class="listaOrganizacion">
+        <h1>Ordernar</h1>
+        
+        <h2>Precio</h2>
+        <div class="filtrarPrecio">
+        <input type="text" placeholder="Minimo" class="minimo"> <span> - </span><input placeholder="Maximo" class="maximo"type="text"><button class="buscarBtn">Buscar</button>
+        </div>
+    </div>
+    <div class="listadoDeProdu">
+        {{#each proveedores}}
+            <div class="productoCard">
+                <h3 class="productModel">{{nombreProveedor}}</h3>
+                <h4 class="productMarca">{{producto}}</h4>
+                <h5 class="productPrice">${{precioProveedor}}</h5>
+                <h5 class="productPrice">{{correo}}</h5>
+                <h5 class="productPrice">{{telefono}}</h5>
+                <div class="funciones"> 
+                    <a class="edit" href="/proveedor/edit/{{id}}">Editar</a>
+                    <a class="delete" href="/proveedor/delete/{{id}}">Eliminar </a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    </div>      
+</div>

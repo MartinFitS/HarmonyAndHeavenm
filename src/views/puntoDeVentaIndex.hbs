@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="/css/renderPunto.css">
+<header>
+    <a href="/login/user/master/view/">H&H</a>
+</header>
+
+<div class="mainPv">
+    <div class="leftSidePunto">
+        <div class="buscador">
+            <input type="text" placeholder="Buscador">
+            <button>Buscar</button>
+        </div>
+        <div class="listProductsPunto">
+            {{#each products}}
+                <div class="productSellCard">
+                    <img src={{foto}} alt="">
+                    <h1>{{modelo}}</h1>
+                    <h2>{{precioPublico}}</h2>
+                    <h3>{{unidades}}</h3>
+                    <button>Add</button>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="checkProducts"></div>
+</div>
