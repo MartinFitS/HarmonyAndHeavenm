@@ -9,17 +9,34 @@
             <input type="text" placeholder="Buscador">
             <button>Buscar</button>
         </div>
-        <div class="listProductsPunto">
+        <div class="listProductsPunto" onclick="add()">
             {{#each products}}
                 <div class="productSellCard">
                     <img src={{foto}} alt="">
                     <h1>{{modelo}}</h1>
-                    <h2>{{precioPublico}}</h2>
-                    <h3>{{unidades}}</h3>
+                    <h2>{{precioPublico}}$</h2>
+                    <h3>{{unidades}} unidades</h3>
                     <button>Add</button>
                 </div>
             {{/each}}
         </div>
     </div>
-    <div class="checkProducts"></div>
+    <div class="checkProducts">
+        <div class="allProducts"></div>
+        <div class="totalPrice">
+            <div class="pricefinal">
+                <h2>Total</h2>
+                <h3>0$</h3>
+            </div>
+        </div>
+        <div class="btn-check">
+            <button>Check Out</button>
+        </div>
+    </div>
 </div>
+
+<script>
+    let add = () => {
+        console.log("products")
+    }
+</script>
