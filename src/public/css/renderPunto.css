@@ -26,6 +26,7 @@ header a{
 }
 
 .listProductsPunto{
+    margin-top: 40px;
     width: 100%;
     height: auto;
     display: flex;
@@ -160,7 +161,7 @@ header a{
 .pricefinal h3{
     font-weight: 100;
     font-size: 25px;
-    padding-left: 270px;
+    padding-left: 60%;
 }
 
 .btn-check{
@@ -177,4 +178,16 @@ header a{
     margin-left: 2.5%;
     width: 95%;
     height: 50px;
+}
+
+.product-name{
+    font-weight: 700;
+    padding-top: 3px;
+}
+
+.product-info{
+    margin-top: 20px;
+    width: 80%;
+    height: auto;
+    margin-left: 10%;
 }
