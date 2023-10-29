@@ -1,25 +1,95 @@
-<link rel="stylesheet" href="/css/renderPunto.css">
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="/css/renderPunto.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
 <header>
     <a href="/login/user/master/view/">H&H</a>
 </header>
 
 <div class="mainPv">
     <div class="leftSidePunto">
-        <div class="buscador">
-            <input type="text" placeholder="Buscador">
-            <button>Buscar</button>
-        </div>
-        <div class="listProductsPunto">
+        <div class="listProductsPunto" >
             {{#each products}}
                 <div class="productSellCard">
                     <img src={{foto}} alt="">
                     <h1>{{modelo}}</h1>
-                    <h2>{{precioPublico}}</h2>
-                    <h3>{{unidades}}</h3>
-                    <button>Add</button>
+                    <h2>{{precioPublico}}$</h2>
+                    <h3>{{unidades}} unidades</h3>
+                    <button onclick="add('{{modelo}}', {{precioPublico}}, {{unidades}})">Add</button>
                 </div>
             {{/each}}
         </div>
     </div>
-    <div class="checkProducts"></div>
+    <div class="checkProducts">
+        <div class="allProducts"></div>
+        <div class="totalPrice">
+            <div class="pricefinal">
+                <h2>Total</h2>
+                <h3>0$</h3>
+            </div>
+        </div>
+        <div class="btn-check">
+            <button>Check Out</button>
+        </div>
+    </div>
 </div>
+
+    <script>
+        let selectedProducts = [];
+let totalPrice = 0;
+
+let add = (modelo, precioPublico, unidades) => {
+    // Busca el producto en la lista de productos seleccionados
+    const existingProduct = selectedProducts.find(product => product.modelo === modelo);
+
+    if (existingProduct) {
+        if (existingProduct.unidades + 1 <= unidades) {
+            // Si el producto ya está en la lista y hay suficientes unidades disponibles, aumenta la cantidad
+            existingProduct.unidades++;
+        } else {
+            // Si no hay suficientes unidades en stock, muestra un mensaje
+            alert('No hay suficientes unidades disponibles en stock para ' + modelo);
+        }
+    } else {
+        // Si el producto no está en la lista, agrégalo
+        selectedProducts.push({ modelo, precioPublico, unidades: 1 });
+    }
+
+    // Actualiza la lista de productos en el div con clase "allProducts"
+    updateAllProductsList();
+
+    // Calcula el nuevo total y actualiza el div "pricefinal"
+    calculateTotalPrice();
+}
+
+
+// Función para actualizar la lista de productos en el div "allProducts"
+function updateAllProductsList() {
+    const allProductsDiv = document.querySelector('.allProducts');
+    allProductsDiv.innerHTML = ''; // Borra el contenido existente
+
+    selectedProducts.forEach(product => {
+        const productInfo = document.createElement('div');
+        productInfo.classList.add('product-info'); // Agrega una clase
+        productInfo.innerHTML = `<p class="product-name">${product.modelo} - ${product.precioPublico}$ (${product.unidades}x)</p>`;
+        allProductsDiv.appendChild(productInfo);
+    });
+}
+
+// Función para calcular el nuevo total
+function calculateTotalPrice() {
+    totalPrice = selectedProducts.reduce((total, product) => total + product.precioPublico * product.unidades, 0);
+    const pricefinal = document.querySelector('.pricefinal');
+    pricefinal.querySelector('h3').textContent = totalPrice + '$';
+}
+    </script>
+</body>
+</html>
