@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="/css/addProduct.css">
+<body id="formProduct">
+
+    <div class="addProductDivPrincipal">
+        <div class="formAddProduct">
+
+            <h1>Agrega Un Producto</h1>
+
+            <form class="inputForm" action="/pedido/add" method="post">
+
+                <div class="inputAdd">
+                    <select class="modeloInput" name="modelo" id="modelo" required>
+                    {{#each productos}}
+                        <option>{{modelo}}</option>
+                    {{/each}}
+                    </select>
+                    <span class="line"></span>
+                </div>
+
+                <div class="inputAdd">
+                    <select class="marcaInput" name="marca" id="marca" required>
+                        {{#each productos}}
+                        <option>{{marca}}</option>
+                        {{/each}}
+                    </select>
+                    <span class="line"></span>
+                </div>
+                
+                <div class="inputAdd">
+                    <select class="instrumentoTipo" name="instrumentoTipo" id="instrumentoTipo" required>
+                        {{#each productos}}
+                        <option>{{instrumentoTipo}}</option>
+                        {{/each}}
+                    </select>
+                    <span class="line"></span>
+                </div>
+
+                <div class="inputAdd">
+                    <input type="number" id="unidades" name="unidades" placeholder="Unidades a pedir" required>
+                    <span class="line"></span>
+                </div>
+                <div class="inputAdd">
+                    <select class="proveedorInput" name="proveedor" id="proveedor" required>
+                    {{#each proveedores}}
+                        <option>{{nombreProveedor}}</option>
+                    {{/each}}
+                    </select>
+                <div class="button-container">
+                    <button type="submit">Pedir producto</button>
+                </div>
+                    <span class="line"></span>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="imageAndMessage">
+
+                <div class="slider-frame">
+                    <ul>
+                        <li><img src="/img/carro1.jpg" alt=""></li>
+                        <li><img src="/img/carro2.jpg" alt=""></li>
+                        <li><img src="/img/carro3.jpg" alt=""></li>
+                        <li><img src="/img/carro4.jpg" alt=""></li>
+                    </ul>
+                </div>
+
+                <div class="button-container2">
+                    <a  onclick ="goBack()">Regresar</a>
+                </div>
+
+        </div>
+    </div>
+    <script>
+        function goBack() {
+            // Utiliza el método `history.back()` para regresar a la página anterior
+            window.history.back();
+        }
+    </script>
+</body>
