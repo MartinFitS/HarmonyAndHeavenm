@@ -6,10 +6,11 @@
 
     <div class="options">
         <ul>
-            <li><a href="/proveedores">Proveedores</a></li>
             <li><a href="/p-v">Punto de venta</a></li>
             <li><a href="/master/user/gestionar">Gestionar Usuarios</a></li>
             <li><a href="/products">Agrega un producto</a></li>
+            <li><a href="/proveedores">Proveedores</a></li>
+            <li><a href="/pedidos">Pedidos</a></li>
             <li><a href="/logout">Cerrar Sesión</a></li>
         </ul>
     </div>
@@ -19,12 +20,39 @@
     <div class="titulos"><h2>Listado de productos</h2></div>
     <div class="main">
     <div class="listaOrganizacion">
-        <h1>Ordernar</h1>
-        
-        <h2>Precio</h2>
-        <div class="filtrarPrecio">
-        <input type="text" placeholder="Minimo" class="minimo"> <span> - </span><input placeholder="Maximo" class="maximo"type="text"><button class="buscarBtn">Buscar</button>
-        </div>
+   <form action="/productos/categoria/" method="post">
+    <h1>Ordenar</h1>
+    
+    <h2>Precio</h2>
+    <div class="filtrarPrecio">
+        <input type="text" name="minPrice" placeholder="Mínimo">
+        <span> - </span>
+        <input type="text" name="maxPrice" placeholder="Máximo">
+    </div>
+    
+   <h2>Instrumento</h2>
+<select name="instrumentoTipo">
+    <option value="Todos">Todos</option>
+    <option value="Guitarra">Guitarra</option>
+    <option value="Piano">Piano</option>
+    <option value="Bateria">Bateria</option>
+    <option value="Violin">Violin</option>
+</select>
+
+<h2>Marca</h2>
+<select name="marca">
+    <option value="Todos">Todos</option>
+    <option value="Fender">Fender</option>
+    <option value="Yamaha">Yamaha</option>
+    <option value="Gibson">Gibson</option>
+    <option value="Casio">Casio</option>
+    <option value="Takamine">Takamine</option>
+    <option value="Marshall">Marshall</option>
+    <option value="LesPaul">LesPaul</option>
+</select>
+
+    <button type="submit">Filtrar</button>
+</form>
     </div>
     <div class="listadoDeProdu">
         {{#each products}}
