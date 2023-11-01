@@ -12,12 +12,12 @@ export const categoriaProducto = async (req, res) => {
 
 //se verifica que se haya ingresado un valor minimo. isNaN (Is Not-a-Number) verifica si un valor no es un número
     if (!isNaN(minPrice)) {
-        sql += ' AND precioTienda >= ?';
+        sql += ' AND precioPublico >= ?';
         params.push(minPrice);
     }
 
     if (!isNaN(maxPrice)) {
-        sql += ' AND precioTienda <= ?';
+        sql += ' AND precioPublico <= ?';
         params.push(maxPrice);
     }
 
@@ -36,7 +36,6 @@ export const categoriaProducto = async (req, res) => {
             res.json(err);
         } else {
             res.render('masterPrincipalView', { products: productsf });
-            console.log(instrumentoTipo);
         }
     });
 };

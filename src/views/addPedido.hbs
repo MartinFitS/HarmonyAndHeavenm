@@ -4,7 +4,7 @@
     <div class="addProductDivPrincipal">
         <div class="formAddProduct">
 
-            <h1>Agrega Un Producto</h1>
+            <h1>Pide un producto</h1>
 
             <form class="inputForm" action="/pedido/add" method="post">
 
@@ -45,6 +45,14 @@
                         <option>{{nombreProveedor}}</option>
                     {{/each}}
                     </select>
+                </div>
+                <div class="inputAdd">
+                <select id="idUsuario" name="idUsuario">
+                    {{#each users}}
+                        <option value="{{id}}">{{id}}: {{username}}</option>
+                    {{/each}}
+                </select> 
+                </div>
                 <div class="button-container">
                     <button type="submit">Pedir producto</button>
                 </div>
