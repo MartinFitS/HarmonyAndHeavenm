@@ -33,17 +33,22 @@
    <h2>Instrumento</h2>
 <select name="instrumentoTipo">
     <option value="Todos">Todos</option>
-    {{#each products}}
-        <option value="{{instrumentoTipo}}">{{instrumentoTipo}}</option>
-    {{/each}}
+    <option value="Guitarra">Guitarra</option>
+    <option value="Piano">Piano</option>
+    <option value="Bateria">Bateria</option>
+    <option value="Violin">Violin</option>
 </select>
 
 <h2>Marca</h2>
 <select name="marca">
     <option value="Todos">Todos</option>
-    {{#each products}}
-        <option value="{{marca}}">{{marca}}</option>
-    {{/each}}
+    <option value="Fender">Fender</option>
+    <option value="Yamaha">Yamaha</option>
+    <option value="Gibson">Gibson</option>
+    <option value="Casio">Casio</option>
+    <option value="Takamine">Takamine</option>
+    <option value="Marshall">Marshall</option>
+    <option value="LesPaul">LesPaul</option>
 </select>
 
     <button type="submit">Filtrar</button>
