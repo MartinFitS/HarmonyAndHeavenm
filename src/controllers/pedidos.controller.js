@@ -1,5 +1,5 @@
 import connection from "../bd/bdConfig";
-import PDFDocument from 'pdfkit'; // Asegúrate de importar la biblioteca correctamente
+import PDFDocument from 'pdfkit'; 
 
 export const allPedidos = async (req, res) => {
   try {
@@ -91,11 +91,11 @@ export const pedidoAdd = async(req,res) =>{
 }
 
 export const deletePedido = async(req,res)=>{
-  const {numSerie} = req.params; // Obtener el ID del proveedor desde la URL
-  const estado = 'Cancelado'
-  const sql = 'DELETE FROM orders WHERE numSerie = ? AND estado= ?'; // Consulta SQL para eliminar el producto por su ID
+  const {numSerie} = req.params; 
+  const estados = ['Cancelado', 'Entregado'];
+  const sql = 'DELETE FROM orders WHERE numSerie = ? AND estado IN (?)'; //IN compara el valor del campo "estado" con estados
 
-  await connection.query(sql, [numSerie,estado], (err, result) => {
+  await connection.query(sql, [numSerie,estados], (err, result) => {
     if (err) {
       console.error('Error al eliminar el pedido:', err);
       res.status(500).json({ error: 'Error al eliminar el pedido' });
@@ -178,7 +178,7 @@ export const facturaPedido = async (req, res) => {
     doc.fontSize(18);
     doc.text(`Información sobre el proveedor:`, 30, 455);
     doc.fontSize(16); 
-    doc.text(`Estado: ${order.nombreProveedor}`, 30, 490);
+    doc.text(`Proveedor: ${order.nombreProveedor}`, 30, 490);
     doc.text(`Teléfono: ${order.telefono}`, 30, 525);
     doc.text(`Correo electrónico: ${order.correo}`, 30, 560);
 
