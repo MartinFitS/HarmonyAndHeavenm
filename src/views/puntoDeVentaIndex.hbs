@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,7 +21,8 @@
                     <h1>{{modelo}}</h1>
                     <h2>{{precioPublico}}$</h2>
                     <h3>{{unidades}} unidades</h3>
-                    <button onclick="add('{{modelo}}', {{precioPublico}}, {{unidades}})">Add</button>
+                    <button onclick="add('{{modelo}}', {{precioPublico}}, {{unidades}}, {{id}})">Add</button>
+                    <!-- Agregamos el ID del producto como un parámetro en la función "add" -->
                 </div>
             {{/each}}
         </div>
@@ -37,59 +36,103 @@
             </div>
         </div>
         <div class="btn-check">
-            <button>Check Out</button>
+            <button onclick="checkout()">Check Out</button>
         </div>
     </div>
 </div>
 
-    <script>
-        let selectedProducts = [];
-let totalPrice = 0;
+<script>
+    let selectedProducts = [];
+    let selectedProductIds = []; // Variable para almacenar los IDs de los productos seleccionados
+    let totalPrice = 0;
 
-let add = (modelo, precioPublico, unidades) => {
-    // Busca el producto en la lista de productos seleccionados
-    const existingProduct = selectedProducts.find(product => product.modelo === modelo);
+    function add(modelo, precioPublico, unidades, productId) {
+        const existingProduct = selectedProducts.find(product => product.modelo === modelo);
 
-    if (existingProduct) {
-        if (existingProduct.unidades + 1 <= unidades) {
-            // Si el producto ya está en la lista y hay suficientes unidades disponibles, aumenta la cantidad
-            existingProduct.unidades++;
+        if (existingProduct) {
+            if (existingProduct.unidades + 1 <= unidades) {
+                existingProduct.unidades++;
+            } else {
+                alert('No hay suficientes unidades disponibles en stock para ' + modelo);
+            }
         } else {
-            // Si no hay suficientes unidades en stock, muestra un mensaje
-            alert('No hay suficientes unidades disponibles en stock para ' + modelo);
+            selectedProducts.push({ modelo, precioPublico, unidades: 1 });
+            selectedProductIds.push(productId); // Agregamos el ID del producto
         }
-    } else {
-        // Si el producto no está en la lista, agrégalo
-        selectedProducts.push({ modelo, precioPublico, unidades: 1 });
+
+        updateAllProductsList();
+        calculateTotalPrice();
     }
 
-    // Actualiza la lista de productos en el div con clase "allProducts"
-    updateAllProductsList();
+    function updateAllProductsList() {
+        const allProductsDiv = document.querySelector('.allProducts');
+        allProductsDiv.innerHTML = '';
 
-    // Calcula el nuevo total y actualiza el div "pricefinal"
-    calculateTotalPrice();
-}
+        selectedProducts.forEach(product => {
+            const productInfo = document.createElement('div');
+            productInfo.classList.add('product-info');
+            productInfo.innerHTML = `<p class="product-name">${product.modelo} - ${product.precioPublico}$ (${product.unidades}x)</p>`;
+            allProductsDiv.appendChild(productInfo);
+        });
+    }
 
+    function calculateTotalPrice() {
+        totalPrice = selectedProducts.reduce((total, product) => total + product.precioPublico * product.unidades, 0);
+        const pricefinal = document.querySelector('.pricefinal');
+        pricefinal.querySelector('h3').textContent = totalPrice + '$';
+    }
 
-// Función para actualizar la lista de productos en el div "allProducts"
-function updateAllProductsList() {
-    const allProductsDiv = document.querySelector('.allProducts');
-    allProductsDiv.innerHTML = ''; // Borra el contenido existente
+    function checkout() {
+    if (selectedProducts.length === 0) {
+        alert('No hay productos seleccionados.');
+        return;
+    }
 
+    const data = new URLSearchParams();
+    data.append('total', totalPrice);
+
+    // Crear un objeto para rastrear los IDs de productos y la cantidad vendida
+    const productSales = {};
+
+    // Recorrer los productos seleccionados
     selectedProducts.forEach(product => {
-        const productInfo = document.createElement('div');
-        productInfo.classList.add('product-info'); // Agrega una clase
-        productInfo.innerHTML = `<p class="product-name">${product.modelo} - ${product.precioPublico}$ (${product.unidades}x)</p>`;
-        allProductsDiv.appendChild(productInfo);
+    const productId = product.id; // Supongo que tienes una propiedad 'id' en tus objetos de producto
+    const quantitySold = product.unidades;
+
+    if (productSales[productId]) {
+        productSales[productId] += quantitySold;
+    } else {
+        productSales[productId] = quantitySold;
+    }
+});
+
+
+    // Agregar los IDs y la cantidad vendida al objeto de datos
+    for (const productId in productSales) {
+        data.append('productSales[]', productId + ',' + productSales[productId]);
+    }
+
+    console.log('Total:', data.get('total'));
+
+    fetch('/guardar-venta', {
+        method: 'POST',
+        body: data
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Venta exitosa. Total: ' + totalPrice + '$');
+            // Puedes realizar otras acciones aquí, como borrar la lista de productos seleccionados, etc.
+        } else {
+            alert('Error al guardar la venta: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error en la solicitud: ' + error);
     });
+    // Ahora puedes enviar los datos al servidor
 }
 
-// Función para calcular el nuevo total
-function calculateTotalPrice() {
-    totalPrice = selectedProducts.reduce((total, product) => total + product.precioPublico * product.unidades, 0);
-    const pricefinal = document.querySelector('.pricefinal');
-    pricefinal.querySelector('h3').textContent = totalPrice + '$';
-}
-    </script>
+</script>
 </body>
 </html>

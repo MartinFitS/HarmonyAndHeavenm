@@ -6,6 +6,5 @@ export const renderPuntoDeVenta = (req,res) => {
              res.json(err)
         }
         res.render("puntoDeVentaIndex.hbs", {products: products})
-        console.log(products)
     })
 }
