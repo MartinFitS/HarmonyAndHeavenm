@@ -190,7 +190,7 @@ select{
     background-color: white;
     margin-left: 3%;
     width: 30%;
-    height: auto;
+    height: 224px;
     margin-bottom: 20px;
 }
 
@@ -203,8 +203,8 @@ select{
 }
 
 .productoCard .productModel{
-    margin-top: 10px;
-    font-size: 20px;
+    padding-top: 30px;
+    font-size: 25px;
     font-weight: 600;
     color: #734C29;
     text-align: center;
@@ -213,10 +213,12 @@ select{
 }
 
 .productoCard  .productMarca{
+    padding-top: 10px;
     font-size: 17px;
     font-weight: 100;
     color: #734C29;
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .productoCard .productPrice{
@@ -237,15 +239,19 @@ select{
     width: 100%;
     height: auto;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.funciones a{
+    font-size: 14px;
 }
 .edit{
     border-radius: 7px;
     font-weight: 100;
     text-decoration: none;
     color: white;
-    font-size: 13px;
-    margin-left: 7%;
+    font-size: 15px;
+    margin-left: 26%;
     background-color: #33922c;
     padding: 3%;
 }

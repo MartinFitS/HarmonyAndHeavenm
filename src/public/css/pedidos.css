@@ -1,0 +1,242 @@
+body{
+    background-color: #f7f7f7;
+}
+
+header{
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 60px;
+    background-color: white;
+    display: flex;
+}
+
+ul{
+    list-style: none;
+}
+
+.titulo{
+    width: 30%;
+    height: auto;
+}
+
+.titulo a{
+    
+    text-decoration: none;
+}
+
+
+.title{
+    padding: 10px;
+    color: #734C29;
+}
+
+
+.options{
+    width: 70%;
+    height: auto;
+}
+
+.options ul{
+    display: flex;
+    margin-left: 39%;
+}
+
+.options ul li {
+    padding: 20px;
+    text-align: end;
+}
+
+.options a{
+    font-weight: 100;
+    color: #734C29;
+    text-decoration: none;
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 3%;
+}
+
+.mainUsers{
+    display: flex;
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+.leftSideUsers{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    width: 70%;
+    margin-left: 2%;
+    height: auto;
+    background-color: white;
+}
+
+.leftSideUsers h1{
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    font-size: 23px;
+    color: #734C29;
+    font-weight: 600;
+    text-align: center;
+
+}
+.leftSideUsers h6{
+    font-size: 17px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.faltantes{
+    font-size: 15px;
+    text-align: center;
+}
+.tablaSide {
+    box-shadow: 0 10px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-right: 3%;
+    height: auto;
+    background-color: white;
+    margin-bottom: 30px;
+    align-self: flex-start;
+    margin-top: 50px;
+}
+
+.tablaSide th{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #734C29;
+    font-weight: 600;
+    border-bottom: 1px solid #492e16;
+}
+
+.tablaSide table{
+    width: 100%;
+    height: auto;
+    
+}
+
+.tablaSide td{
+    font-weight: 100;
+    font-size: 15px;
+    padding-top: 10px;
+    color: #734C29;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #492e16;
+}
+
+.edit{
+    border-radius: 10px;
+    text-decoration: none;
+    margin-left: 43%;
+    background-color: rgb(197, 197, 43);
+    font-size: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+}
+
+.edit:hover{
+    transform: 103%;
+    cursor: pointer;
+    transition: 300ms;
+    background-color: transparent;
+    border: 1px solid rgb(197, 197, 43);
+    color: rgb(197, 197, 43)
+}
+
+.deleteBtn{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-left: 10%;
+    margin-left: 10%;
+    background-color: rgb(185, 42, 42);
+    font-size: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+}
+
+.imgUsuario{
+    margin-bottom: 30px;
+    background-position-x: 60px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("/img/usuario.png");
+    width: 90%;
+    margin-left: 5%;
+    height: 250px;
+}
+
+.form{
+    padding-bottom: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.form input{
+    background-color: transparent;
+    color: #734C29;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #734C29;
+    width: 70%;
+    margin-left: 15%;
+    margin-bottom: 10px;
+    height: 25px;
+}
+
+.form input::placeholder{
+    color: #734C29;
+}
+
+.form select{
+    width: 70%;
+    margin-left: 15%;
+    margin-bottom: 10px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    color: #734C29;
+    border-bottom: 2px solid #734C29;
+}
+
+
+
+.form button {
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 25px;
+    font-weight: 600;
+    color: white;
+    border: none;
+    background-color: #734C29;
+    width: 35%;
+    margin-left: 32.5%;
+    margin-bottom: 10px;
+    height: 35px;
+}
+
+.form button:hover{
+    border: 1px solid #734C29;
+    transition: 300ms;
+    color: #734C29;
+    background-color: transparent;
+}

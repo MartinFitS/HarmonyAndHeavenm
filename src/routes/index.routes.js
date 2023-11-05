@@ -84,6 +84,10 @@ router.post("/productos/categoria/", multipleRoleCheck,categoriaProducto )
 //punto de venta
 
 router.get("/p-v", requireAuth, multipleRoleCheckVendedor, renderPuntoDeVenta) 
+// Ruta para guardar una venta
+router.post("/guardar-venta", requireAuth, (req, res) => {
+    console.log(req.body)
+});
 
 
 export default router;
