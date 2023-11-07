@@ -1,5 +1,5 @@
 import connection from "../bd/bdConfig";
-import PDFDocument from 'pdfkit'; // Asegúrate de importar la biblioteca correctamente
+import PDFDocument from 'pdfkit'; 
 
 export const allPedidos = async (req, res) => {
   try {
@@ -92,6 +92,7 @@ export const deletePedido = async(req,res)=>{
   const estados = ['Cancelado', 'Entregado'];
   const sql = 'DELETE FROM orders WHERE numSerie = ? AND estado IN (?)';
 
+
   await connection.query(sql, [numSerie,estados], (err, result) => {
     if (err) {
       console.error('Error al eliminar el pedido:', err);
@@ -178,7 +179,6 @@ export const facturaPedido = async (req, res) => {
     doc.text(`Proveedor: ${order.nombreProveedor}`, 30, 525);
     doc.text(`Teléfono: ${order.telefono}`, 30, 560);
     doc.text(`Correo electrónico: ${order.correo}`, 30, 595);
-
     doc.text(`Firma del empleado`, 30, 650, {align: 'right'});
     doc.moveTo(380, 640).lineTo(550, 640).stroke(); // Los valores (30, 640) y (200, 640) definen los puntos de inicio y final de la línea.
 
