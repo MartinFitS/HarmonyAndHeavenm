@@ -14,7 +14,7 @@
 
 <div class="mainPv">
     <div class="leftSidePunto">
-        <div class="listProductsPunto" >
+        <div class="listProductsPunto">
             {{#each products}}
                 <div class="productSellCard">
                     <img src={{foto}} alt="">
@@ -42,86 +42,84 @@
 </div>
 
 <script>
-    let selectedProducts = [];
-    let selectedProductIds = []; // Variable para almacenar los IDs de los productos seleccionados
+
+    let selectedProducts = {}; // Cambiar a un objeto
     let totalPrice = 0;
 
     function add(modelo, precioPublico, unidades, productId) {
-        const existingProduct = selectedProducts.find(product => product.modelo === modelo);
-
-        if (existingProduct) {
-            if (existingProduct.unidades + 1 <= unidades) {
-                existingProduct.unidades++;
+        if (selectedProducts[productId]) {
+                if (selectedProducts[productId].unidades + 1 <= unidades) {
+                selectedProducts[productId].unidades++;
+                console.log(selectedProducts[productId].unidades)
             } else {
-                alert('No hay suficientes unidades disponibles en stock para ' + modelo);
-            }
-        } else {
-            selectedProducts.push({ modelo, precioPublico, unidades: 1 });
-            selectedProductIds.push(productId); // Agregamos el ID del producto
+            alert('No hay suficientes unidades disponibles en stock para ' + modelo);
         }
-
-        updateAllProductsList();
-        calculateTotalPrice();
+        } else {
+            selectedProducts[productId] = {
+                modelo,
+                precioPublico,
+            unidades: 1
+        };
     }
 
-    function updateAllProductsList() {
-        const allProductsDiv = document.querySelector('.allProducts');
-        allProductsDiv.innerHTML = '';
+    console.log('selectedProducts:', selectedProducts); // Muestra el objeto completo
 
-        selectedProducts.forEach(product => {
-            const productInfo = document.createElement('div');
-            productInfo.classList.add('product-info');
-            productInfo.innerHTML = `<p class="product-name">${product.modelo} - ${product.precioPublico}$ (${product.unidades}x)</p>`;
-            allProductsDiv.appendChild(productInfo);
-        });
+    updateAllProductsList();
+    calculateTotalPrice();
+}
+
+
+function updateAllProductsList() {
+    const allProductsDiv = document.querySelector('.allProducts');
+    allProductsDiv.innerHTML = '';
+
+    for (const productId in selectedProducts) {
+        const product = selectedProducts[productId];
+        const productInfo = document.createElement('div');
+        productInfo.classList.add('product-info');
+        productInfo.innerHTML = `<p class="product-name">${product.modelo} - ${product.precioPublico}$ (${product.unidades}x)</p>`;
+        allProductsDiv.appendChild(productInfo);
     }
+}
+
 
     function calculateTotalPrice() {
-        totalPrice = selectedProducts.reduce((total, product) => total + product.precioPublico * product.unidades, 0);
-        const pricefinal = document.querySelector('.pricefinal');
-        pricefinal.querySelector('h3').textContent = totalPrice + '$';
-    }
+    totalPrice = Object.values(selectedProducts).reduce((total, product) => total + product.precioPublico * product.unidades, 0);
+    const pricefinal = document.querySelector('.pricefinal');
+    pricefinal.querySelector('h3').textContent = totalPrice + '$';
+}
 
-    function checkout() {
-    if (selectedProducts.length === 0) {
+function checkout() {
+    console.log(selectedProducts);
+    if (Object.keys(selectedProducts).length === 0) {
         alert('No hay productos seleccionados.');
         return;
     }
 
-    const data = new URLSearchParams();
-    data.append('total', totalPrice);
-
-    // Crear un objeto para rastrear los IDs de productos y la cantidad vendida
-    const productSales = {};
-
-    // Recorrer los productos seleccionados
-    selectedProducts.forEach(product => {
-    const productId = product.id; // Supongo que tienes una propiedad 'id' en tus objetos de producto
-    const quantitySold = product.unidades;
-
-    if (productSales[productId]) {
-        productSales[productId] += quantitySold;
-    } else {
-        productSales[productId] = quantitySold;
-    }
-});
-
-
-    // Agregar los IDs y la cantidad vendida al objeto de datos
-    for (const productId in productSales) {
-        data.append('productSales[]', productId + ',' + productSales[productId]);
+    let totalPrice = 0;
+    for (const productId in selectedProducts) {
+        const product = selectedProducts[productId];
+        totalPrice += product.precioPublico * product.unidades;
     }
 
-    console.log('Total:', data.get('total'));
+    const requestData = {
+        selectedProducts: selectedProducts,
+        total: totalPrice,
+    };
+
+    const requestDataJSON = JSON.stringify(requestData);
 
     fetch('/guardar-venta', {
         method: 'POST',
-        body: data
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: requestDataJSON,
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Venta exitosa. Total: ' + totalPrice + '$');
+            alert('Venta exitosa.');
             // Puedes realizar otras acciones aquí, como borrar la lista de productos seleccionados, etc.
         } else {
             alert('Error al guardar la venta: ' + data.message);
@@ -130,7 +128,6 @@
     .catch(error => {
         console.error('Error en la solicitud: ' + error);
     });
-    // Ahora puedes enviar los datos al servidor
 }
 
 </script>
