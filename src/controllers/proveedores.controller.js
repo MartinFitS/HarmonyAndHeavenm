@@ -65,15 +65,15 @@ export const editProveedor = async (req, res) => {
   try {
       const proveedorID = req.params.id;
       const proveedor = req.body;
-      const sql = 'UPDATE suppliers SET nombreProveedor = ?, producto = ?, precioProveedor = ?, correo = ?, telefono = ? WHERE id= ?';
+      const sql = 'UPDATE suppliers SET nombreProveedor = ?, correo = ?, telefono = ? WHERE id= ?';
       
       connection.query(
           sql,
-          [proveedor.nombreProveedor, proveedor.producto, proveedor.precioProveedor, proveedor.correo, proveedor.telefono, proveedorID],
+          [proveedor.nombreProveedor, proveedor.correo, proveedor.telefono, proveedorID],
           (err, result) => {
               if (err) {
                   console.error('Error al actualizar el proveedor: ' + err.message);
-                  res.status(500).json({ error: 'No se pudo actualizar el proveedor' } + [id]);
+                  res.status(500).json({ error: 'No se pudo actualizar el proveedor' } + [proveedorID]);
               } else {
                   if (req.session.userRole === "master") {
                       res.redirect("/proveedores");

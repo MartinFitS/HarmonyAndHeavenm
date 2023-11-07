@@ -18,7 +18,7 @@ export const addProduct = async(req,res) => {
 }
 
 export const allProducts = async(req,res) => {
-    connection.query('SELECT * FROM products', (err, products)=>{
+    connection.query('SELECT modelo,proveedor,instrumentoTipo,precioPublico,unidades FROM products', (err, products)=>{
         if(err){
              res.json(err)
         }
