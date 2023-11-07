@@ -7,6 +7,8 @@ import bodyParser from "body-parser"
 
 const app = express();
 
+app.use(express.json())
+
 app.use(session({
     secret: 'aXqoe98',
     resave: false,

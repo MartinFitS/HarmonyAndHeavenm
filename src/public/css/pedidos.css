@@ -38,7 +38,7 @@ ul{
 
 .options ul{
     display: flex;
-    margin-left: 48%;
+    margin-left: 39%;
 }
 
 .options ul li {
@@ -91,6 +91,16 @@ ul{
     text-align: center;
 
 }
+.leftSideUsers h6{
+    font-size: 17px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.faltantes{
+    font-size: 15px;
+    text-align: center;
+}
 .tablaSide {
     box-shadow: 0 10px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -127,21 +137,20 @@ ul{
     border-bottom: 1px solid #492e16;
 }
 
-.editBtn{
+.edit{
     border-radius: 10px;
     text-decoration: none;
-    margin-left: 10%;
+    margin-left: 43%;
     background-color: rgb(197, 197, 43);
     font-size: 15px;
     padding-top: 5px;
-
     padding-bottom: 5px;
     padding-left: 20px;
     padding-right: 20px;
     color: white;
 }
 
-.editBtn:hover{
+.edit:hover{
     transform: 103%;
     cursor: pointer;
     transition: 300ms;
@@ -176,6 +185,7 @@ ul{
 }
 
 .form{
+    padding-bottom: 10px;
     width: 100%;
     height: auto;
 }

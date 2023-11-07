@@ -7,7 +7,7 @@ import {categoriaProducto} from "../controllers/categoria.controller";
 import {requireAuth} from "../middlewares/auth"
 import {roleCheck} from "../middlewares/roleCheck"
 import {multipleRoleCheck,multipleRoleCheckVendedor} from "../middlewares/multipleRoleCheck"
-import {renderPuntoDeVenta} from "../controllers/puntodeventa.controller"
+import {renderPuntoDeVenta,ventaPuntoVenta} from "../controllers/puntodeventa.controller"
 const router = Router();
 
 //users
@@ -87,6 +87,8 @@ router.post("/productos/categoria/", multipleRoleCheck,categoriaProducto )
 //punto de venta
 
 router.get("/p-v", requireAuth, multipleRoleCheckVendedor, renderPuntoDeVenta) 
+// Ruta para guardar una venta
+router.post("/guardar-venta", requireAuth, ventaPuntoVenta);
 
 
 export default router;

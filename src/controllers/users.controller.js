@@ -61,7 +61,6 @@ export const masterView = async(req,res)=>{
              res.json(err)
         }
         res.render("masterPrincipalView.hbs", {products: products})
-        console.log(products)
     })
 }
 

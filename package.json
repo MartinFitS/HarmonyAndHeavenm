@@ -27,6 +27,7 @@
     "pdfkit": "^0.13.0",
     "pdfkit-construct": "^1.2.3",
     "pdfmake": "^0.2.7",
+    "sweetalert2": "^11.9.0",
     "typeorm": "^0.3.17"
   }
 }

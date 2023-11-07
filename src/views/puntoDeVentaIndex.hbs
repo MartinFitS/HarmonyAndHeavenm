@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,14 +14,15 @@
 
 <div class="mainPv">
     <div class="leftSidePunto">
-        <div class="listProductsPunto" >
+        <div class="listProductsPunto">
             {{#each products}}
                 <div class="productSellCard">
                     <img src={{foto}} alt="">
                     <h1>{{modelo}}</h1>
                     <h2>{{precioPublico}}$</h2>
                     <h3>{{unidades}} unidades</h3>
-                    <button onclick="add('{{modelo}}', {{precioPublico}}, {{unidades}})">Add</button>
+                    <button onclick="add('{{modelo}}', {{precioPublico}}, {{unidades}}, {{id}})">Add</button>
+                    <!-- Agregamos el ID del producto como un parámetro en la función "add" -->
                 </div>
             {{/each}}
         </div>
@@ -37,59 +36,100 @@
             </div>
         </div>
         <div class="btn-check">
-            <button>Check Out</button>
+            <button onclick="checkout()">Check Out</button>
         </div>
     </div>
 </div>
 
-    <script>
-        let selectedProducts = [];
-let totalPrice = 0;
+<script>
 
-let add = (modelo, precioPublico, unidades) => {
-    // Busca el producto en la lista de productos seleccionados
-    const existingProduct = selectedProducts.find(product => product.modelo === modelo);
+    let selectedProducts = {}; // Cambiar a un objeto
+    let totalPrice = 0;
 
-    if (existingProduct) {
-        if (existingProduct.unidades + 1 <= unidades) {
-            // Si el producto ya está en la lista y hay suficientes unidades disponibles, aumenta la cantidad
-            existingProduct.unidades++;
-        } else {
-            // Si no hay suficientes unidades en stock, muestra un mensaje
+    function add(modelo, precioPublico, unidades, productId) {
+        if (selectedProducts[productId]) {
+                if (selectedProducts[productId].unidades + 1 <= unidades) {
+                selectedProducts[productId].unidades++;
+                console.log(selectedProducts[productId].unidades)
+            } else {
             alert('No hay suficientes unidades disponibles en stock para ' + modelo);
         }
-    } else {
-        // Si el producto no está en la lista, agrégalo
-        selectedProducts.push({ modelo, precioPublico, unidades: 1 });
+        } else {
+            selectedProducts[productId] = {
+                modelo,
+                precioPublico,
+            unidades: 1
+        };
     }
 
-    // Actualiza la lista de productos en el div con clase "allProducts"
-    updateAllProductsList();
+    console.log('selectedProducts:', selectedProducts); // Muestra el objeto completo
 
-    // Calcula el nuevo total y actualiza el div "pricefinal"
+    updateAllProductsList();
     calculateTotalPrice();
 }
 
 
-// Función para actualizar la lista de productos en el div "allProducts"
 function updateAllProductsList() {
     const allProductsDiv = document.querySelector('.allProducts');
-    allProductsDiv.innerHTML = ''; // Borra el contenido existente
+    allProductsDiv.innerHTML = '';
 
-    selectedProducts.forEach(product => {
+    for (const productId in selectedProducts) {
+        const product = selectedProducts[productId];
         const productInfo = document.createElement('div');
-        productInfo.classList.add('product-info'); // Agrega una clase
+        productInfo.classList.add('product-info');
         productInfo.innerHTML = `<p class="product-name">${product.modelo} - ${product.precioPublico}$ (${product.unidades}x)</p>`;
         allProductsDiv.appendChild(productInfo);
-    });
+    }
 }
 
-// Función para calcular el nuevo total
-function calculateTotalPrice() {
-    totalPrice = selectedProducts.reduce((total, product) => total + product.precioPublico * product.unidades, 0);
+
+    function calculateTotalPrice() {
+    totalPrice = Object.values(selectedProducts).reduce((total, product) => total + product.precioPublico * product.unidades, 0);
     const pricefinal = document.querySelector('.pricefinal');
     pricefinal.querySelector('h3').textContent = totalPrice + '$';
 }
-    </script>
+
+function checkout() {
+    console.log(selectedProducts);
+    if (Object.keys(selectedProducts).length === 0) {
+        alert('No hay productos seleccionados.');
+        return;
+    }
+
+    let totalPrice = 0;
+    for (const productId in selectedProducts) {
+        const product = selectedProducts[productId];
+        totalPrice += product.precioPublico * product.unidades;
+    }
+
+    const requestData = {
+        selectedProducts: selectedProducts,
+        total: totalPrice,
+    };
+
+    const requestDataJSON = JSON.stringify(requestData);
+
+    fetch('/guardar-venta', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: requestDataJSON,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Venta exitosa.');
+            // Puedes realizar otras acciones aquí, como borrar la lista de productos seleccionados, etc.
+        } else {
+            alert('Error al guardar la venta: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error en la solicitud: ' + error);
+    });
+}
+
+</script>
 </body>
 </html>

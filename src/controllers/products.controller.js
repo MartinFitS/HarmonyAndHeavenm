@@ -22,7 +22,7 @@ export const allProducts = async(req,res) => {
         if(err){
              res.json(err)
         }
-        console.log(products)
+
     })
 }
 
@@ -57,7 +57,7 @@ export const renderEditProduct = async(req,res) => {
   const marcas = ['Yamaha', 'Fender', 'Takamine', 'Marshall', 'Gibson', 'Casio'];
   const marcaSeleccionada = marcas.find((marca) => marca === product.marca);
 
-  console.log(product)
+
   res.render("editProductRender.hbs", {product,marcaSeleccionada})
   
 }
