@@ -50,10 +50,12 @@
     
     <div class="leftSideUsers">
       <h1>Realizar pedido</h1>
-      <h6>Productos con pocas unidades en el almacen</h6>
+      <div class="alert alert-danger" role="alert">
+      <h6>Productos con pocas unidades en el almacén</h6>
+      </div>
       <div class="form">
         <ul>
-        {{#each productosFiltrados}}
+        {{#each products}}
           <label>Modelo:{{modelo}}-!</label><label>{{unidades}} Unidades!</label>
         {{/each}}
         </ul>

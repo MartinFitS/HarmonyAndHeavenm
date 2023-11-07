@@ -4,13 +4,10 @@ import PDFDocument from 'pdfkit'; // Asegúrate de importar la biblioteca correc
 export const allPedidos = async (req, res) => {
   try {
     const orders = await queryDatabase(`SELECT * FROM orders`);
-    const users = await queryDatabase(`SELECT id, username FROM users`);
-    const products = await queryDatabase('SELECT * FROM products');
+    const users = await queryDatabase(`SELECT id, username FROM users WHERE name_role = 'master' OR name_role = 'admin'`);
+    const products = await queryDatabase('SELECT modelo, unidades FROM products WHERE unidades <= 5');
 
-    // Filtrar los productos con unidades <= 5
-    const productosFiltrados = products.filter(producto => producto.unidades <= 5);
-
-    res.render("masterPedidosView.hbs", { users, orders,productosFiltrados });
+    res.render("masterPedidosView.hbs", { users, orders,products });
   } catch (err) {
     res.json(err);
   }
@@ -83,19 +80,19 @@ export const editPedido = async (req, res) => {
 
 export const pedidoAdd = async(req,res) =>{
   
-  const productos = await queryDatabase('SELECT * FROM products');
-  const proveedores = await queryDatabase('SELECT * FROM suppliers');
-  const users = await queryDatabase(`SELECT id, username FROM users`);
+  const productos = await queryDatabase('SELECT modelo FROM products');
+  const proveedores = await queryDatabase('SELECT nombreProveedor FROM suppliers');
+  const users = await queryDatabase(`SELECT id, username FROM users WHERE name_role = 'master' OR name_role = 'admin'`);
   res.render("addPedido.hbs", {productos, proveedores, users});
 
 }
 
 export const deletePedido = async(req,res)=>{
   const {numSerie} = req.params; // Obtener el ID del proveedor desde la URL
-  const estado = 'Cancelado'
-  const sql = 'DELETE FROM orders WHERE numSerie = ? AND estado= ?'; // Consulta SQL para eliminar el producto por su ID
+  const estados = ['Cancelado', 'Entregado'];
+  const sql = 'DELETE FROM orders WHERE numSerie = ? AND estado IN (?)';
 
-  await connection.query(sql, [numSerie,estado], (err, result) => {
+  await connection.query(sql, [numSerie,estados], (err, result) => {
     if (err) {
       console.error('Error al eliminar el pedido:', err);
       res.status(500).json({ error: 'Error al eliminar el pedido' });
@@ -119,7 +116,7 @@ export const deletePedido = async(req,res)=>{
 async function obtenerPedidoPorId(numSerie){
   return new Promise((resolve,reject) =>{
     console.log(numSerie)
-    const sql = ' SELECT orders.*, suppliers.*, users.id, users.username FROM orders LEFT JOIN suppliers ON orders.proveedor = suppliers.nombreProveedor LEFT JOIN users ON orders.idUsuario = users.id WHERE orders.numSerie = ?';
+    const sql = ' SELECT products.*,orders.*, suppliers.*, users.id, users.username FROM orders LEFT JOIN products ON orders.modelo = products.modelo LEFT JOIN suppliers ON orders.proveedor = suppliers.nombreProveedor LEFT JOIN users ON orders.idUsuario = users.id WHERE orders.numSerie = ?';
 
     connection.query(sql, [numSerie], (err, result)=>{
       if(err){
@@ -167,20 +164,20 @@ export const facturaPedido = async (req, res) => {
     doc.fontSize(16); // Tamaño de fuente para el informe
     doc.text(`Informe del Pedido ${order.numSerie}`, 30,140,{ align: 'center' });
     doc.text(`Pedido realizado por: ${order.username} con el ID: ${order.idUsuario}`, 30, 175);
-
     doc.text(`Número de Serie: ${order.numSerie}`, 30, 210);
     doc.text(`Estado: ${order.estado}`, 30, 245);
-    doc.text(`Marca: ${order.marca}`, 30, 280);
+    doc.text(`Marca: ${order.nombreProveedor}`, 30, 280);
     doc.text(`Modelo: ${order.modelo}`, 30, 315);
     doc.text(`Instrumento: ${order.instrumentoTipo}`, 30, 350);
     doc.text(`Unidades: ${order.unidades}`, 30, 385);
-    doc.text(`Total: $${order.costoTotal} pesos`, 30, 420);
+    doc.text(`Costo: $${order.precioTienda} pesos`, 30, 420);
+    doc.text(`Total: $${order.costoTotal} pesos`, 30, 455);
     doc.fontSize(18);
-    doc.text(`Información sobre el proveedor:`, 30, 455);
+    doc.text(`Información sobre el proveedor:`, 30, 490);
     doc.fontSize(16); 
-    doc.text(`Estado: ${order.nombreProveedor}`, 30, 490);
-    doc.text(`Teléfono: ${order.telefono}`, 30, 525);
-    doc.text(`Correo electrónico: ${order.correo}`, 30, 560);
+    doc.text(`Proveedor: ${order.nombreProveedor}`, 30, 525);
+    doc.text(`Teléfono: ${order.telefono}`, 30, 560);
+    doc.text(`Correo electrónico: ${order.correo}`, 30, 595);
 
     doc.text(`Firma del empleado`, 30, 650, {align: 'right'});
     doc.moveTo(380, 640).lineTo(550, 640).stroke(); // Los valores (30, 640) y (200, 640) definen los puntos de inicio y final de la línea.
