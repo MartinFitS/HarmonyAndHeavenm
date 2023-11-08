@@ -1,23 +1,31 @@
 //PROVEEDORES - PROVEEDORES - PROVEEDORES
 import connection from "../bd/bdConfig";
 
-export const addProveedor = async(req,res) => {
-    try{
-        const data = req.body;
-        console.log(data)
-        await connection.query('INSERT INTO suppliers set ?', [data], (err, product) =>{
-            if(req.session.userRole === "master"){
-              res.redirect("/proveedores")
-            }else{
-              res.redirect("/proveedores")
-              console.log('Proveedor eliminado correctamente');
-            }
-        })
+export const addProveedor = async (req, res) => {
+  try {
+      const data = req.body;
+      console.log(data);
 
-    }catch(e){
-        console.error(e)
-    }
+      connection.query('INSERT INTO suppliers SET ?', data, (err, result) => {
+          if (err) {
+              console.error(err);
+              return res.status(500).send("Error al guardar el proveedor en la base de datos");
+          }
+
+          if (req.session.userRole === "master") {
+              res.redirect("/proveedores");
+          } else {
+              res.redirect("/proveedores");
+              console.log('Proveedor agregado correctamente');
+          }
+      });
+
+  } catch (e) {
+      console.error(e);
+      res.status(500).send("Error en el servidor");
+  }
 }
+
 
 export const allProveedores = async (req, res) => {
   connection.query('SELECT * FROM suppliers', (err, proveedores) => {
