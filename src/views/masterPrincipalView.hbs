@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="/css/masterPrincipalView.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 <div class="header">
     <div class="titulo">
             <h1 class="title">H&H</h1>
@@ -14,10 +16,19 @@
             <li><a href="/logout">Cerrar Sesión</a></li>
         </ul>
     </div>
+    
 </div>
 
 <div class="body">
+    <div>
+        {{#if error}} <!-- Muestra el error como una advertencia -->
+    <div class="alert alert-warning" role="alert">
+        {{error}}
+    </div>
+{{/if}}
+    </div>
     <div class="titulos"><h2 class="h2Titulo"> Listado de productos</h2></div>
+    
     <div class="main">
     <div class="listaOrganizacion">
    <form action="/productos/categoria/" method="post">
@@ -74,3 +85,4 @@
     </div>
     </div>      
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
