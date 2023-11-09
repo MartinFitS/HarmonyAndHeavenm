@@ -3,15 +3,15 @@
 
 <div class="header">
     <div class="titulo">
-            <h1 class="title">H&H</h1>
+        <a href="/login/user/master/view/"><h1 class="title">H&H</h1></a>
+            
     </div>
 
     <div class="options">
         <ul>
-            <li><a href="">Punto de venta</a></li>
+            <li><a href="/p-v">Punto de venta</a></li>
             <li><a href="/master/user/gestionar">Gestionar Usuarios</a></li>
-            <li><a href="/proveedoresAdd">Agrega un proveedor</a></li>
-            <li><a href="/">Productos</a></li>
+            <li><a href="/login/user/master/view/">Productos</a></li>
             <li><a href="/pedidos">Pedidos</a></li>
             <li><a href="/logout">Cerrar Sesión</a></li>
         </ul>
@@ -22,11 +22,33 @@
     <div class="titulos"><h2>Listado de proveedores</h2></div>
     <div class="main">
     <div class="listaOrganizacion">
-        <h1>Ordernar</h1>
-        
-        <h2>Precio</h2>
-        <div class="filtrarPrecio">
-        <input type="text" placeholder="Minimo" class="minimo"> <span> - </span><input placeholder="Maximo" class="maximo"type="text"><button class="buscarBtn">Buscar</button>
+       <div class="formAddProduct">
+
+            <h1>Agrega Un Proveedor</h1>
+
+            <form class="inputForm" action="/proveedores/add" method="post">
+
+                <div class="inputAdd">
+                    <input type="text" id="proveedor" name="nombreProveedor" placeholder="Nombre Del Proveedor">
+                    <span class="line"></span>
+                </div>
+
+                <div class="inputAdd">
+                    <input type="email" id="email" name="correo" placeholder="Email">
+                    <span class="line"></span>
+                </div>
+
+                <div class="inputAdd">
+                    <input type="number" minlength="10" maxlength="10" id="telefono" name="telefono" placeholder="Telefono">
+                    <span class="line"></span>
+                </div>
+
+
+                <div class="button-container">
+                    <button type="submit">Agregar Proveedor</button>
+                </div>
+                
+            </form>
         </div>
     </div>
     <div class="listadoDeProdu">
