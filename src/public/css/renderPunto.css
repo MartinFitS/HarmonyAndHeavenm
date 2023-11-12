@@ -14,6 +14,78 @@ header a{
     color: #734C29;
 }
 
+/* ... Tu CSS existente ... */
+
+.modalHidden {
+    display: none;
+}
+
+#custom-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999; /* Asegura que esté en la parte superior */
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content p{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#modalYesButton {
+    margin-left: 10%;
+    width: 30%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.cancelButton{
+    border-radius: 5px;
+    width: 30%;
+    color: white;
+    background-color: rgb(182, 60, 60);
+    margin-left: 15%;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.deleteProductList{
+    background: transparent;
+    color: red;
+    padding: 3px;
+    border: 1px solid red;
+    border-radius: 3px;
+}
+
+.deleteProductList:hover{
+    cursor: pointer;
+    transform: 105%;
+    transition: 250ms;
+    background-color: red;
+    color: white;
+}
+
+#modalYesButton:hover {
+    background-color: #45a049;
+}
+
+/* ... Tu CSS existente ... */
+
+
 .mainPv{
     display: flex;
     width: 100%;
