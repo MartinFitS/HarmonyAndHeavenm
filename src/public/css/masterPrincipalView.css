@@ -1,9 +1,18 @@
-
-
-.header{
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 60px;
+    height: 70px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
+    background-color: white;
+    z-index: 1000; /* Asegura que esté en la parte superior de otros elementos */
+}
+
+.body {
+    margin-top: 70px; /* Ajusta según la altura de tu encabezado */
+    background-color: #f7f7f7;
 }
 
 ul{
@@ -17,7 +26,10 @@ ul{
 }
 
 .h2Titulo{
+    margin-top: 7px;
+    font-size: 15px;
     font-weight: 600;
+    color: #734C29;
 }
 
 .header .titulo .title{
@@ -32,18 +44,24 @@ ul{
 
 .options ul{
     display: flex;
-    margin-left: 30%;
+    margin-left: 57%;
 }
 
 .options ul li {
+
     padding: 20px;
     text-align: end;
 }
 
 .options a{
+
     font-weight: 100;
     color: #734C29;
     text-decoration: none;
+}
+
+.options img{
+    width: 25px;
 }
 
 /* Main de la vista */
@@ -67,16 +85,24 @@ ul{
 }
 
 .main{
+    margin-top: 20px; /* Igual al alto de tu header */
     display: flex;
     width: 100%;
     height: auto;
 }
 
-.listaOrganizacion{
+.listaOrganizacion {
+    border-radius: 15px;
+    margin-top: 90px;
+    position: fixed;
+    top: 70px;
     width: 20%;
     height: 300px;
     margin-left: 5%;
     margin-right: 5%;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
 }
 
 .listaOrganizacion h1{
@@ -92,12 +118,22 @@ ul{
     color: #734C29;
 }
 
-.listadoDeProdu{
+.titulos h2{
+    position: fixed;
+    top: 70px;
+    width: 100%;
+
+    padding-bottom: 5px;
+    z-index: 1000;
+}
+
+.listadoDeProdu {
     display: flex;
     flex-wrap: wrap;
-    width: 65%;
+    width: 90%;
     height: auto;
-    margin-right: 5%;
+    margin-left: 25%;
+    margin-right: 2%;
 }
 
 .filtrarPrecio{
@@ -152,16 +188,15 @@ ul{
     background-color: white;
     color: #734C29;
 }
-.body h2{
-    padding-bottom: 5px;
-}
+
 
 select{
+    margin-top: 8px;
     box-shadow: 0 0 2px 2px #734C29; 
     color: #734C29;
     border-radius: 20px;
     border: 1px solid #734C29;
-    width: 60%;
+    width: 85%;
     height: 20px;
 }
 
@@ -185,11 +220,10 @@ select{
 .productoCard{
     backdrop-filter: blur(70px);
     border-radius: 30px;
-    border: 5px solid rgba(178, 178, 178, 0.165);
-    box-shadow: 0 0 50px rgba(232, 232, 232, 0.8);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: white;
-    margin-left: 3%;
-    width: 30%;
+    margin-left: 5%;
+    width: 27%;
     height: auto;
     margin-bottom: 20px;
 }

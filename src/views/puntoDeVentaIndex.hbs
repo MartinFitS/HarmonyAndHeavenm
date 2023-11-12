@@ -40,36 +40,45 @@
         </div>
     </div>
 </div>
-
+<div id="custom-modal" class="modalHidden">
+    <div class="modal-content">
+        <p>¿Estás seguro de realizar la venta?</p>
+        <button id="modalYesButton" onclick="modalSelected()">Sí</button>
+        <button class="cancelButton" onclick="ocultarModal()">No</button>
+    </div>
+</div>
 <script>
-
-    let selectedProducts = {}; // Cambiar a un objeto
+    let selectedProducts = {};
     let totalPrice = 0;
 
     function add(modelo, precioPublico, unidades, productId) {
         if (selectedProducts[productId]) {
-                if (selectedProducts[productId].unidades + 1 <= unidades) {
+            if (selectedProducts[productId].unidades + 1 <= unidades) {
                 selectedProducts[productId].unidades++;
-                console.log(selectedProducts[productId].unidades)
+                console.log(selectedProducts[productId].unidades);
             } else {
-            alert('No hay suficientes unidades disponibles en stock para ' + modelo);
-        }
+                alert('No hay suficientes unidades disponibles en stock para ' + modelo);
+            }
         } else {
             selectedProducts[productId] = {
                 modelo,
                 precioPublico,
-            unidades: 1
-        };
+                unidades: 1
+            };
+        }
+
+        console.log('selectedProducts:', selectedProducts);
+        updateAllProductsList();
+        calculateTotalPrice();
     }
 
-    console.log('selectedProducts:', selectedProducts); // Muestra el objeto completo
+    function removeProduct(productId) {
+        delete selectedProducts[productId];
+        updateAllProductsList();
+        calculateTotalPrice();
+    }
 
-    updateAllProductsList();
-    calculateTotalPrice();
-}
-
-
-function updateAllProductsList() {
+    function updateAllProductsList() {
     const allProductsDiv = document.querySelector('.allProducts');
     allProductsDiv.innerHTML = '';
 
@@ -77,30 +86,48 @@ function updateAllProductsList() {
         const product = selectedProducts[productId];
         const productInfo = document.createElement('div');
         productInfo.classList.add('product-info');
-        productInfo.innerHTML = `<p class="product-name">${product.modelo} - ${product.precioPublico}$ (${product.unidades}x)</p>`;
+        productInfo.innerHTML = `
+            <p class="product-name">${product.modelo} - ${product.precioPublico}$ (${product.unidades}x)</p>
+            <button class="deleteProductList" onclick="removeProduct(${productId})">Eliminar</button>
+        `;
         allProductsDiv.appendChild(productInfo);
     }
 }
 
-
     function calculateTotalPrice() {
-    totalPrice = Object.values(selectedProducts).reduce((total, product) => total + product.precioPublico * product.unidades, 0);
-    const pricefinal = document.querySelector('.pricefinal');
-    pricefinal.querySelector('h3').textContent = totalPrice + '$';
-}
-
-function checkout() {
-    console.log(selectedProducts);
-    if (Object.keys(selectedProducts).length === 0) {
-        alert('No hay productos seleccionados.');
-        return;
+        totalPrice = Object.values(selectedProducts).reduce((total, product) => total + product.precioPublico * product.unidades, 0);
+        const pricefinal = document.querySelector('.pricefinal');
+        pricefinal.querySelector('h3').textContent = totalPrice + '$';
     }
 
-    let totalPrice = 0;
-    for (const productId in selectedProducts) {
-        const product = selectedProducts[productId];
-        totalPrice += product.precioPublico * product.unidades;
+    function checkout() {
+        mostrarModal()
+        console.log(selectedProducts);
+        if (Object.keys(selectedProducts).length === 0) {
+            alert('No hay productos seleccionados.');
+            return;
+        }
+
+        let totalPrice = 0;
+        for (const productId in selectedProducts) {
+            const product = selectedProducts[productId];
+            totalPrice += product.precioPublico * product.unidades;
+        }
+
+        document.getElementById('modalYesButton').onclick = function () {
+        if (modalSelected()) {
+            // Continuar con la venta
+            confirmarVenta();
+            window.location.href = '/p-v';
+        } else {
+            // Mostrar un mensaje si la venta es cancelada
+            alert('Venta cancelada. No se ha realizado ninguna venta.');
+        }
+        };
     }
+
+    function confirmarVenta() {
+    // Continuación del código de checkout()
 
     const requestData = {
         selectedProducts: selectedProducts,
@@ -119,16 +146,34 @@ function checkout() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Venta exitosa.');
+            // Mostrar mensaje de venta exitosa
+            console.log("venta realizada")
+
             // Puedes realizar otras acciones aquí, como borrar la lista de productos seleccionados, etc.
         } else {
+            // Mostrar mensaje de error en caso de fallo en la venta
             alert('Error al guardar la venta: ' + data.message);
         }
     })
     .catch(error => {
+        // Mostrar mensaje de error en caso de fallo en la solicitud
         console.error('Error en la solicitud: ' + error);
     });
 }
+
+function modalSelected (){
+    return true;
+}
+
+function mostrarModal() {
+        // Cambia la clase de modalHidden a una clase que haga visible el modal
+        document.getElementById('custom-modal').classList.remove('modalHidden');
+    }
+
+    function ocultarModal() {
+        // Vuelve a aplicar la clase modalHidden para ocultar el modal
+        document.getElementById('custom-modal').classList.add('modalHidden');
+    }
 
 </script>
 </body>
