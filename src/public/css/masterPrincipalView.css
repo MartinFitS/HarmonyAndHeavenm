@@ -1,3 +1,6 @@
+::-webkit-scrollbar {
+    display: none;
+}
 .header {
     position: fixed;
     top: 0;
@@ -42,7 +45,7 @@ ul{
     height: auto;
 }
 
-.options ul{
+/* .options ul{
     display: flex;
     margin-left: 57%;
 }
@@ -51,9 +54,9 @@ ul{
 
     padding: 20px;
     text-align: end;
-}
+} */
 
-.options a{
+/* .options a{
 
     font-weight: 100;
     color: #734C29;
@@ -62,7 +65,7 @@ ul{
 
 .options img{
     width: 25px;
-}
+} */
 
 /* Main de la vista */
 .body{
@@ -96,8 +99,8 @@ ul{
     margin-top: 90px;
     position: fixed;
     top: 70px;
-    width: 20%;
-    height: 300px;
+    width: 17%;
+    height: 250px;
     margin-left: 5%;
     margin-right: 5%;
     background-color: white;
@@ -151,7 +154,7 @@ ul{
 .filtrarPrecio input{
     border: 2px solid #734C29;
     background-color: transparent;
-    width: 40%;
+    width: 45%;;
     height: 20px;
     padding: 5px;
     box-shadow: 0 0 2px 2px #734C29; 
@@ -177,9 +180,9 @@ ul{
     background-color: #734C29;
     font-weight: 600;
     border-radius: 20px;
-    width: 40%;
+    width: 60%;
     height: 20px;
-    margin-left: 10%;
+    margin-left: 20%;
     box-shadow: 0 0 2px 2px #734C29; 
 }
 
@@ -196,7 +199,7 @@ select{
     color: #734C29;
     border-radius: 20px;
     border: 1px solid #734C29;
-    width: 85%;
+    width: 98%;
     height: 20px;
 }
 
@@ -293,5 +296,58 @@ select{
 
     background-color: #921111;
     padding: 3%; 
+}
+
+
+.options ul {
+    margin-right: 35px;
+    list-style: none;
+    padding: 0;
+    text-align: right; /* Alinea el contenido al lado derecho */
+}
+
+.options ul li {
+    display: inline-block;
+}
+
+.options ul li a {
+    color: #734C29;
+    display: block;
+    text-decoration: none;
+    position: relative; /* Añadida posición relativa para que el span sea relativo a este contenedor */
+}
+
+.options ul li a img {
+    padding-top: 20px;
+    margin-left: 40px;
+    display: block;
+    width: 25px;
+    height: auto;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.options ul li a span {
+    font-size: 13px;
+    display: block; /* Cambia a bloque para que aparezca debajo de la imagen */
+    white-space: nowrap;
+    opacity: 0;
+    position: absolute; /* Añadida posición absoluta para superponer el texto sobre la imagen */
+    top: 110%; /* Ajusta la posición del texto debajo de la imagen */
+    left: 0;
+    width: 30px; /* Ajusta el ancho del span según sea necesario */
+    text-align: center; /* Ajusta el texto al centro */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    z-index: 1; /* Coloca el texto encima de las imágenes */
+}
+
+.options ul li:hover a img {
+    transform: translateY(-10px); /* Ajusta la cantidad de desplazamiento según sea necesario */
+    z-index: 2; /* Asegura que la imagen en hover esté por encima de las demás */
+}
+
+.options ul li:hover a span {
+    transform: translateX(0);
+    opacity: 1;
 }
 

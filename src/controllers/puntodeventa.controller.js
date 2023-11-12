@@ -2,7 +2,7 @@ import connection from "../bd/bdConfig";
 
 
 export const renderPuntoDeVenta = (req,res) => {
-    connection.query('SELECT * FROM products', (err, products)=>{
+    connection.query('SELECT * FROM products WHERE unidades >= 1', (err, products)=>{
         if(err){
              res.json(err)
         }
