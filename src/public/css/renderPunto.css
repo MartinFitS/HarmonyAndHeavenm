@@ -1,5 +1,8 @@
 
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: white;
     position: fixed;
     top: 0;
@@ -13,7 +16,7 @@ header {
     display: none;
 }
 
-header a{
+.redirecttext{
     font-size: 30px;
     padding: 15px;
     font-weight: 600;
@@ -27,7 +30,27 @@ header a{
     display: none;
 }
 
+.modalSucces{
+    display: none;
+}
+
+#custom-modal_succes{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999; /* Asegura que esté en la parte superior */
+}
+
 #custom-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999; /* Asegura que esté en la parte superior */
+}
+
+#custom-modal-ventaSuces{
     position: fixed;
     top: 50%;
     left: 50%;
@@ -42,9 +65,43 @@ header a{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+.modal-content-succes{
+    width: 300px;
+    height: 150px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content-succes p{
+    padding-top: 15px;
+    font-weight: 100;
+    font-size: 17px;
+    text-align: center;
+}
+
+.modal-content-succes button{
+    border-radius: 20px;
+    background-color: transparent;
+    border: 1px solid #785ddc;
+    color: #785ddc;
+    margin-top: 15px;
+    width: 70%;
+    height: 25px;
+    margin-left: 15%;
+    cursor: pointer;
+}
+
+.modal-content-succes button:hover{
+    transition: 300ms;
+    background-color: #785ddc;
+    color: white;
+}
+
 .modal-content p{
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 100;
 }
 
 #modalYesButton {
@@ -59,6 +116,13 @@ header a{
     margin-top: 15px;
 }
 
+#modalYesButton:hover {
+    transition: 200ms;
+    background-color: white;
+    border: 1px solid #45a049;
+    color: #45a049;
+}
+
 .cancelButton{
     border-radius: 5px;
     width: 30%;
@@ -67,6 +131,18 @@ header a{
     margin-left: 15%;
     padding: 10px;
     border: none;
+    cursor: pointer;
+}
+
+.cancelButton:hover{
+    transition: 200ms;
+    border-radius: 5px;
+    width: 30%;
+    color: rgb(182, 60, 60);
+    background-color: white;
+    border: 1px solid rgb(182, 60, 60);
+    margin-left: 15%;
+    padding: 10px;
     cursor: pointer;
 }
 
@@ -86,9 +162,6 @@ header a{
     color: white;
 }
 
-#modalYesButton:hover {
-    background-color: #45a049;
-}
 
 /* ... Tu CSS existente ... */
 
@@ -109,7 +182,7 @@ header a{
 } */
 
 .listProductsPunto{
-    margin-top: 40px;
+    margin-top: 87px;
     width: 100%;
     height: auto;
     display: flex;
@@ -262,6 +335,7 @@ header a{
 }
 
 .btn-check button{
+    cursor: pointer;
     border-radius: 5px;
     color: white;
     border: none;
@@ -270,6 +344,13 @@ header a{
     margin-left: 2.5%;
     width: 95%;
     height: 50px;
+}
+
+.btn-check button:hover{
+    background-color: white;
+    color: #785ddc;
+    border: 1px solid #785ddc;
+    transition: 350ms;
 }
 
 .product-name{
@@ -282,4 +363,20 @@ header a{
     width: 80%;
     height: auto;
     margin-left: 10%;
+}
+
+.leftHeaderside{
+    margin-left: auto;
+    height: 30px;
+    width: 70%;
+}
+.leftHeaderside a{
+    text-decoration: none;
+}
+
+.leftHeaderside h4{
+    font-size: 15px;
+    text-align: center;
+    margin-top: 9px;
+    color: brown;
 }

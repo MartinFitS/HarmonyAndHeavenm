@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="/css/proveedor.css">
+<div class="header">
+    <div class="titulo">
+        <a href="/login/user/master/view/"><h1 class="title">H&H</h1></a>
+            
+    </div>
+
+    <div class="options">
+    <ul>
+        <li>
+            <a href="/p-v">
+                <img src="/img/005-terminal-de-pago.png" alt="">
+                <span>Punto De Venta</span>
+            </a>
+        </li>
+        <li>
+            <a href="/master/user/gestionar">
+                <img src="/img/003-usuario.png" alt="">
+                <span>Gestionar Usuarios</span>
+            </a>
+        </li>
+        <li>
+            <a href="/products">
+                <img src="/img/001-agregar.png" alt="">
+                <span>Agregar Producto</span>
+            </a>
+        </li>
+        <li>
+            <a href="/proveedores">
+                <img src="/img/006-repartidor.png" alt="">
+                <span>Lista Distribuidores</span>
+            </a>
+        </li>
+        <li>
+            <a href="/pedidos">
+                <img src="/img/004-orden.png" alt="">
+                <span>Pedidos Tienda</span>
+            </a>
+        </li>
+        <li>
+            <a href="/logout">
+                <img src="/img/002-cerrar-sesin.png" alt="">
+                <span>Cerrar Sesión</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+  
+
+</div>
+
+  <div class="mainDiv">
+        <div class="tableVentas">
+            <table class="tableVentas">
+                    <thead>
+                        <tr>
+                            <th>Id_Venta</th>
+                            <th>Total Venta</th>
+                            <th>Fecha De La Venta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each ventas}}
+                        <tr>
+                            <td>{{id_venta}}</td>
+                            <td>{{totalVenta}}</td>
+                            <td>{{dia}}/{{mes}}/{{año}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+            </table>
+        </div>
+    </div>
