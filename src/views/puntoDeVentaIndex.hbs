@@ -9,7 +9,10 @@
 <body>
     
 <header>
-    <a href="/login/user/master/view/">H&H</a>
+    <a class="redirecttext" href="/login/user/master/view/">H&H</a>
+    <div class="leftHeaderside">
+        <a href="/p-v/ventas"><h4>Ventas</h4></a>
+    </div>
 </header>
 
 <div class="mainPv">
@@ -45,6 +48,13 @@
         <p>¿Estás seguro de realizar la venta?</p>
         <button id="modalYesButton" onclick="modalSelected()">Sí</button>
         <button class="cancelButton" onclick="ocultarModal()">No</button>
+    </div>
+</div>
+
+<div id="custom-modal_succes" class="modalSucces">
+    <div class="modal-content-succes">
+        <p>La venta se realizo con exito!</p>
+        <button id="aceptBtn">Aceptar</button>
     </div>
 </div>
 <script>
@@ -117,8 +127,18 @@
         document.getElementById('modalYesButton').onclick = function () {
         if (modalSelected()) {
             // Continuar con la venta
+            ocultarModal();
             confirmarVenta();
-            window.location.href = '/p-v';
+            mostrarModalSucces()
+            document.getElementById("aceptBtn").onclick = function () {
+                if(aceptModal()){
+                    console.log("hola")
+                ocultarModalSucces()
+                window.location.href = '/p-v';
+                }
+            }
+           
+            
         } else {
             // Mostrar un mensaje si la venta es cancelada
             alert('Venta cancelada. No se ha realizado ninguna venta.');
@@ -147,7 +167,6 @@
     .then(data => {
         if (data.success) {
             // Mostrar mensaje de venta exitosa
-            console.log("venta realizada")
 
             // Puedes realizar otras acciones aquí, como borrar la lista de productos seleccionados, etc.
         } else {
@@ -161,11 +180,17 @@
     });
 }
 
-function modalSelected (){
-    return true;
-}
+    function modalSelected (){
+        return true;
+    }
 
-function mostrarModal() {
+    function aceptModal (){
+
+            return true;
+        
+    }
+
+    function mostrarModal() {
         // Cambia la clase de modalHidden a una clase que haga visible el modal
         document.getElementById('custom-modal').classList.remove('modalHidden');
     }
@@ -175,6 +200,14 @@ function mostrarModal() {
         document.getElementById('custom-modal').classList.add('modalHidden');
     }
 
+
+    function mostrarModalSucces() {
+        document.getElementById('custom-modal_succes').classList.remove('modalSucces')
+    }
+    
+    function ocultarModalSucces() {
+        document.getElementById('custom-modal_succes').classList.add('modalSucces')
+    }
 </script>
 </body>
 </html>
