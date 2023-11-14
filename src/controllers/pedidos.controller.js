@@ -133,6 +133,37 @@ async function obtenerPedidoPorId(numSerie){
   })
 }
 
+export const anadirUnidades = async (req, res) => {
+  try {
+    const numSerie = req.body.numSerie; 
+    const unidades = parseInt(req.body.unidades, 10);
+    const modelo = req.body.modelo;
+    const estado = req.body.estado; 
+    const sql = 'UPDATE products SET unidades = unidades + ? WHERE modelo = ?';
+
+    connection.query(
+      sql,
+      [unidades, modelo, estado],
+      (err, result) => {
+        if (err) {
+          console.error('Error al añadir las unidades al producto: ' + err.message);
+          res.status(500).json({ error: 'No se pudo añadir unidades al producto ' + numSerie });
+        } else {
+          if (req.session.userRole === "master") {
+            res.redirect("/pedidos");
+          } else {
+            res.redirect("/pedidos");
+          } 
+        }
+      }
+    );
+  } catch (e) {
+    console.error("Error:", e);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+
 export const facturaPedido = async (req, res) => {
   const {numSerie} = req.params; 
   const order = await obtenerPedidoPorId(numSerie);
