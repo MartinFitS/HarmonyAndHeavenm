@@ -97,7 +97,7 @@ export const deleteProduct = async(req,res)=>{
       if (err) {
         console.error('Error al eliminar el producto: ' + err.message);
         const intento =('Estas intentando eliminar un producto');
-        const error = 'No se pudo eliminar el producto debido a que se ordenaron unidades de este pedido';
+        const error = 'No se pudo eliminar el producto debido a que se ordenaron unidades de este producto';
         res.render('alertasError.hbs', { error, intento});
       } else {
         if (result.affectedRows === 0) {
