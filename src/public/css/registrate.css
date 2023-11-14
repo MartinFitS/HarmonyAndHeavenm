@@ -242,7 +242,8 @@ div.login
     position: relative;
     width: 100%;
     height:  30px;
-    margin-bottom: 40px;
+    margin-bottom: 34px;
+
 }
 
 .login .input .input1
@@ -338,4 +339,13 @@ button
     color: white;
     border: 2px solid white;
     cursor: pointer;
+}
+
+.tyc{
+    width: 100%;
+    height: 30px;
+}
+
+.tyc a{
+    color: white;
 }

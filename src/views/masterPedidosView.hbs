@@ -8,14 +8,46 @@
     </div>
 
     <div class="options">
-        <ul>
-            <li><a href="/p-v">Punto de venta</a></li>
-            <li><a href="/login/user/master/view/">Productos</a></li>
-            <li><a href="/proveedores">Proveedores</a></li>
-            <li><a href="/logout">Cerrar Sesión</a></li>
+    <ul>
+        <li>
+            <a href="/p-v">
+                <img src="/img/005-terminal-de-pago.png" alt="">
+                <span>Punto De Venta</span>
+            </a>
+        </li>
+        <li>
+            <a href="/master/user/gestionar">
+                <img src="/img/003-usuario.png" alt="">
+                <span>Gestionar Usuarios</span>
+            </a>
+        </li>
+        <li>
+            <a href="/products">
+                <img src="/img/001-agregar.png" alt="">
+                <span>Agregar Producto</span>
+            </a>
+        </li>
+        <li>
+            <a href="/proveedores">
+                <img src="/img/006-repartidor.png" alt="">
+                <span>Lista Distribuidores</span>
+            </a>
+        </li>
+        <li>
+            <a href="/pedidos">
+                <img src="/img/004-orden.png" alt="">
+                <span>Pedidos Tienda</span>
+            </a>
+        </li>
+        <li>
+            <a href="/logout">
+                <img src="/img/002-cerrar-sesin.png" alt="">
+                <span>Cerrar Sesión</span>
+            </a>
+        </li>
+    </ul>
+</div>
 
-        </ul>
-    </div>
 </header>
 
 
@@ -90,7 +122,6 @@
           <th>NUM. SERIE</th>
           <th>PROVEEDOR</th>
           <th>UNIDADES</th>
-          <th>TOTAL</th>
           <th>USUARIO</th>
           <th>ESTADO</th>
           <th>OPCION</th>
@@ -102,7 +133,6 @@
       <td>{{numSerie}}</td>
       <td>{{proveedor}}</td>
       <td>{{unidades}}</td>
-      <td>{{costoTotal}}</td>
       <td>{{idUsuario}}</td>
       <td>{{estado}}</td>
       <td>
