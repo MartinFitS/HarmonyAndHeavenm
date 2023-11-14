@@ -83,14 +83,33 @@
     <div class="leftSideUsers">
       <h1>Realizar pedido</h1>
       <div class="alert alert-danger" role="alert">
+        {{#if products}}
       <h6>Productos con pocas unidades en el almacén</h6>
       </div>
       <div class="form">
-        <ul>
+      <div>
+      <table  class="dataTable">
+        <thead>
+          <tr>
+            <th>Modelo</th>
+            <th>Unidades disponibles</th>
+          </tr>
+        </thead>
+        <tbody>
         {{#each products}}
-          <label>Modelo:{{modelo}}-!</label><label>{{unidades}} Unidades!</label>
+          <tr>
+            <td>{{modelo}}</td>
+            <td>-->{{unidades}}</td>
+          </tr>
         {{/each}}
-        </ul>
+        </tbody>
+      </table>
+      </div>
+      {{else}}
+              <h6>No hay productos con pocas unidades en el almacén</h6>
+{{/if}}
+    </div>
+    <div>
         <a class="edit" href="/pedidoAdd">Pedir</a>
       </div>
     </div>

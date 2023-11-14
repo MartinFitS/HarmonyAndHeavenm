@@ -22,7 +22,6 @@ export const allProducts = async(req,res) => {
         if(err){
              res.json(err)
         }
-
     })
 }
 
@@ -72,8 +71,10 @@ export const editProduct = async(req,res) =>{
       sql,
       [product.modelo, product.marca, product.instrumentoTipo, product.precioPublico, product.precioTienda, product.unidades,product.foto, productId],(err,result) => {
         if (err) {
-          console.error('Error al actualizar el producto: ' + err.message);
-          res.status(500).json({ error: 'No se pudo actualizar el producto' });
+          console.error('Error al editar el producto: ' + err.message);
+          const intento=('Estas intentando editar un producto');
+          const error=('No se pudo actualizar el producto debido a que el proveedor no existe en la base de datos');
+          res.render('alertasError.hbs', { error, intento});
         } else {
           if(req.session.userRole === "master"){
             res.redirect("/login/user/master/view/")
@@ -92,14 +93,15 @@ export const deleteProduct = async(req,res)=>{
     const {id} = req.params;
 
     const sql = 'DELETE FROM products WHERE id = ?'; // Consulta SQL para eliminar el producto por su ID
-
     await connection.query(sql, id, (err, result) => {
       if (err) {
-        console.error('Error al eliminar el producto:', err);
-        res.status(500).json({ error: 'Error al eliminar el producto' });
+        console.error('Error al eliminar el producto: ' + err.message);
+        const intento =('Estas intentando eliminar un producto');
+        const error = 'No se pudo eliminar el producto debido a que se ordenaron unidades de este producto';
+        res.render('alertasError.hbs', { error, intento});
       } else {
         if (result.affectedRows === 0) {
-          // Si no se encontró ningún registro para eliminar
+          // Si no se encontró ningún registro para eliminar  
           res.status(404).json({ error: 'Producto no encontrado' });
         } else {
 

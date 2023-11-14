@@ -104,7 +104,9 @@ export const deleteProveedor = async(req,res)=>{
   await connection.query(sql, id, (err, result) => {
     if (err) {
       console.error('Error al eliminar el proveedor:', err);
-      res.status(500).json({ error: 'Error al eliminar el proveedor' });
+      const intento=('Estas intentando eliminar un proveedor');
+      const error=('No se puede eliminar proveedor porque hay productos en el almacén de este proveedor');
+      res.render("alertasError.hbs", {error, intento});
     } else {
       if (result.affectedRows === 0) {
         // Si no se encontró ningún registro para eliminar
