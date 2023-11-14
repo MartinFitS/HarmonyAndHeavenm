@@ -75,12 +75,26 @@ export const ventaPuntoVenta = (req,res) => {
   }
 
 export const ventasRender = (req,res) => {
-  connection.query("SELECT * FROM venta ", (err, ventas)=>{
+  const pageSize = 10; // muestra las ventas 
+  const page = req.query.page || 1; // Página actual obtenida de la consulta
+
+  const offset = (page - 1) * pageSize; //para calcular el desplazamiento
+//consulta todo en ventas con un limite(LIMIT = pageSize) y donde comenzar(OFFSET=offset)
+  connection.query('SELECT * FROM venta LIMIT ? OFFSET ?', [pageSize, offset], (err, ventas) => {
     if(err){
       console.log(err);
     }else{
-      res.render("ventas.hbs", {ventas:ventas})
+      connection.query('SELECT COUNT(*) AS count FROM venta', (err, countResult) => {
+        if (err) {
+          console.log(err);
+        } else {
+      const totalCount = countResult[0].count; //Obtiene el total de registros con la consulta sql
+      const totalPages = Math.ceil(totalCount / pageSize); //calcula el numero de paginas necesarias para mostrar las ventas
+      const pages = Array.from({ length: totalPages }, (_, i) => i + 1); //Crea un array con las paginas
+
+      res.render('ventas.hbs', { ventas, totalPages, page, pages });
     }
-  })
-  
+});
+}
+});
 }

@@ -23,7 +23,11 @@ const exphbs = create({
     extname: '.hbs',
     layoutsDir: path.join(app.get("views"), "layouts"),
     partialsDir: path.join(app.get("views"), "partials"),
-    defaultLayout:'main'
+    defaultLayout:'main',
+    helpers: {
+        gt: (a, b) => a > b, // para determinar que la pagina sea mayor a 1
+        eq: (a, b) => a === b, // para determinar si la pagina actual es igual a la pagina actual que se esta iterando
+    }
 })
 
 app.engine(".hbs", exphbs.engine);

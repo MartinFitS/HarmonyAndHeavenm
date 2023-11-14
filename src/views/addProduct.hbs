@@ -15,16 +15,9 @@
 
                 <div class="inputAdd">
                     <select class="marcaInput" name="marca" id="marca" required>
-                        <option>Yamaha</option>
-                        <option>Fender</option>
-                        <option>Takamine</option>
-                        <option>Marshall</option>
-                        <option>Gibson</option>
-                        <option>Casio</option>
-                        <option>LesPaul</option>
-                        <option>AudioTeck
-                            
-                        </option>
+                        {{#each proveedores}}
+                        <option>{{nombreProveedor}}</option>
+                        {{/each}}
                     </select>
                     <span class="line"></span>
                 </div>

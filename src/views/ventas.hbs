@@ -72,3 +72,19 @@
             </table>
         </div>
     </div>
+
+<div>
+  {{#if totalPages}}
+    {{#if (gt totalPages 1)}}
+      <p>Páginas:</p>
+      {{#each pages}}
+        {{#if (eq this ../page)}}
+          <span>{{this}}</span>
+        {{else}}
+          <a href="?page={{this}}">{{this}}</a>
+        {{/if}}
+      {{/each}}
+    {{/if}}
+  {{/if}}
+</div>
+

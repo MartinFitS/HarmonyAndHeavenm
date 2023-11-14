@@ -3,7 +3,7 @@ import connection from "../bd/bdConfig";
 export const addProduct = async(req,res) => {
     try{
         const data = req.body;
-        await connection.query('INSERT INTO products set ?', [data], (err, product) =>{
+        await connection.query('INSERT INTO products set ?', [data],(err, product) =>{
             if(req.session.userRole === "master"){
               res.redirect("/login/user/master/view/")
             }else{
@@ -18,16 +18,34 @@ export const addProduct = async(req,res) => {
 }
 
 export const allProducts = async(req,res) => {
-    connection.query('SELECT modelo,proveedor,instrumentoTipo,precioPublico,unidades FROM products', (err, products)=>{
+    connection.query('SELECT modelo,proveedor,instrumentoTipo,precioPublico,unidades FROM products',(err, products)=>{
         if(err){
              res.json(err)
         }
     })
 }
 
-export const renderProducts = async(req,res) =>{
-        res.render("addProduct.hbs")
-}
+function queryDatabase(sql) {
+  return new Promise((resolve, reject) => {
+    connection.query(sql, (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  }
+)};
+
+export const renderProducts = async (req, res) => {
+  try {
+    const proveedores = await queryDatabase('SELECT nombreProveedor FROM suppliers');
+    res.render('addProduct.hbs', { proveedores });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error interno del servidor');
+  }
+};
 
 async function obtenerProductoPorId(productId){
   return new Promise((resolve,reject) =>{
