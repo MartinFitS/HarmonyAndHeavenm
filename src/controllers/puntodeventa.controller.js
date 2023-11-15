@@ -74,6 +74,29 @@ export const ventaPuntoVenta = (req,res) => {
     })
   }
 
+  export const apiVentas = (req, res) => {
+
+      const pagina = req.query.page || 1;
+      const resultadosPorPagina = 10;
+      const inicio = (pagina - 1) * resultadosPorPagina;
+    
+      // Consulta SQL para obtener los datos paginados de la tabla venta
+      const query = 'SELECT * FROM venta LIMIT ?, ?';
+    
+      // Ejecuta la consulta en la base de datos
+      connection.query(query, [inicio, resultadosPorPagina], (err, ventas) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ error: 'Error al obtener datos de ventas' });
+        } else {
+          res.json(ventas);
+        }
+      });
+  
+  };
+  
+  
+
 export const ventasRender = (req,res) => {
   connection.query("SELECT * FROM venta ", (err, ventas)=>{
     if(err){

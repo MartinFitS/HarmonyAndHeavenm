@@ -1,74 +1,156 @@
-<link rel="stylesheet" href="/css/proveedor.css">
-<div class="header">
-    <div class="titulo">
-        <a href="/login/user/master/view/"><h1 class="title">H&H</h1></a>
-            
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/proveedor.css">
+    <link rel="stylesheet" href="/css/ventas.css">
+    <title>Ventas</title>
+</head>
+<body>
+    <div class="header">
+        <div class="titulo">
+            <a href="/login/user/master/view/"><h1 class="title">H&H</h1></a>
+        </div>
+
+        <div class="options">
+            <ul>
+                <li>
+                    <a href="/p-v">
+                        <img src="/img/005-terminal-de-pago.png" alt="">
+                        <span>Punto De Venta</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/master/user/gestionar">
+                        <img src="/img/003-usuario.png" alt="">
+                        <span>Gestionar Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/products">
+                        <img src="/img/001-agregar.png" alt="">
+                        <span>Agregar Producto</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/proveedores">
+                        <img src="/img/006-repartidor.png" alt="">
+                        <span>Lista Distribuidores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/pedidos">
+                        <img src="/img/004-orden.png" alt="">
+                        <span>Pedidos Tienda</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <img src="/img/002-cerrar-sesin.png" alt="">
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 
-    <div class="options">
-    <ul>
-        <li>
-            <a href="/p-v">
-                <img src="/img/005-terminal-de-pago.png" alt="">
-                <span>Punto De Venta</span>
-            </a>
-        </li>
-        <li>
-            <a href="/master/user/gestionar">
-                <img src="/img/003-usuario.png" alt="">
-                <span>Gestionar Usuarios</span>
-            </a>
-        </li>
-        <li>
-            <a href="/products">
-                <img src="/img/001-agregar.png" alt="">
-                <span>Agregar Producto</span>
-            </a>
-        </li>
-        <li>
-            <a href="/proveedores">
-                <img src="/img/006-repartidor.png" alt="">
-                <span>Lista Distribuidores</span>
-            </a>
-        </li>
-        <li>
-            <a href="/pedidos">
-                <img src="/img/004-orden.png" alt="">
-                <span>Pedidos Tienda</span>
-            </a>
-        </li>
-        <li>
-            <a href="/logout">
-                <img src="/img/002-cerrar-sesin.png" alt="">
-                <span>Cerrar Sesión</span>
-            </a>
-        </li>
-    </ul>
-</div>
-
-  
-
-</div>
-
-  <div class="mainDiv">
+    <div class="mainDiv">
+        <div class="formOrdenarVentas">
+            <!-- Botones para avanzar y retroceder entre páginas -->
+            <button onclick="cargarPaginaAnterior()">Página Anterior</button>
+            <button onclick="cargarSiguientePagina()">Siguiente Página</button>
+        </div>
         <div class="tableVentas">
             <table class="tableVentas">
-                    <thead>
-                        <tr>
-                            <th>Id_Venta</th>
-                            <th>Total Venta</th>
-                            <th>Fecha De La Venta</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each ventas}}
+                <thead>
+                    <tr>
+                        <th>Id_Venta</th>
+                        <th>Total Venta</th>
+                        <th>Fecha De La Venta</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTabla">
+                    {{#each ventas}}
                         <tr>
                             <td>{{id_venta}}</td>
-                            <td>{{totalVenta}}</td>
+                            <td>${{totalVenta}}</td>
                             <td>{{dia}}/{{mes}}/{{año}}</td>
                         </tr>
-                        {{/each}}
-                    </tbody>
+                    {{/each}}
+                </tbody>
             </table>
         </div>
     </div>
+
+    <!-- Agrega el script Handlebars -->
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+
+    <!-- Agrega la plantilla Handlebars -->
+    <script id="template-ventas" type="text/x-handlebars-template">
+        {{#each ventas}}
+            <tr>
+                <td>{{id_venta}}</td>
+                <td>${{totalVenta}}</td>
+                <td>{{dia}}/{{mes}}/{{año}}</td>
+            </tr>
+        {{/each}}
+    </script>
+
+<!-- ... (código anterior) ... -->
+
+<script>
+    var currentPage = 1;
+    var resultadosPorPagina = 10;
+
+    function cargarPaginaAnterior() {
+        if (currentPage > 1) {
+            currentPage--;
+            cargarDatosVentas();
+        }
+    }
+
+    function cargarSiguientePagina() {
+        currentPage++;
+        cargarDatosVentas();
+    }
+
+    function cargarDatosVentas() {
+        fetch(`/ventas/api?page=${currentPage}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // Verifica si hay datos antes de intentar actualizar la tabla
+                if (data && data.length > 0) {
+                    // Calcula el índice de inicio para mostrar solo los resultados de la página actual
+                    var startIndex = (currentPage - 1) * resultadosPorPagina;
+                    // Utiliza solo los resultados de la página actual
+                    var slicedData = data.slice(startIndex, startIndex + resultadosPorPagina);
+
+                    var template = Handlebars.compile(document.getElementById("template-ventas").innerHTML);
+                    document.getElementById("cuerpoTabla").innerHTML = template({ ventas: slicedData });
+                } else {
+                    // Si no hay datos, puedes manejarlo de alguna manera (por ejemplo, mostrar un mensaje)
+                    console.log('No hay datos disponibles.');
+                }
+            })
+            .catch(error => console.error('Error al cargar datos de ventas', error));
+    }
+
+    // Llamada inicial para cargar los primeros datos
+    cargarDatosVentas();
+</script>
+
+</body>
+</html>
+
+
+{{!-- <script id="template-ventas" type="text/x-handlebars-template">
+    {{#each ventas}}
+        <tr>
+            <td>{{id_venta}}</td>
+            <td>{{totalVenta}}</td>
+            <td>{{dia}}/{{mes}}/{{año}}</td>
+        </tr>
+    {{/each}}
+</script> --}}

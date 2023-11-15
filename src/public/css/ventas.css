@@ -1,0 +1,67 @@
+.mainDiv{
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.formOrdenarVentas{
+    width: 30%;
+    height: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.tableVentas{
+    width: 55%;
+    height: auto;
+    margin-right: 5%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+/* Estilos del encabezado de la tabla */
+.tableVentas th {
+    background-color: #343a40; /* Color de fondo oscuro para el encabezado */
+    color: #ffffff; /* Color del texto en el encabezado */
+    padding: 10px;
+}
+
+/* Estilos de las celdas de la tabla */
+.tableVentas td, .tableVentas th {
+    border: 1px solid #dee2e6; /* Borde de las celdas */
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilos de las filas pares e impares para alternar colores */
+.tableVentas tbody tr:nth-child(even) {
+    background-color: #f8f9fa; /* Color de fondo para filas pares */
+}
+
+/* Resaltar la fila al pasar el ratón sobre ella */
+.tableVentas tbody tr:hover {
+    background-color: #e2e6ea; /* Cambia esto al color que desees para el resaltado de la fila al pasar el ratón */
+}
+
+/* Restaurar el fondo transparente de las celdas en la fila al pasar el ratón */
+.tableVentas tbody tr:hover td {
+    background-color: transparent;
+}
+
+/* Resaltar toda la columna al pasar el ratón sobre ella */
+.tableVentas tbody tr:hover td:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffcc; /* Cambia esto al color que desees para el resaltado de la columna */
+    z-index: -1; /* Asegura que el fondo de la celda no cubra completamente la cruz */
+}
+
+/* Ajustes visuales adicionales para la cruz */
+.tableVentas tbody tr:hover td:hover {
+    position: relative;
+    z-index: 1;
+}

@@ -7,7 +7,7 @@ import {categoriaProducto} from "../controllers/categoria.controller";
 import {requireAuth} from "../middlewares/auth"
 import {roleCheck} from "../middlewares/roleCheck"
 import {multipleRoleCheck,multipleRoleCheckVendedor} from "../middlewares/multipleRoleCheck"
-import {renderPuntoDeVenta,ventaPuntoVenta,ventasRender} from "../controllers/puntodeventa.controller"
+import {renderPuntoDeVenta,ventaPuntoVenta,ventasRender,apiVentas} from "../controllers/puntodeventa.controller"
 const router = Router();
 
 //users
@@ -89,6 +89,8 @@ router.post("/productos/categoria/", multipleRoleCheck,categoriaProducto )
 router.get("/p-v", requireAuth, multipleRoleCheckVendedor, renderPuntoDeVenta) 
 
 router.post("/guardar-venta", requireAuth, ventaPuntoVenta);
+
+router.get("/ventas/api", apiVentas)
 
 router.get("/p-v/ventas/", requireAuth,multipleRoleCheckVendedor, ventasRender)
 
