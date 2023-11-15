@@ -141,27 +141,35 @@ export const anadirUnidades = async (req, res) => {
     const estado = req.body.estado; 
     const sql = 'UPDATE products SET unidades = unidades + ? WHERE modelo = ?';
 
-    connection.query(
-      sql,
-      [unidades, modelo, estado],
-      (err, result) => {
-        if (err) {
-          console.error('Error al añadir las unidades al producto: ' + err.message);
-          res.status(500).json({ error: 'No se pudo añadir unidades al producto ' + numSerie });
-        } else {
-          if (req.session.userRole === "master") {
-            res.redirect("/pedidos");
+    if (estado === "Entregado") {
+
+      connection.query(
+        sql,
+        [unidades, modelo],
+        (err, result) => {
+          if (err) {
+            console.error('Error al añadir las unidades al producto: ' + err.message);
+            res.status(500).json({ error: 'No se pudo añadir unidades al producto ' + numSerie });
           } else {
-            res.redirect("/pedidos");
-          } 
+            if (req.session.userRole === "master") {
+              res.redirect("/pedidos");
+            } else {
+              res.redirect("/pedidos");
+            } 
+          }
         }
-      }
-    );
+      );
+    } else {
+      const intento = "Estas intentando añadir unidades a un producto que no ha sido entregado";
+      const error = "No se pueden añadir al inventario productos que no hayan sido entregados"
+      res.render("alertasError.hbs", {error, intento});
+    }
   } catch (e) {
     console.error("Error:", e);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
+
 
 
 export const facturaPedido = async (req, res) => {
