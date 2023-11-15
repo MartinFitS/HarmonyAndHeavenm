@@ -3,7 +3,7 @@ import PDFDocument from 'pdfkit';
 
 export const allPedidos = async (req, res) => {
   try {
-    const orders = await queryDatabase(`SELECT * FROM orders`);
+    const orders = await queryDatabase(`SELECT * FROM orders WHERE estado <> 'Entregado'`);
     const users = await queryDatabase(`SELECT id, username FROM users WHERE name_role = 'master' OR name_role = 'admin'`);
     const products = await queryDatabase('SELECT modelo, unidades FROM products WHERE unidades <= 5');
 
@@ -53,21 +53,42 @@ export const addPedido = async (req, res) => {
 }
 
 
+export const searchPedido = async (numSerie) => {
+  try {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM orders WHERE numSerie = ?', [numSerie], (err, pedido) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(pedido);
+        }
+      });
+    });
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+};
+
+
 export const editPedido = async (req, res) => {
   try {
+    console.log(req.body);
     const numSerie = req.body.numSerie;
     const estado = req.body.estado;
     const usuario = req.body.idUsuario;
     const sql = 'UPDATE orders SET idUsuario = ?, estado = ? WHERE numSerie = ?';
 
-    connection.query(sql, [usuario, estado, numSerie], (err, result) => {
+    connection.query(sql, [usuario, estado, numSerie], async (err, result) => {
       if (err) {
         console.error('Error al actualizar el pedido: ' + err.message);
         return res.status(500).json({ error: 'No se pudo actualizar el pedido' });
       } else {
         if (req.session.userRole === "master") {
+          await sumarUnidades(numSerie, estado);
           return res.redirect("/pedidos");
         } else {
+          await sumarUnidades(numSerie, estado);
           return res.redirect("/pedidos");
         }
       }
@@ -76,7 +97,37 @@ export const editPedido = async (req, res) => {
     console.error("error", e);
     return res.status(500).json({ error: 'Error interno del servidor' });
   }
-}
+};
+
+
+
+export const sumarUnidades = async (numSerie, estadoPedido) => {
+  try {
+
+    console.log(estadoPedido)
+    if (estadoPedido !== 'Entregado') {
+      console.log('El pedido no está entregado. No se realizará la actualización de unidades.');
+      return;
+    }
+
+    const datos = await searchPedido(numSerie);
+    const nombreProducto = datos[0].modelo;
+    const unidades = datos[0].unidades;
+
+    console.log("modelo: ", nombreProducto);
+    console.log("unidades: ", unidades);
+
+    // Realiza la actualización en la base de datos solo si el estado del pedido es "entregado"
+    const sqlUpdateProducto = 'UPDATE products SET unidades = unidades + ? WHERE modelo = ? ';
+    await connection.query(sqlUpdateProducto, [unidades, nombreProducto, estadoPedido]);
+
+    console.log('Unidades actualizadas con éxito.');
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+
 
 export const pedidoAdd = async(req,res) =>{
   
