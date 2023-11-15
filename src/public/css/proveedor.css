@@ -1,374 +1,201 @@
 
-
-.header{
-    width: 100%;
-    height: 60px;
-    display: flex;
-}
-
-ul{
-    list-style: none;
-}
-
-
-.titulo{
-    width: 30%;
-    height: auto;
-}
-
-.titulo a{
-    text-decoration: none;
-}
-
-.h2Titulo{
-    font-weight: 600;
-}
-
-.header .titulo .title{
-    padding: 20px;
-    color: #734C29;
-}
-
-.options{
-    width: 70%;
-    height: auto;
-}
-
-
-::-webkit-scrollbar {
-    display: none;
-}
-/* Main de la vista */
-.body{
-    width: 100%;
-    height: auto;
-}
-
-.titulos{
-    width: 100%;
-    height: 50px;
-}
-
-.titulos h2{
-    margin-top: 30px;
-    font-size: 25px;
-    font-weight: 300;
-    color: #734C29;
-    text-align: left;
-    margin-left: 5%;
-}
-
-.main{
-    display: flex;
-    width: 100%;
-    height: auto;
-}
-
-.listaOrganizacion{
-    width: 20%;
-    height: 300px;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-.listaOrganizacion h1{
-    font-size: 17px;
-    font-weight: 600;
-    color: #753806;
-}
-
-.listaOrganizacion h2{
-    margin-top: 7px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #734C29;
-}
-
-.listadoDeProdu{
-    display: flex;
-    flex-wrap: wrap;
-    width: 65%;
-    height: auto;
-    margin-right: 5%;
-}
-
-.filtrarPrecio{
-    width: 100%;
-    height: auto;
-    display: flex;
-    margin-top: 5px;
-}
-
-.filtrarPrecio span{
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-.filtrarPrecio input{
-    border: 2px solid #734C29;
-    background-color: transparent;
-    width: 40%;
-    height: 20px;
-    padding: 5px;
-    box-shadow: 0 0 2px 2px #734C29; 
-    color: #734C29;
-    border-radius: 20px;
-    border: 1px solid #734C29;
-}
-
-.filtrarPrecio input::placeholder{
-    color: #734C29;
-}
-
-.btnFiltrar{
-    margin-top: 15px;
-    width: 100%;
-    height: auto;
-}
-
-.btnFiltrar button{
-    border: none;
-    cursor: pointer;
-    color: white;
-    background-color: #734C29;
-    font-weight: 600;
-    border-radius: 20px;
-    width: 40%;
-    height: 20px;
-    margin-left: 10%;
-    box-shadow: 0 0 2px 2px #734C29; 
-}
-
-.btnFiltrar button:hover{
-    transition: 250ms;
-    background-color: white;
-    color: #734C29;
-}
-.body h2{
-    padding-bottom: 5px;
-}
-
-select{
-    box-shadow: 0 0 2px 2px #734C29; 
-    color: #734C29;
-    border-radius: 20px;
-    border: 1px solid #734C29;
-    width: 60%;
-    height: 20px;
-}
-
-.minimo{
-    width: 25%;
-    height: 20px;
-}
-
-.maximo{
-    width: 25%;
-    height: 20px;
-}
-.buscarBtn{
-    margin-left: 5px;
-    border: none;
-    width: 20%;
-    height: 20px;
-    background-color: #734C29;
-    color: white;
-}
-.productoCard{
-    backdrop-filter: blur(70px);
-    border-radius: 30px;
-    border: 5px solid rgba(178, 178, 178, 0.165);
-    box-shadow: 0 0 50px rgba(232, 232, 232, 0.8);
-    background-color: white;
-    margin-left: 3%;
-    width: 30%;
-    height: 224px;
-    margin-bottom: 20px;
-}
-
-.productoCard .imgProduct{
-    width: 100%;
-    height: 250px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-
-}
-
-.productoCard .productModel{
-    padding-top: 30px;
-    font-size: 25px;
-    font-weight: 600;
-    color: #734C29;
-    text-align: center;
-    padding-left: 2px;
-    padding-right: 2px;
-}
-
-.productoCard  .productMarca{
-    padding-top: 10px;
-    font-size: 17px;
-    font-weight: 100;
-    color: #734C29;
-    text-align: center;
-    padding-bottom: 10px;
-}
-
-.productoCard .productPrice{
-    font-size: 17px;
-    font-weight: 600;
-    color: #734C29;
-    text-align: center;
-}
-
-.productoCard .productUnidades{
-    font-size: 15px;
-    font-weight: 600;
-    color: #734C29;
-    text-align: center;
-}
-
-.funciones{
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-.funciones a{
-    font-size: 14px;
-}
-.edit{
-    border-radius: 7px;
-    font-weight: 100;
-    text-decoration: none;
-    color: white;
-    font-size: 15px;
-    margin-left: 26%;
-    background-color: #33922c;
-    padding: 3%;
-}
-
-.delete{
-    border-radius: 7px;
-    font-weight: 100;
-    text-decoration: none;
-    color: white;
-    font-size: 13px;
-
-    background-color: #921111;
-    padding: 3%; 
-}
-
-
-.formAddProduct{
-    margin-top: 20px;
-    height: 300px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    padding: 3em 2em;
-    color: white;
-}
-
-.inputForm{
-    margin-top: 20px;
-    display: grid;
- }
-
- .inputAdd input,
-  .inputAdd select {
-    padding: 10px;
-    border: none;
-    outline: none;
-    background: none;
-    border-radius: 0px;
-    border-bottom: 1px solid #734C29;
-    font-family: 'Poppins', sans-serif;
-  }
-
-  .inputAdd input{
-    width: 95%;
-  }
-  
-  .inputAdd input[type="number"] {
-    appearance: textfield;
-  }
-  
-  .inputAdd select {
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .button-container {
-    margin-top: 10px;
-    width: 100%;
-    height: auto;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .button-container button {
-    width: 50%;
-    height: 43px;
-    margin-left: 20%;
-    background-color: #5a3b1f;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .options ul {
-    margin-right: 35px;
-    list-style: none;
-    padding: 0;
-    text-align: right; /* Alinea el contenido al lado derecho */
-}
-
-.options ul li {
-    display: inline-block;
-}
-
-.options ul li a {
-    color: #734C29;
-    display: block;
-    text-decoration: none;
-    position: relative; /* Añadida posición relativa para que el span sea relativo a este contenedor */
-}
-
-.options ul li a img {
-    padding-top: 20px;
-    margin-left: 40px;
-    display: block;
-    width: 25px;
-    height: auto;
-    margin-bottom: 5px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.options ul li a span {
-    font-size: 13px;
-    display: block; /* Cambia a bloque para que aparezca debajo de la imagen */
-    white-space: nowrap;
-    opacity: 0;
-    position: absolute; /* Añadida posición absoluta para superponer el texto sobre la imagen */
-    top: 110%; /* Ajusta la posición del texto debajo de la imagen */
-    left: 0;
-    width: 30px; /* Ajusta el ancho del span según sea necesario */
-    text-align: center; /* Ajusta el texto al centro */
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    z-index: 1; /* Coloca el texto encima de las imágenes */
-}
-
-.options ul li:hover a img {
-    transform: translateY(-10px); /* Ajusta la cantidad de desplazamiento según sea necesario */
-    z-index: 2; /* Asegura que la imagen en hover esté por encima de las demás */
-}
-
-.options ul li:hover a span {
-    transform: translateX(0);
-    opacity: 1;
-}
+    
+    .header {
+        width: 100%;
+        height: 5%;
+        background-color: rgb(221, 214, 199);
+        display: flex;
+        justify-content: space-between; /* Alinea los elementos a los extremos */
+    }
+    
+    .titulo {
+        margin-top: 1%;
+        margin-left: 2%;
+        width: 10%;
+    }
+    
+    .header .titulo .title {
+        margin: 0%;
+        padding: 0px;
+        color: #734C29;
+    }
+    
+    .options {
+        margin-top: 0%;
+    }
+    
+    .options ul {
+        margin: 0%;
+        list-style: none;
+        display: flex;
+        margin-left: 0%;
+    }
+    
+    .options ul li {
+        padding: 20px
+    }
+    
+    .options a {
+        font-weight: 100;
+        color: #734C29;
+        text-decoration: none;
+    }
+    
+    
+    /* Main de la vista */
+    .body{
+        width: 100%;
+        height: auto;
+    }
+    
+    .titulos{
+        margin-top: -2%;
+        padding-top: 0%;
+        padding-bottom: 5%;
+        width: 100%;
+        height: 50px;
+    }
+    
+    .titulos h2{
+        margin-top: 30px;
+        font-size: 25px;
+        font-weight: 300;
+        color: #734C29;
+        text-align: left;
+        margin-left: 5%;
+    }
+    
+    .main{
+        background-color: white;
+        padding-top: 1%;
+        display: flex;
+        width: 100%;
+        height: auto;
+    }
+    
+    .listaOrganizacion{
+        padding-left: 2% ;
+        padding-right: 0%;
+        background-color: #a59375;
+        width: 20%;
+        height: 300px;
+        margin-top: -1%;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+    
+    .listaOrganizacion h1{
+        font-size: 17px;
+        font-weight: 600;
+        color: #ffffff;
+    }
+    
+    .listaOrganizacion h2{
+        margin-top: 7px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #ffffff;
+    }
+    
+    .listadoDeProdu{
+        display: flex;
+        flex-wrap: wrap;
+        width: 65%;
+        height: auto;
+        margin-right: 5%;
+    }
+    
+    .filtrarPrecio{
+        width: 100%;
+        height: auto;
+        display: flex;
+    }
+    
+    .minimo{
+        width: 25%;
+        height: 20px;
+    }
+    
+    .maximo{
+        width: 25%;
+        height: 20px;
+    }
+    .buscarBtn{
+        margin-left: 5px;
+        border: none;
+        width: 20%;
+        height: 20px;
+        background-color: #ffeedc;
+        color: #a59375;
+    }
+    .productoCard{
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background-color: white;
+        margin-left: 5%;
+        width: 30%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+    
+    .productoCard .imgProduct{
+        width: 100%;
+        height: 250px;
+    }
+    
+    .productoCard .productModel{
+        margin-top: 10px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #734C29;
+        text-align: center;
+    }
+    
+    .productoCard  .productMarca{
+        font-size: 17px;
+        font-weight: 100;
+        color: #734C29;
+        text-align: center;
+    }
+    
+    .productoCard .productPrice{
+        font-size: 17px;
+        font-weight: 600;
+        color: #734C29;
+        text-align: center;
+    }
+    
+    .productoCard .productUnidades{
+        font-size: 15px;
+        font-weight: 600;
+        color: #734C29;
+        text-align: center;
+    }
+    
+    .funciones{
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .edit{
+        border-radius: 7px;
+        font-weight: 100;
+        text-decoration: none;
+        color: white;
+        font-size: 13px;
+        margin-left: 7%;
+        background-color: #33922c;
+        padding: 3%;
+    }
+    
+    .delete{
+        border-radius: 7px;
+        font-weight: 100;
+        text-decoration: none;
+        color: white;
+        font-size: 13px;
+    
+        background-color: #921111;
+        padding: 3%; 
+    }

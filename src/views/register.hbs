@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="/css/registrate.css">
 
 <header class="header">
@@ -15,14 +14,11 @@
 
     <section class="home">
         <div class="content">
-            <h2>Harmony And Heaven</h2>
-            <div class="photo">
-                <div class="img1"></div>
-                <div class="img2"></div>
-                <div class="img3"></div>
-            </div>
+            
+            <h2>HARMONY & HEAVEN</h2>
+
             <pre class="pre"> Debes iniciar sesion para poder ingresar al inventario <p class="pre"> y recursos de la Tienda Web. </p>
-               
+        
         </div>
     
         <div class="login">
@@ -45,6 +41,21 @@
                 <i class="fa-solid fa-lock"></i>
                 <input type="password" class="input1" placeholder="Clave Permisos"   name="roles" id="roles" >
             </div>
+<<<<<<< HEAD
+            
+            <div class="input">
+                    <span>Acepto </span><a class="aRegister" href="#">Terminos y Condiciones</a>
+                    <div class="checkbx">
+                        <input type="checkbox" id="acceptTerms" required>
+                    </div>
+                    
+                </div>
+
+                <span class="span1">Ya tienes una cuenta </span><a class="aRegister" href="/">Inicia Sesión!</a>
+
+                <div class="button">
+                    <button class="btn" id="registerButton" disabled>Registrate</button>
+=======
 
             <div class="tyc">
                                     <label>
@@ -58,9 +69,18 @@
    
                 <div class="button">
                     <button class="btn">Registrate</button>
+>>>>>>> e9454f49d006fc7f5e5df640a47167d0b850fb65
                 </div>
-  
             </form>
+
+            <script>
+                const acceptTermsCheckbox = document.getElementById('acceptTerms');
+                const registerButton = document.getElementById('registerButton');
+
+                acceptTermsCheckbox.addEventListener('change', function() {
+                    registerButton.disabled = !acceptTermsCheckbox.checked;
+                });
+            </script>
         <br><br><br><br>
         </div>
 </section>

@@ -14,7 +14,6 @@
 </div>
 
 <div class="body">
-    <div class="titulos"><h2>Listado de productos</h2></div>
     <div class="main">
     <div class="listaOrganizacion">
         <h1>Ordernar</h1>
@@ -24,7 +23,9 @@
         <input type="text" placeholder="Minimo" class="minimo"> <span> - </span><input placeholder="Maximo" class="maximo"type="text"><button class="buscarBtn">Buscar</button>
         </div>
     </div>
+
     <div class="listadoDeProdu">
+        <div class="titulos"><h2>Listado de productos</h2></div>
         {{#each products}}
             <div class="productoCard">
                 <img class="imgProduct" src={{foto}} alt="">

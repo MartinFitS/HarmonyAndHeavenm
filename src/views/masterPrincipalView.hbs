@@ -50,6 +50,8 @@
 </div>
 
 <div class="body">
+<<<<<<< HEAD
+=======
     <div>
         {{#if error}} <!-- Muestra el error como una advertencia -->
     <div class="alert alert-warning" role="alert">
@@ -59,6 +61,7 @@
     </div>
     <div class="titulos"><h2 class="h2Titulo"> Listado de productos</h2></div>
     
+>>>>>>> e9454f49d006fc7f5e5df640a47167d0b850fb65
     <div class="main">
     <div class="listaOrganizacion">
    <form action="/productos/categoria/" method="post">
@@ -66,9 +69,9 @@
     
     <h2>Precio</h2>
     <div class="filtrarPrecio">
-        <input type="text" name="minPrice" placeholder="Mínimo">
+        <input type="text" name="minPrice" class="minimo" placeholder="Mínimo">
         <span> - </span>
-        <input type="text" name="maxPrice" placeholder="Máximo">
+        <input type="text" name="maxPrice" class="maximo" placeholder="Máximo">
     </div>
     
    <h2>Instrumento</h2>
@@ -98,6 +101,7 @@
 </form>
     </div>
     <div class="listadoDeProdu">
+        <div class="titulos"><h2 class="h2Titulo"> Listado de productos</h2></div>
         {{#each products}}
             <div class="productoCard">
                 <img class="imgProduct" src={{foto}} alt="">

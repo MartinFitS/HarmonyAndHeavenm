@@ -1,27 +1,36 @@
-.header .nav .logo
-{
-    color: var(--Fprimaria);
-    font-size: 40px;
+html{
+    background-color: #f1eedf;
 }
 
 .header {
     position: static;
-    width: 100%;
+    width: auto;
     height: auto;
     display: flex; 
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding-top: 1%;
     align-items: center;
-    padding: 10px 20px;
     z-index: 99;
 }
 
+.header .nav .logo
+{
+    margin-top: 5px;
+    margin-left: 20px;
+    color: #ffffff;
+    font-size: 40px;
+    z-index: 98;
+}
+
 .header .nav {
+    padding-right: 2%;
     width: 100%;
     display: flex;
     gap: 20px;
+    z-index: 999;
 }
+
 .menu{
     text-align: end;
     width: 100%;
@@ -32,7 +41,7 @@
 .menu a{
     text-align: end;
     text-decoration: none;
-    color: var(--Fprimaria);
+    color: #734C29;
 }
 
 
@@ -99,10 +108,9 @@
 .home
 {
     position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 75%;
-    height: 75%;
+    width: 100%;
+    top: -10px;
+    height: 100%;
     transform: translate(-50% , - 50%);
     background-position: center;
     background-size: cover;
@@ -115,90 +123,58 @@
 
 /* TEXTO IZQUIERDA */
 
-.content
-{
-    display: flex;
-    flex-direction: column;
-    width: 700px;
-    padding: 30px;
-}
-
-.content .photo
-{
-    display: flex;
-    padding-left: 30px;
-    width: 100%;
-    padding-right: 30px;
-    background-repeat: no-repeat;
-    padding-top: 0px;
-    padding-bottom: 30px;
+.content {
+    background-color: #1f1a17;
+    width: 60%;
+    height: 100%;
+    font-size: 20px;
+    display: flex; /* Establece el contenedor como un contenedor flexible */
+    flex-direction: column; /* Establece la dirección de los elementos hijos a columnas */
+    padding: 0; /* Asegúrate de que no haya relleno interno */
+    background-size: cover; /* Escala la imagen para cubrir completamente el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen dentro del contenedor */
+    z-index: 1;
 }
 
 
-.content .photo .img1{
-    margin-right: 1%;
-    margin-top: 45px;
-    margin-left: 3%;
-    background-image: url("../img/imagen.jpeg");
-    width: 30%;
-    height: 200px;
-    display: flex;
-    display: block;
-    background-size: cover;
-}
-
-.img1:hover{
-    cursor: pointer;
-    transition: 250ms;
-    opacity: 0.7;
-    scale: 103%;
-}
-
-.img2:hover{
-    cursor: pointer;
-    transition: 250ms;
-    opacity: 0.7;
-    scale: 103%;
-}
-
-.img3:hover{
-    cursor: pointer;
-    transition: 250ms;
-    opacity: 0.7;
-    scale: 103%;
-}
-
-.content .photo .img2{
-    margin-right: 1%;
-    margin-top: 45px;
-    width: 30%;
-    height: 200px;
-    background-image: url("../img/imagen2.jpg");
-    background-size: cover;
-}
-.content .photo .img3{
-    margin-right: 1%;
-    margin-top: 45px;
-    width: 30%;
-    height: 200px;
-    background-image: url("../img/imagen3.jpg");
-    background-size: cover;
-}
 .content h2
 {
+    padding-left: 7%;
+    width: 90%;
+    padding-top: 30%;
     font-weight: 100;
-    font-size: 2.5em;
+    font-size: 350%;
     text-align: center;
-    color: var(--Fprimaria);
-}
-.content pre{
-    font-weight: 600;
-    margin-top: 10px;
-    text-align: center;
-    font-size: 1em;
-    color: var(--Fprimaria);
+    color: #ffffff;
+    text-shadow: 0px 0px 15px rgb(255, 255, 255);
 }
 
+.content pre
+{
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: -5%;
+    width: 90%;
+    text-align: center;
+    font-size: 100%;
+    color: #ffffff;
+    text-shadow: 0px 0px 50px rgb(255, 255, 255);
+}
+
+
+.content::before {
+    content: "";
+    background-image: url('https://img.freepik.com/premium-photo/piano-piano-are-front-black-background_662214-60271.jpg');
+    background-size: cover;
+    width: 60%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    z-index: -1;
+}
 
 
 
@@ -208,53 +184,58 @@
 /* Este .div es para agregar marcos responsivos al box */
 div.login 
 {
-    padding: 30px 30px;
+    margin-top: 0%;
+    background-color: #e7e4d7;
+    width: 40%;
+    height: 100%;
+    box-shadow: 0 0 50px rgba(232, 232, 232, 0.8);
+    z-index: 100;
 }
 
 .login
 {
-    width:  450px;
-    height: 450px;
     position: relative;
-    padding: 70px 0px;
     backdrop-filter: blur(70px);
-    border-radius: 30px;
-    border: 5px solid rgba(178, 178, 178, 0.165);
-    box-shadow: 0 0 50px rgba(232, 232, 232, 0.8);
-
 }
 
 .login h2
 {
+    padding-top: 30%;
     font-weight: 100;
     margin-top: -100;
     font-size: 2em;
     text-align: center;
     margin-bottom: 20px;
-    color: var(--Fprimaria);
+    color: #734C29;
 }
 
 .login .input
 {
+    width: 80%;
     position: relative;
-    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
     height:  30px;
     margin-bottom: 40px;
 }
 
 .login .input .input1
 {
+    margin-left: 8%;
+    margin-right: 8%;
+    width: 115%;
+    padding: 2%;
+    border-radius: 5px;
     font-size: 16px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: transparent;
+    background: #654c3526;
     border: black;
     outline: black;
-    border-bottom: 2px solid var(--Fprimaria);
+    border-bottom: 2px solid #734C29;
     color: var(--Fprimaria);
-    width: 100%;
     height: 100%;
 }
 .login .input .input1:active
@@ -264,8 +245,8 @@ div.login
 
 ::placeholder
 {
-    padding-top: 1000px;
-    color: var(--Fprimaria);
+    padding-top: 0;
+    color: #734C29;
     font-size: 18px;
 }
 ::placeholder:active
@@ -276,9 +257,9 @@ div.login
 .login .input i
 {
     position:absolute;
-    right: -20px;
+    right: 10%;
     bottom: 27px;
-    color: var(--Fprimaria);
+    color: #734C29;
 }
 
 .check
@@ -287,23 +268,28 @@ div.login
     margin-top: -10px;
     justify-content: space-between;
     margin-bottom: 40px;
-    color: var(--Fprimaria);
+    color: #734C29;
 }
 .check a:hover
 {
     text-decoration: underline;
     box-shadow: 0 0 50px rgba(232, 232, 232, 0.8);
-
 }
 
+.login span
+{
+    padding-left: 25%;
+    color: #734C29;
+}
 .aRegister{
     font-weight: 700;
-    color: var(--Fprimaria);
+    color: #734C29;
     margin-bottom: 15px;
 }
 
 .login .button
 {
+    color: #734C29;
     margin-top: 25px;
     width: 100%;
     height: 10%;
@@ -315,7 +301,7 @@ button
     margin-left: 15%;
     width: 70%;
     height: 50px;
-    background-color: var(--Fprimaria);
+    background-color: #734C29;
     border: none;
     outline: none;
     font-size: 20px;
