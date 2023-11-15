@@ -33,15 +33,48 @@ function generateRandomHash() {
   return Math.floor(1000000 + Math.random() * 9000000).toString();
 }
 
-export const ventaPuntoVenta = (req,res) => {
+export const findUserById = async (id) => {
+  try {
+    const query = 'SELECT * FROM users WHERE id = ?';
+
+    // Crea una nueva promesa para envolver la operación de consulta
+    return new Promise((resolve, reject) => {
+      connection.query(query, id, (err, user) => {
+        if (err) {
+          reject(err);
+        } else {
+          // Resuelve la promesa con el resultado de la consulta
+          resolve(user);
+        }
+      });
+    });
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+};
+
+
+
+export const ventaPuntoVenta = async(req,res) => {
+  const user = await findUserById(req.session.userId);
+  console.log("HOLA: ", user[0].username);
+  console.log(req.session.userId)
     let total = req.body.total;
     const selectedProducts = req.body.selectedProducts;
     const hashVenta = generateRandomHash();
     const fecha_actual = new Date();
 
     const dia = fecha_actual.getDate();
-    const mes = fecha_actual.getMonth();
+    const mes = fecha_actual.getMonth() + 1;
     const ano = fecha_actual.getFullYear();
+
+    const horas = fecha_actual.getHours();
+    const minutos = fecha_actual.getMinutes();
+    const segundos = fecha_actual.getSeconds();
+    const horaFormateada = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+
+    const vendedor = user[0].username;
 
     console.log(req.body)
     console.log(hashVenta)
@@ -63,7 +96,7 @@ export const ventaPuntoVenta = (req,res) => {
         }
     }
 
-    connection.query('INSERT INTO venta (id_venta, totalVenta, dia,mes,año) VALUES (?, ?, ?, ?, ?)', [hashVenta, total, dia, mes,ano], (error, results, fields) => {
+    connection.query('INSERT INTO venta (id_venta, totalVenta, dia,mes,año,hora,vendedor) VALUES (?, ?, ?, ?, ?, ?,?)', [hashVenta, total, dia, mes,ano,horaFormateada,vendedor], (error, results, fields) => {
       if (error) {
           console.error('Error al insertar datos:', error);
           throw error;

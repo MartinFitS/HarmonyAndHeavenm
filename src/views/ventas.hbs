@@ -54,13 +54,17 @@
             </ul>
         </div>
     </div>
+   
 
+
+    <div class="tituloTablaSegunElMes">
+        <h1></h1>
+    </div>
     <div class="mainDiv">
-        <div class="formOrdenarVentas">
-            <!-- Botones para avanzar y retroceder entre páginas -->
-            <button onclick="cargarPaginaAnterior()">Página Anterior</button>
-            <button onclick="cargarSiguientePagina()">Siguiente Página</button>
+        <div class="btn_anterior">
+             <button id="prevMonth"></button>
         </div>
+
         <div class="tableVentas">
             <table class="tableVentas">
                 <thead>
@@ -68,6 +72,8 @@
                         <th>Id_Venta</th>
                         <th>Total Venta</th>
                         <th>Fecha De La Venta</th>
+                        <th>Hora</th>
+                        <th>Vendedor</th>
                     </tr>
                 </thead>
                 <tbody id="cuerpoTabla">
@@ -76,81 +82,79 @@
                             <td>{{id_venta}}</td>
                             <td>${{totalVenta}}</td>
                             <td>{{dia}}/{{mes}}/{{año}}</td>
+                            <td>{{hora}}</td>
+                            <td>{{vendedor}}</td>
                         </tr>
                     {{/each}}
                 </tbody>
             </table>
         </div>
+
+        <div class="btn_siguiente">
+            <button id="nextMonth">Mes Siguiente</button>
+        </div>
     </div>
 
-    <!-- Agrega el script Handlebars -->
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
-
-    <!-- Agrega la plantilla Handlebars -->
-    <script id="template-ventas" type="text/x-handlebars-template">
-        {{#each ventas}}
-            <tr>
-                <td>{{id_venta}}</td>
-                <td>${{totalVenta}}</td>
-                <td>{{dia}}/{{mes}}/{{año}}</td>
-            </tr>
-        {{/each}}
-    </script>
-
-<!-- ... (código anterior) ... -->
 
 <script>
-    var currentPage = 1;
-    var resultadosPorPagina = 10;
+  // Declarar la función fuera del bloque DOMContentLoaded
+function filterSalesByMonth(month) {
+    const salesRows = document.querySelectorAll('#cuerpoTabla tr');
 
-    function cargarPaginaAnterior() {
-        if (currentPage > 1) {
-            currentPage--;
-            cargarDatosVentas();
+    salesRows.forEach(row => {
+        const saleMonth = row.querySelector('td:nth-child(3)').textContent.split('/')[1];
+
+        if (saleMonth === month.toString()) {
+            row.style.display = ''; // Mostrar la fila si coincide con el mes
+        } else {
+            row.style.display = 'none'; // Ocultar la fila si no coincide con el mes
         }
-    }
+    });
+}
 
-    function cargarSiguientePagina() {
-        currentPage++;
-        cargarDatosVentas();
-    }
+document.addEventListener("DOMContentLoaded", function () {
+    const filterButtons = document.querySelectorAll('.filterButton');
+    const prevMonthButton = document.getElementById('prevMonth');
+    const nextMonthButton = document.getElementById('nextMonth');
+    const tituloTablaMes = document.querySelector('.tituloTablaSegunElMes h1');
 
-    function cargarDatosVentas() {
-        fetch(`/ventas/api?page=${currentPage}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                // Verifica si hay datos antes de intentar actualizar la tabla
-                if (data && data.length > 0) {
-                    // Calcula el índice de inicio para mostrar solo los resultados de la página actual
-                    var startIndex = (currentPage - 1) * resultadosPorPagina;
-                    // Utiliza solo los resultados de la página actual
-                    var slicedData = data.slice(startIndex, startIndex + resultadosPorPagina);
+    let currentMonth = new Date().getMonth() + 1;
 
-                    var template = Handlebars.compile(document.getElementById("template-ventas").innerHTML);
-                    document.getElementById("cuerpoTabla").innerHTML = template({ ventas: slicedData });
-                } else {
-                    // Si no hay datos, puedes manejarlo de alguna manera (por ejemplo, mostrar un mensaje)
-                    console.log('No hay datos disponibles.');
-                }
-            })
-            .catch(error => console.error('Error al cargar datos de ventas', error));
-    }
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const month = this.getAttribute('data-month');
+            currentMonth = parseInt(month);
+            filterSalesByMonth(currentMonth);
+            updateTituloTablaMes(currentMonth);
+            console.log(`Mostrando ventas para el mes ${currentMonth}`);
+        });
+    });
 
-    // Llamada inicial para cargar los primeros datos
-    cargarDatosVentas();
+    prevMonthButton.addEventListener('click', function () {
+        currentMonth = (currentMonth - 2 + 12) % 12 + 1;
+        filterSalesByMonth(currentMonth);
+        updateTituloTablaMes(currentMonth);
+        console.log(`Mostrando ventas para el mes ${currentMonth}`);
+    });
+
+    nextMonthButton.addEventListener('click', function () {
+        currentMonth = (currentMonth % 12) + 1;
+        filterSalesByMonth(currentMonth);
+        updateTituloTablaMes(currentMonth);
+        console.log(`Mostrando ventas para el mes ${currentMonth}`);
+    });
+
+    // Mostrar la tabla del mes actual al cargar la página
+    filterSalesByMonth(currentMonth);
+    updateTituloTablaMes(currentMonth);
+});
+
+function updateTituloTablaMes(month) {
+    const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    const tituloTablaMes = document.querySelector('.tituloTablaSegunElMes h1');
+    tituloTablaMes.textContent = `Ventas - ${monthNames[month - 1]}`;
+}
+
+
 </script>
 
-</body>
-</html>
-
-
-{{!-- <script id="template-ventas" type="text/x-handlebars-template">
-    {{#each ventas}}
-        <tr>
-            <td>{{id_venta}}</td>
-            <td>{{totalVenta}}</td>
-            <td>{{dia}}/{{mes}}/{{año}}</td>
-        </tr>
-    {{/each}}
-</script> --}}

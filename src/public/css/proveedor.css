@@ -312,6 +312,7 @@ select{
   .button-container button {
     width: 50%;
     height: 43px;
+    font-size: 13px;
     margin-left: 20%;
     background-color: #5a3b1f;
     color: white;

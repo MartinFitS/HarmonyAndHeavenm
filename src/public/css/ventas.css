@@ -1,22 +1,58 @@
 .mainDiv{
+    padding-top: 50px;
     width: 100%;
     height: auto;
     display: flex;
 }
 
-.formOrdenarVentas{
-    width: 30%;
+.tituloTablaSegunElMes {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+}
+
+.tituloTablaSegunElMes h1{
+    font-weight: 100;
+    text-align: center;
+}
+
+.btn_anterior{
+    display: flex;
+    justify-content: space-around; /* Esto centrará los elementos con espacio alrededor */
+    align-items: center;
+    width: 10%;
     height: auto;
     margin-left: 5%;
     margin-right: 5%;
 }
 
+.btn_anterior button{
+    background-size: cover;
+    cursor: pointer;
+    border: none;
+    background-image: url("/img/001-anterior.png");
+    border-radius: 50%;
+    width: 90%;
+    height: 80px;
+}
+
+
+
 .tableVentas{
-    width: 55%;
+    width: 100%;
     height: auto;
-    margin-right: 5%;
     border-collapse: collapse;
-    margin: 20px 0;
+}
+
+.btn_siguiente{
+    display: flex;
+    justify-content: space-around; /* Esto centrará los elementos con espacio alrededor */
+    align-items: center;
+    width: 10%;
+    height: auto;
+    background-color: red;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 /* Estilos del encabezado de la tabla */
@@ -65,3 +101,4 @@
     position: relative;
     z-index: 1;
 }
+
