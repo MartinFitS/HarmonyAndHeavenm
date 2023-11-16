@@ -34,12 +34,14 @@ export const loginUser = async(req,res) => {
         } else if (user.name_role === "admin") {
 
           return res.redirect("/login/user/admin/view/");
-        } else if (user.name_role === "master") {
+        } else if(user.name_role === "vendedor"){
+            return res.redirect("/login/user/vendedor/view/")
+        }else if (user.name_role === "master") {
 
           return res.redirect("/login/user/master/view/");
         }
       } else {
-        return res.status(401).json({ error: 'Contraseña incorrecta' });
+        return res.render('index.hbs', { error: 'Contraseña incorrecta' });
       }
     })
 }
@@ -72,6 +74,16 @@ export const adminView = async(req,res)=>{
         res.render("adminPrincipalView.hbs", {products: products})
         console.log(products)
     })
+}
+
+export const vendedorView = async(req,res)=>{
+  connection.query('SELECT * FROM products', (err, products)=>{
+    if(err){
+         res.json(err)
+    }
+    res.render("vendedorPrincipalView.hbs", {products: products})
+    console.log(products)
+})
 }
 
 export const logoutUser = async (req,res) =>{

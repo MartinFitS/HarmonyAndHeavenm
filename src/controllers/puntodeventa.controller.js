@@ -20,14 +20,82 @@ async function obtenerUserById(userId){
   }
 
 
-export const renderPuntoDeVenta = (req,res) => {
-    connection.query('SELECT * FROM products WHERE unidades >= 1', (err, products)=>{
-        if(err){
-             res.json(err)
+  export const renderPuntoDeVenta = (req, res) => {
+    // Consulta para obtener las ventas totales agrupadas por mes
+    const queryVentasPorMes = 'SELECT mes, SUM(totalVenta) AS ventaTotal FROM venta GROUP BY mes';
+
+    connection.query(queryVentasPorMes, (err, ventasPorMes) => {
+        if (err) {
+            console.error(err);
+            res.json(err);
+            return;
         }
-        res.render("puntoDeVentaIndex.hbs", {products: products})
-    })
-}
+
+        // Objeto para almacenar las ventas totales por mes
+        const ventasTotalesPorMes = {};
+
+        // Iterar sobre los resultados de la consulta y almacenar en el objeto
+        ventasPorMes.forEach(venta => {
+            const mes = venta.mes;
+            const ventaTotal = venta.ventaTotal;
+
+            // Agregar al objeto con el formato "mesVentaTotal"
+            ventasTotalesPorMes[`VentaTotal${mes}`] = ventaTotal;
+        });
+
+        // Console.log para verificar las ventas totales por mes
+        console.log('Ventas totales por mes:', ventasTotalesPorMes);
+
+        // Consulta para obtener las estadísticas del vendedor en cada mes
+        const queryEstadisticasVendedor = 'SELECT mes, vendedor, COUNT(*) AS numeroVentas, SUM(totalVenta) AS totalVentas FROM venta GROUP BY mes, vendedor';
+
+        connection.query(queryEstadisticasVendedor, (err, estadisticasVendedor) => {
+            if (err) {
+                console.error(err);
+                res.json(err);
+                return;
+            }
+
+            // Objeto para almacenar las estadísticas del vendedor por mes
+            const estadisticasVendedorPorMes = {};
+
+            // Iterar sobre los resultados de la consulta y almacenar en el objeto
+            estadisticasVendedor.forEach(estadistica => {
+                const mes = estadistica.mes;
+                const vendedor = estadistica.vendedor;
+                const numeroVentas = estadistica.numeroVentas;
+                const totalVentas = estadistica.totalVentas;
+
+                // Agregar al objeto con el formato "mesVendedor"
+                estadisticasVendedorPorMes[`${mes}${vendedor}`] = { vendedor, numeroVentas, totalVentas };
+            });
+
+            // Console.log para verificar las estadísticas del vendedor por mes
+            console.log('Estadísticas del vendedor por mes:', estadisticasVendedorPorMes);
+
+            // Realizar la consulta de productos con unidades >= 1
+            connection.query('SELECT * FROM products WHERE unidades >= 1', (err, products) => {
+                if (err) {
+                    console.error(err);
+                    res.json(err);
+                    return;
+                }
+
+                // Console.log para verificar los productos
+                console.log('Productos:', products);
+                console.log(ventasTotalesPorMes.VentaTotal1)
+                // Renderizar la vista y pasar tanto los productos como las ventas totales y estadísticas del vendedor por mes
+                res.render("puntoDeVentaIndex.hbs", {
+                    products: products,
+                    ventasTotalesPorMes: ventasTotalesPorMes,
+                    estadisticasVendedorPorMes: estadisticasVendedorPorMes
+                });
+            });
+        });
+    });
+};
+
+
 
 function generateRandomHash() {
   return Math.floor(1000000 + Math.random() * 9000000).toString();
