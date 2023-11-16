@@ -79,11 +79,11 @@ export const editPedido = async (req, res) => {
 }
 
 export const pedidoAdd = async(req,res) =>{
-  
-  const productos = await queryDatabase('SELECT modelo FROM products');
-  const proveedores = await queryDatabase('SELECT nombreProveedor FROM suppliers');
+
+  const proveedores = await queryDatabase('select distinct nombreProveedor from suppliers');
+  const productos = await queryDatabase('SELECT DISTINCT modelo, nombreProveedor FROM products JOIN suppliers ON products.marca = suppliers.nombreProveedor');
   const users = await queryDatabase(`SELECT id, username FROM users WHERE name_role = 'master' OR name_role = 'admin'`);
-  res.render("addPedido.hbs", {productos, proveedores, users});
+  res.render("addPedido.hbs", {productos, users,proveedores });
 
 }
 
