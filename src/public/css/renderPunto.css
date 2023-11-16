@@ -3,7 +3,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background-color: rgb(221, 214, 199);
     position: fixed;
     top: 0;
     left: 0;
@@ -190,11 +190,12 @@ header {
 }
 
 .productSellCard{
+    margin-bottom: 2%;
     margin-left: 2.5%;
     margin-top: 20px;
     margin-right: 2.5%;
     width: 20%;
-    height: 250px;
+    height: auto;
     background-color: #ececee;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -204,8 +205,9 @@ header {
 .productSellCard button{
     cursor: pointer;
     border: none;
-    margin-top: 3px;
-    background-color: #734C29;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    background-color: #a49384;
     color: white;
     border-radius: 2px;
     margin-left: 35%;
@@ -286,15 +288,16 @@ header {
 }
 
 .checkProducts{
+    display: block;
     right: 0;
     position: fixed;
     width: 30%;
-    height: 642px;
-    background-color: #ececee;
-    background-color: #fff; /* Puedes ajustar el color de fondo según tu diseño */
+    height: 110%;
+    background-color: rgb(238, 237, 236);
     border: 1px solid #ccc; /* Puedes ajustar el borde según tu diseño */
     padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Puedes ajustar la sombra según tu diseño */
+    z-index: 999;
 }
 
 
@@ -339,7 +342,7 @@ header {
     border-radius: 5px;
     color: white;
     border: none;
-    background-color: #785ddc;
+    background-color: #a59375;
     margin-top: 7px;
     margin-left: 2.5%;
     width: 95%;
@@ -348,12 +351,13 @@ header {
 
 .btn-check button:hover{
     background-color: white;
-    color: #785ddc;
-    border: 1px solid #785ddc;
+    color: #a59375;
+    border: 1px solid #a59375;
     transition: 350ms;
 }
 
 .product-name{
+    margin-bottom: 2%;
     font-weight: 700;
     padding-top: 3px;
 }
