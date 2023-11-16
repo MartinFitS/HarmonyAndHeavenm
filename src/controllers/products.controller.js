@@ -89,30 +89,60 @@ export const editProduct = async(req,res) =>{
   }
 }
 
-export const deleteProduct = async(req,res)=>{
-    const {id} = req.params;
+export const deleteProduct = async (req, res) => {
+  const { id } = req.params;
 
-    const sql = 'DELETE FROM products WHERE id = ?'; // Consulta SQL para eliminar el producto por su ID
-    await connection.query(sql, id, (err, result) => {
-      if (err) {
-        console.error('Error al eliminar el producto: ' + err.message);
-        const intento =('Estas intentando eliminar un producto');
-        const error = 'No se pudo eliminar el producto debido a que se ordenaron unidades de este producto';
-        res.render('alertasError.hbs', { error, intento});
-      } else {
-        if (result.affectedRows === 0) {
-          // Si no se encontró ningún registro para eliminar  
-          res.status(404).json({ error: 'Producto no encontrado' });
-        } else {
+  // Consulta SQL para obtener las unidades del producto antes de eliminarlo
+  const getUnitsSQL = 'SELECT unidades FROM products WHERE id = ?';
 
-          if(req.session.userRole === "master"){
-            res.redirect("/login/user/master/view/")
-          }else{
-            res.redirect("/login/user/admin/view/")
+  // Consulta SQL para eliminar el producto por su ID y con unidades igual a 0
+  const deleteProductSQL = 'DELETE FROM products WHERE id = ? AND unidades = 0';
+
+  // Obtener las unidades del producto antes de eliminarlo
+  connection.query(getUnitsSQL, id, async (unitsErr, unitsResult) => {
+    if (unitsErr) {
+      console.error('Error al obtener las unidades del producto: ' + unitsErr.message);
+      res.status(500).json({ error: 'Error interno del servidor' });
+      return;
+    }
+
+    if (unitsResult.length === 0) {
+      // Si no se encontró ningún registro para el ID proporcionado
+      res.status(404).json({ error: 'Producto no encontrado' });
+      return;
+    }
+
+    const unidades = unitsResult[0].unidades;
+
+    // Verificar si el producto tiene 0 unidades
+    if (unidades === 0) {
+      // Si tiene 0 unidades, ejecutar la consulta DELETE
+      connection.query(deleteProductSQL, id, (deleteErr, deleteResult) => {
+        if (deleteErr) {
+          console.error('Error al eliminar el producto: ' + deleteErr.message);
+          res.status(500).json({ error: 'Error interno del servidor' });
+          return;
+        }
+
+        if (deleteResult.affectedRows > 0) {
+          // Redireccionar según el rol del usuario
+          if (req.session.userRole === 'master') {
+            res.redirect('/login/user/master/view/');
+          } else {
+            res.redirect('/login/user/admin/view/');
             console.log('Producto eliminado correctamente');
           }
-
+        } else {
+          // Si no se encontró ningún registro para eliminar
+          res.status(404).json({ error: 'Producto no encontrado' });
         }
-      }
-    });
-}
+      });
+    } else {
+      // Si tiene unidades en stock, mostrar un mensaje de error
+      const intento = 'Estás intentando eliminar un producto que aún tiene unidades en stock';
+      const error = 'No se puede eliminar el producto porque aún hay unidades en stock';
+      res.render('alertasError.hbs', { error, intento });
+    }
+  });
+};
+
