@@ -1,126 +1,173 @@
-{{!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/invitadoPrincipal.css">
-    <title>Document</title>
-</head>
-<body id="listProduct">
-    
-    <div class="header">
+<link rel="stylesheet" href="/css/masterPrincipalView.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-        <div class="titulo">
+<div class="header">
+    <div class="titulo">
             <h1 class="title">H&H</h1>
-        </div>
-
-        <div class="options">
-            <ul>
-                <li><a href="/logout">Cerrar Sesión</a></li>
-            </ul>
-        </div>
-
     </div>
+    
+<div class="options">
+    <ul>
+        <li>
+            <a href="/p-v/{{user.id}}">
+                <img src="/img/005-terminal-de-pago.png" alt="">
+                <span>Punto De Venta</span>
+            </a>
+        </li>
+        <li>
+            <a href="/master/user/gestionar">
+                <img src="/img/003-usuario.png" alt="">
+                <span>Gestionar Usuarios</span>
+            </a>
+        </li>
+        <li>
+            <a href="/products">
+                <img src="/img/001-agregar.png" alt="">
+                <span>Agregar Producto</span>
+            </a>
+        </li>
+        <li>
+            <a href="/proveedores">
+                <img src="/img/006-repartidor.png" alt="">
+                <span>Lista Distribuidores</span>
+            </a>
+        </li>
+        <li>
+            <a href="/pedidos">
+                <img src="/img/004-orden.png" alt="">
+                <span>Pedidos Tienda</span>
+            </a>
+        </li>
+        <li>
+            <a href="/logout">
+                <img src="/img/002-cerrar-sesin.png" alt="">
+                <span>Cerrar Sesión</span>
+            </a>
+        </li>
+    </ul>
+</div>
 
-    <div class="body">
-        
-        <div class="main">
-            <div class="listaOrganizacion">
-
-                <h1>Ordernar</h1>
-                <h2>Precio</h2>
-                
-                <div class="filtrarPrecio">
-                    <input type="text" placeholder="Minimo" class="minimo"> <span> - </span><input placeholder="Maximo" class="maximo"type="text">
-                    <button class="buscarBtn">Buscar</button>
-                </div>
-
-            </div>
-
-            <div class="listadoDeProdu">
-                {{#each products}}
-                        <div class="productoCard">
-
-                            <img class="imgProduct" src={{foto}} alt="">
-                            <h3 class="productModel">{{modelo}}</h3>
-                            <h4 class="productMarca">{{marca}}</h4>
-                            <h5 class="productPrice">{{instrumentoTipo}}</h5>
-                            <h5 class="productPrice">{{precioPublico}}$</h5>
-                            <h5 class="productUnidades">{{unidades}} unidades</h5>
-                            <br>
-                            <div class="funciones">
-                                <a class="edit" href="/product/edit/{{id}}">Editar</a>
-                                <a class="delete" href="/delete/{{id}}">Eliminar</a>
-                            </div>
-
-                    </div>
-                {{/each}}
-            </div>
-        </div>      
-    </div>
-
-</body>
-</html> --}}
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
-    <link rel="stylesheet" href="/HarmonyAndHeavenm/src/public/css/adminPrincipal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <script src="https://kit.fontawesome.com/c9f5871d83.js" crossorigin="anonymous"></script>
-    <title>Harmony Heaven - Inventario </title>
-</head>
-
-
-
-<link rel="stylesheet" href="/css/prueba.css">
-
-
-<header class="header">
-    <nav class="nav">
-        <div class="logoDiv">
-            <h1 class="logo">H&H</h1>
-        </div>
-
-        <div class="menu">
-            <a href="/logout">Cerrar Sesion</a>
-        </div>
-    </nav>
-</header>
-
+</div>
 
 <div class="body">
-    <div class="titulos"><h2>Listado de productos</h2></div>
-    <div class="main">
-    <div class="listaOrganizacion">
-        <h1>Ordernar</h1>
+    <div>
+        {{#if error}} <!-- Muestra el error como una advertencia -->
+    <div class="alert alert-warning" role="alert">
+        {{error}}
+    </div>
+{{/if}}
+    </div>
+
+    <div id="noResultsMessage" style="display: none; position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;">
+        <p>No se encontraron resultados para: <span id="searchTerm"></span></p>
+    </div>
+
+    <div class="titulos">
+        <div class="buscadorProducts">
+    <input type="text" id="searchInput" placeholder="Busca un producto">
+    <button id="searchButton">Buscar</button>
+</div>
+    </div>
         
-        <h2>Precio</h2>
-        <div class="filtrarPrecio">
-        <input type="text" placeholder="Minimo" class="minimo"> <span> - </span><input placeholder="Maximo" class="maximo"type="text">
-        </div>
-        <button class="buscarBtn">Buscar</button>
+    
+    <div class="main">
+        
+    <div class="listaOrganizacion">
+    
+   <form action="/productos/categoria/" method="post">
+    <h1>Ordenar</h1>
+    
+    <h2>Precio</h2>
+    <div class="filtrarPrecio">
+        <input type="text" name="minPrice" placeholder="Mínimo">
+        <span> - </span>
+        <input type="text" name="maxPrice" placeholder="Máximo">
     </div>
     
+   <h2>Instrumento</h2>
+<select name="instrumentoTipo">
+    <option value="Todos">Todos</option>
+    <option value="Guitarra">Guitarra</option>
+    <option value="Piano">Piano</option>
+    <option value="Bateria">Bateria</option>
+    <option value="Violin">Violin</option>
+</select>
+
+<h2>Marca</h2>
+<select name="marca">
+    <option value="Todos">Todos</option>
+    <option value="Fender">Fender</option>
+    <option value="Yamaha">Yamaha</option>
+    <option value="Gibson">Gibson</option>
+    <option value="Casio">Casio</option>
+    <option value="Takamine">Takamine</option>
+    <option value="Marshall">Marshall</option>
+    <option value="LesPaul">LesPaul</option>
+</select>
+    <div class="btnFiltrar">
+        <button type="submit">Filtrar</button>
+    </div>
+
+</form>
+    </div>
+        
     <div class="listadoDeProdu">
+
+        <h2 class="titulos h2">Listado de Productos</h2>
+
         {{#each products}}
             <div class="productoCard">
                 <img class="imgProduct" src={{foto}} alt="">
                 <h3 class="productModel">{{modelo}}</h3>
                 <h4 class="productMarca">{{marca}}</h4>
-                <h5 class="productType">{{instrumentoTipo}}</h5>
+                <h5 class="productPrice">{{instrumentoTipo}}</h5>
                 <h5 class="productPrice">{{precioPublico}}$</h5>
                 <h5 class="productUnidades">{{unidades}} unidades</h5>
-                {{!-- <div class="funciones">
-                    <a class="edit" href="">Editar Producto</a>
+                <div class="funciones">
+                    <a class="edit" href="/product/edit/{{id}}">Editar Producto</a>
                     <a class="delete" href="/delete/{{id}}">Eliminar Producto</a>
-                </div> --}}
+                </div>
             </div>
         {{/each}}
     </div>
     </div>      
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function filtrarProductos() {
+            var textoBusqueda = document.getElementById('searchInput').value.toLowerCase();
+            var tarjetasProductos = document.getElementsByClassName('productoCard');
+            var noResultsMessage = document.getElementById('noResultsMessage');
+            var searchTermSpan = document.getElementById('searchTerm');
+
+            var resultadosEncontrados = false;
+
+            Array.from(tarjetasProductos).forEach(function (tarjeta) {
+                var modeloProducto = tarjeta.querySelector('.productModel').textContent.toLowerCase();
+
+                if (modeloProducto.includes(textoBusqueda)) {
+                    tarjeta.style.display = 'block';
+                    resultadosEncontrados = true;
+                } else {
+                    tarjeta.style.display = 'none';
+                }
+            });
+
+            if (!resultadosEncontrados) {
+                noResultsMessage.style.display = 'block';
+                searchTermSpan.textContent = textoBusqueda;
+            } else {
+                noResultsMessage.style.display = 'none';
+            }
+        }
+
+        document.getElementById('searchButton').addEventListener('click', filtrarProductos);
+    });
+</script>
 

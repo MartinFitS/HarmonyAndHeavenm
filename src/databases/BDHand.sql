@@ -19,6 +19,12 @@
 -- Table structure for table `orders`
 --
 
+-- Selecciona la base de datos
+
+USE handh;
+
+-- Luego, procede con el DROP TABLE
+DROP TABLE IF EXISTS `orders`;
 DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
