@@ -3,7 +3,7 @@ import session from "express-session";
 import indexRoutes from "./routes/index.routes"
 import {create} from "express-handlebars"
 import path from "path";
-import bodyParser from "body-parser"
+import bodyParser from "body-parser";
 
 const app = express();
 
