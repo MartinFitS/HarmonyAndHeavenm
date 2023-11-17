@@ -1,151 +1,419 @@
-.mainDiv{
-    padding-top: 50px;
+::-webkit-scrollbar {
+    display: none;
+}
+
+html{
+    background-color: #f7f7f7
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    background-color: rgb(221, 214, 199);
+    z-index: 1000; /* Asegura que esté en la parte superior de otros elementos */
+}
+
+.body {
+    margin-top: 70px; /* Ajusta según la altura de tu encabezado */
+    background-color: #f7f7f7;
+}
+
+ul{
+    list-style: none;
+}
+
+
+.titulo{
+    width: 30%;
+    height: auto;
+}
+
+.h2Titulo{
+    padding-left: 73px;
+    position: fixed;
+    font-size: 18px;
+    font-weight: 600;
+    color: #734C29;
+}
+
+.header .titulo .title{
+    padding: 20px;
+    color: #734C29;
+}
+
+.options{
+    width: 70%;
+    height: auto;
+}
+
+/* .options ul{
+    display: flex;
+    margin-left: 57%;
+}
+
+.options ul li {
+
+    padding: 20px;
+    text-align: end;
+} */
+
+/* .options a{
+
+    font-weight: 100;
+    color: #734C29;
+    text-decoration: none;
+}
+
+.options img{
+    width: 25px;
+} */
+
+/* Main de la vista */
+.body{
     width: 100%;
     height: auto;
-    display: flex;
 }
 
-.tituloTablaSegunElMes {
-    margin-left: 30%;
-    margin-top: 20px;
-    width: 60%;
+.titulos{
+    display: flex;
+    width: 100%;
+    height: 50px;
+}
+
+.tituloH2{
+    width: 30%;
     height: auto;
 }
 
-.tituloTablaSegunElMes h1{
-    font-weight: 100;
+.buscadorProducts{
+    margin-top: 2%;
+    width: 100%;
+    height: auto;
+}
+
+.buscadorProducts input{
+    background-color: transparent;
+    padding-left: 5px;
+    width: 53%;
+    margin-left: 30%;
+    margin-top: 25px;
+    border: none;
+    border-bottom: 1px solid #734C29;
+}
+
+.buscadorProducts button{
+    border-radius: 2px;
+    cursor: pointer;
+    background-color: #734C29;
+    border: none;
+    color: white;
+    width: 11%;
+    height: auto;
+}
+
+.buscadorProducts button:hover{
+    background-color: transparent;
+    color: #734C29;
+    border: 1px solid #734C29;
+    transition: 250ms;
+}
+
+.titulos h2{
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight: 300;
+    color: #734C29;
     text-align: left;
     margin-left: 5%;
 }
 
-.btn_anterior{
-    margin-top: 25px;
+.main{
+    margin-top: 20px; /* Igual al alto de tu header */
     display: flex;
-    justify-content: space-around;
-    align-items: center;
     width: 100%;
     height: auto;
-    margin-left: 1.5%;
-    margin-right: 2.5%;
 }
 
-.btn_anterior button{
-    font-size: 12px;
-    color: white;
-    padding: 5px;
-    border: none;
-    background-color: #343a40;
-}
-
-#prevMonth{
-    cursor: pointer;
-    font-size: 13px;
-    color: white;
-    padding: 5px;
-    border: none;
-    background-color: #343a40;
-}
-
-
-
-.tableVentas{
-    width: 100%;
-    height: auto;
-    border-collapse: collapse;
-}
-
-.empleadoMes{
-    width: 100%;
-    height: 150px;
-}
-
-.ventaTotal{
-    width: 100%;
-    height: 150px;
-}
-
-.btn_siguiente{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 10%;
-    height: auto;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-}
-
-
-.btn_siguiente button{
-    font-size: 12px;
-    color: white;
-    padding: 5px;
-    border: none;
-    background-color: #343a40;
-    cursor: pointer;
-}
-/* Estilos del encabezado de la tabla */
-.tableVentas th {
-    background-color: #343a40; /* Color de fondo oscuro para el encabezado */
-    color: #ffffff; /* Color del texto en el encabezado */
-    padding: 10px;
-}
-
-/* Estilos de las celdas de la tabla */
-.tableVentas td, .tableVentas th {
-    border: 1px solid #dee2e6; /* Borde de las celdas */
-    padding: 8px;
-    text-align: left;
-}
-
-/* Estilos de las filas pares e impares para alternar colores */
-.tableVentas tbody tr:nth-child(even) {
-    background-color: #f8f9fa; /* Color de fondo para filas pares */
-}
-
-/* Resaltar la fila al pasar el ratón sobre ella */
-.tableVentas tbody tr:hover {
-    background-color: #e2e6ea; /* Cambia esto al color que desees para el resaltado de la fila al pasar el ratón */
-}
-
-/* Restaurar el fondo transparente de las celdas en la fila al pasar el ratón */
-.tableVentas tbody tr:hover td {
-    background-color: transparent;
-}
-
-/* Resaltar toda la columna al pasar el ratón sobre ella */
-.tableVentas tbody tr:hover td:hover::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #ffffcc; /* Cambia esto al color que desees para el resaltado de la columna */
-    z-index: -1; /* Asegura que el fondo de la celda no cubra completamente la cruz */
-}
-
-/* Ajustes visuales adicionales para la cruz */
-.tableVentas tbody tr:hover td:hover {
-    position: relative;
-    z-index: 1;
-}
-
-.estadisticas{
+.listaOrganizacion {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+    border-radius: 15px;
+    margin-top: 2%;
+    position: fixed;
+    top: 89px;
     width: 25%;
     height: auto;
-    margin-left: 2.5%;
+    margin-left: 1%;
+    margin-right: 1%;
+    background-color: #a59375;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.listaOrganizacion h1{
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);;
+    margin-bottom: 20px;
+}
 
-.estadisticasDiv{
-    width: 20%;
+.listaOrganizacion h2{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(243, 239, 233, 0.831);
+}
+
+.titulos.h2{
+    margin-top: 5%;
+    font-size: 25px;
+    font-weight: 300;
+    color: #734C29;
+    text-align: left;
+    margin-left: 6%;
+}
+.titulos h2{
+    margin-left: 0%;
+    position: fixed;
+    top: 70px;
+    width: 100%;
+
+    padding-bottom: 5px;
+    z-index: 1000;
+}
+
+.listadoDeProdu {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
     height: auto;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 25%;
+    margin-right: 2%;
 }
 
-.tablasMeses{
-    width: 65%;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+.filtrarPrecio{
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+    height: auto;
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 20px;
 }
+
+.filtrarPrecio span{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.filtrarPrecio input{
+    text-align: center;
+    border: 2px solid #96816e;
+    background-color: rgba(243, 239, 233, 0.831);
+    width: 45%;;
+    height: 20px;
+    padding: 5px;
+    box-shadow: 0 0 2px 2px #a38a73; 
+    color: #c3b1a1;
+    border-radius: 3px;
+    border: 1px solid #ab9480;
+}
+
+.filtrarPrecio input::placeholder{
+    color: #9b7656;
+}
+
+.btnFiltrar{
+    margin-top: 15px;
+    width: 100%;
+    height: auto;
+}
+
+.btnFiltrar button{
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: #734C29;
+    font-weight: 600;
+    border-radius: 20px;
+    width: 60%;
+    height: 20px;
+    box-shadow: 0 0 2px 2px #734C29; 
+}
+
+.btnFiltrar button:hover{
+    transition: 250ms;
+    background-color: white;
+    color: #734C29;
+}
+
+select 
+{
+    text-align: center;
+    margin-left: 15%;
+    background-color: rgba(243, 239, 233, 0.831);
+    box-shadow: 0 0 2px 2px #a38a73; 
+    color: #9f8772;
+    border-radius: 3px;
+    border: 1px solid #ab8f76;
+    width: 50%;
+    height: 20px;
+}
+
+.minimo{
+    text-align: center;
+    width: 25%;
+    height: 20px;
+}
+
+.maximo{
+    text-align: center;
+    width: 25%;
+    height: 20px;
+}
+
+.buscarBtn{
+    margin-left: 5px;
+    border: none;
+    width: 20%;
+    height: 20px;
+    background-color: #734C29;
+    color: white;
+}
+.productoCard{
+    backdrop-filter: blur(70px);
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    margin-left: 5%;
+    width: 27%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.productoCard .imgProduct{
+    width: 100%;
+    height: 250px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+
+}
+
+.productoCard .productModel{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #734C29;
+    text-align: center;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.productoCard  .productMarca{
+    font-size: 17px;
+    font-weight: 100;
+    color: #734C29;
+    text-align: center;
+}
+
+.productoCard .productPrice{
+    font-size: 17px;
+    font-weight: 600;
+    color: #734C29;
+    text-align: center;
+}
+
+.productoCard .productUnidades{
+    font-size: 15px;
+    font-weight: 600;
+    color: #734C29;
+    text-align: center;
+}
+
+.funciones{
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.edit{
+    border-radius: 7px;
+    font-weight: 100;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    margin-left: 7%;
+    background-color: #33922c;
+    padding: 3%;
+}
+
+.delete{
+    border-radius: 7px;
+    font-weight: 100;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+
+    background-color: #921111;
+    padding: 3%; 
+}
+
+
+.options ul {
+    margin-right: 35px;
+    list-style: none;
+    padding: 0;
+    text-align: right; /* Alinea el contenido al lado derecho */
+}
+
+.options ul li {
+    display: inline-block;
+}
+
+.options ul li a {
+    color: #734C29;
+    display: block;
+    text-decoration: none;
+    position: relative; /* Añadida posición relativa para que el span sea relativo a este contenedor */
+}
+
+.options ul li a img {
+    padding-top: 20px;
+    margin-left: 40px;
+    display: block;
+    width: 25px;
+    height: auto;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.options ul li a span {
+    font-size: 13px;
+    display: block; /* Cambia a bloque para que aparezca debajo de la imagen */
+    white-space: nowrap;
+    opacity: 0;
+    position: absolute; /* Añadida posición absoluta para superponer el texto sobre la imagen */
+    top: 110%; /* Ajusta la posición del texto debajo de la imagen */
+    left: 0;
+    width: 30px; /* Ajusta el ancho del span según sea necesario */
+    text-align: center; /* Ajusta el texto al centro */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    z-index: 1; /* Coloca el texto encima de las imágenes */
+}
+
+.options ul li:hover a img {
+    transform: translateY(-10px); /* Ajusta la cantidad de desplazamiento según sea necesario */
+    z-index: 2; /* Asegura que la imagen en hover esté por encima de las demás */
+}
+
+.options ul li:hover a span {
+    transform: translateX(0);
+    opacity: 1;
+}
+

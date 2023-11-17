@@ -41,6 +41,7 @@ ul{
 }
 
 .header .titulo .title{
+    margin-top: -1.5%;
     padding: 20px;
     color: #734C29;
 }

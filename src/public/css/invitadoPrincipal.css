@@ -1,199 +1,420 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppin&display=swap');
-
-body, ul, h1, h2, h3, h4, h5, p {
-    margin: 0;
-    padding: 0;
+::-webkit-scrollbar {
+  display: none;
 }
 
-
-#listProduct {   /* Color de fondo */
-  background-color: #ffffff;
-  font-family: 'Poppins', sans-serif;
-  height: 100%;
+html{
+  background-color: #f7f7f7
 }
-
-.main{
-width: 100%;
-height: auto;
-display: flex;
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  background-color: rgb(221, 214, 199);
+  z-index: 1000; /* Asegura que esté en la parte superior de otros elementos */
 }
 
 .body {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  margin-top: 50px;
+  margin-top: 70px; /* Ajusta según la altura de tu encabezado */
+  background-color: #f7f7f7;
 }
 
-/* Header = "Nav" */
-.header {
-  background-color: #734C29;
-  color: white;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 50px;
+ul{
+  list-style: none;
+}
+
+
+.titulo{
+  width: 30%;
+  height: auto;
+}
+
+.h2Titulo{
+  padding-left: 73px;
   position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
-.title {
-  font-size: 24px;
-  margin-left: 195%;
-}
-
-.options ul {
-  list-style-type: none;
-  display: flex;
-}
-
-.options li {
-  margin-right: 33px;
-}
-
-.options a {
-    text-decoration: none;
-    color: white;
-    font-weight: 100;
-
-}
-/* Fin_Header */
-
-.listaOrganizacion {
-    width: 20%;
-    height: auto;
-    margin-right: 5%;
-    background-color: #a56c3a;
-    color: white;
-    padding: 30px;
-    border-radius: 0px;
-    overflow-y: auto;
-    margin-bottom: 0;
-    min-height: 593px;
-}
-
-.listaOrganizacion h1, .listaOrganizacion h2 {
-  color: white;
-  font-weight: bold;
-}
-
-.listaOrganizacion h1 {
-    font-size: 24px;
-    font-weight: 100;
-    margin-bottom: 10px;
-    text-align: left;
-}
-
-.listaOrganizacion h2 {
   font-size: 18px;
-  margin-top: 20px;
-  font-weight: 100;
-}
-
-/*----------------------------------------------------*/
-
-.filtrarPrecio {
-  margin-top: 20px;
-}
-
-.minimo, .maximo {
-  width: 40%;
-  padding: 5px;
-  margin-bottom: 10px;
-  height: 24px;
-}
-
-.buscarBtn {
-    border-radius: 23px;
-  background-color: #5a3b1f;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  width: 87%;
-  margin-top: 10px;
-  transition: background-color 0.3s, color 0.3s; 
-}
-
-.buscarBtn:hover {
-  background-color: #442a14;
-}
-
-/*----------------------------------------------------*/
-
-.listadoDeProdu {
-    margin-top: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    width: 65%;
-    height: auto;
-}
-
-/* #product{
-    background-color: white;
-    margin-left: 3%;
-    width: 30%;
-    height: auto;
-    margin-bottom: 20px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); */
-/* } */
-
-.productoCard {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 40px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-    width: 30%;
-    height: auto;
-    text-align: center;
-    margin-bottom: 20px;
-    margin-left: 3%;
-
-}
-
-.imgProduct {
-  width: 100%;
-  height: 170px;
-}
-
-.productModel {
-  font-size: 18px;
-  margin: 10px 0;
-}
-
-.productMarca {
+  font-weight: 600;
   color: #734C29;
 }
 
-.productPrice {
-  font-size: 16px;
-  margin: 5px 0;
+.header .titulo .title{
+  margin-top: -1.5%;
+  padding: 20px;
+  color: #734C29;
 }
 
-.productUnidades {
-  font-size: 14px;
-  color: #777;
+.options{
+  width: 70%;
+  height: auto;
 }
 
-.funciones {
-  margin-top: 10px;
+/* .options ul{
+  display: flex;
+  margin-left: 57%;
 }
 
-.edit, .delete {
+.options ul li {
+
+  padding: 20px;
+  text-align: end;
+} */
+
+/* .options a{
+
+  font-weight: 100;
+  color: #734C29;
   text-decoration: none;
-  padding: 10px 15px;
+}
+
+.options img{
+  width: 25px;
+} */
+
+/* Main de la vista */
+.body{
+  width: 100%;
+  height: auto;
+}
+
+.titulos{
+  display: flex;
+  width: 100%;
+  height: 50px;
+}
+
+.tituloH2{
+  width: 30%;
+  height: auto;
+}
+
+.buscadorProducts{
+  margin-top: 2%;
+  width: 100%;
+  height: auto;
+}
+
+.buscadorProducts input{
+  background-color: transparent;
+  padding-left: 5px;
+  width: 53%;
+  margin-left: 30%;
+  margin-top: 25px;
+  border: none;
+  border-bottom: 1px solid #734C29;
+}
+
+.buscadorProducts button{
+  border-radius: 2px;
+  cursor: pointer;
+  background-color: #734C29;
+  border: none;
+  color: white;
+  width: 11%;
+  height: auto;
+}
+
+.buscadorProducts button:hover{
+  background-color: transparent;
+  color: #734C29;
+  border: 1px solid #734C29;
+  transition: 250ms;
+}
+
+.titulos h2{
+  margin-top: 30px;
+  font-size: 25px;
+  font-weight: 300;
+  color: #734C29;
+  text-align: left;
+  margin-left: 5%;
+}
+
+.main{
+  margin-top: 20px; /* Igual al alto de tu header */
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+.listaOrganizacion {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  text-align: center;
+  border-radius: 15px;
+  margin-top: 2%;
+  position: fixed;
+  top: 89px;
+  width: 25%;
+  height: auto;
+  margin-left: 1%;
+  margin-right: 1%;
+  background-color: #a59375;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.listaOrganizacion h1{
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  color: rgb(255, 255, 255);;
+  margin-bottom: 20px;
+}
+
+.listaOrganizacion h2{
+  text-align: center;
+  margin-top: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(243, 239, 233, 0.831);
+}
+
+.titulos.h2{
+  margin-top: 5%;
+  font-size: 25px;
+  font-weight: 300;
+  color: #734C29;
+  text-align: left;
+  margin-left: 6%;
+}
+.titulos h2{
+  margin-left: 0%;
+  position: fixed;
+  top: 70px;
+  width: 100%;
+
+  padding-bottom: 5px;
+  z-index: 1000;
+}
+
+.listadoDeProdu {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  height: auto;
+  margin-left: 25%;
+  margin-right: 2%;
+}
+
+.filtrarPrecio{
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+  height: auto;
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.filtrarPrecio span{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.filtrarPrecio input{
+  text-align: center;
+  border: 2px solid #96816e;
+  background-color: rgba(243, 239, 233, 0.831);
+  width: 45%;;
+  height: 20px;
+  padding: 5px;
+  box-shadow: 0 0 2px 2px #a38a73; 
+  color: #c3b1a1;
+  border-radius: 3px;
+  border: 1px solid #ab9480;
+}
+
+.filtrarPrecio input::placeholder{
+  color: #9b7656;
+}
+
+.btnFiltrar{
+  margin-top: 15px;
+  width: 100%;
+  height: auto;
+}
+
+.btnFiltrar button{
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: #734C29;
+  font-weight: 600;
+  border-radius: 20px;
+  width: 60%;
+  height: 20px;
+  box-shadow: 0 0 2px 2px #734C29; 
+}
+
+.btnFiltrar button:hover{
+  transition: 250ms;
+  background-color: white;
+  color: #734C29;
+}
+
+select 
+{
+  text-align: center;
+  margin-left: 15%;
+  background-color: rgba(243, 239, 233, 0.831);
+  box-shadow: 0 0 2px 2px #a38a73; 
+  color: #9f8772;
+  border-radius: 3px;
+  border: 1px solid #ab8f76;
+  width: 50%;
+  height: 20px;
+}
+
+.minimo{
+  text-align: center;
+  width: 25%;
+  height: 20px;
+}
+
+.maximo{
+  text-align: center;
+  width: 25%;
+  height: 20px;
+}
+
+.buscarBtn{
+  margin-left: 5px;
+  border: none;
+  width: 20%;
+  height: 20px;
   background-color: #734C29;
   color: white;
-  border: 1px solid #734C29;
+}
+.productoCard{
+  backdrop-filter: blur(70px);
   border-radius: 30px;
-  transition: background-color 0.3s, color 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  margin-left: 5%;
+  width: 27%;
+  height: auto;
+  margin-bottom: 20px;
 }
 
-.edit:hover, .delete:hover {
-  background-color: #5a3b1f; 
-    color: white;
+.productoCard .imgProduct{
+  width: 100%;
+  height: 250px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+
+}
+
+.productoCard .productModel{
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #734C29;
+  text-align: center;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.productoCard  .productMarca{
+  font-size: 17px;
+  font-weight: 100;
+  color: #734C29;
+  text-align: center;
+}
+
+.productoCard .productPrice{
+  font-size: 17px;
+  font-weight: 600;
+  color: #734C29;
+  text-align: center;
+}
+
+.productoCard .productUnidades{
+  font-size: 15px;
+  font-weight: 600;
+  color: #734C29;
+  text-align: center;
+}
+
+.funciones{
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.edit{
+  border-radius: 7px;
+  font-weight: 100;
+  text-decoration: none;
+  color: white;
+  font-size: 13px;
+  margin-left: 7%;
+  background-color: #33922c;
+  padding: 3%;
+}
+
+.delete{
+  border-radius: 7px;
+  font-weight: 100;
+  text-decoration: none;
+  color: white;
+  font-size: 13px;
+
+  background-color: #921111;
+  padding: 3%; 
+}
+
+
+.options ul {
+  margin-right: 35px;
+  list-style: none;
+  padding: 0;
+  text-align: right; /* Alinea el contenido al lado derecho */
+}
+
+.options ul li {
+  display: inline-block;
+}
+
+.options ul li a {
+  color: #734C29;
+  display: block;
+  text-decoration: none;
+  position: relative; /* Añadida posición relativa para que el span sea relativo a este contenedor */
+}
+
+.options ul li a img {
+  padding-top: 20px;
+  margin-left: 40px;
+  display: block;
+  width: 25px;
+  height: auto;
+  margin-bottom: 5px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.options ul li a span {
+  font-size: 13px;
+  display: block; /* Cambia a bloque para que aparezca debajo de la imagen */
+  white-space: nowrap;
+  opacity: 0;
+  position: absolute; /* Añadida posición absoluta para superponer el texto sobre la imagen */
+  top: 110%; /* Ajusta la posición del texto debajo de la imagen */
+  left: 0;
+  width: 30px; /* Ajusta el ancho del span según sea necesario */
+  text-align: center; /* Ajusta el texto al centro */
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  z-index: 1; /* Coloca el texto encima de las imágenes */
+}
+
+.options ul li:hover a img {
+  transform: translateY(-10px); /* Ajusta la cantidad de desplazamiento según sea necesario */
+  z-index: 2; /* Asegura que la imagen en hover esté por encima de las demás */
+}
+
+.options ul li:hover a span {
+  transform: translateX(0);
+  opacity: 1;
 }
 
