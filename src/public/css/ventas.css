@@ -6,34 +6,44 @@
 }
 
 .tituloTablaSegunElMes {
+    margin-left: 30%;
     margin-top: 20px;
-    width: 100%;
+    width: 60%;
     height: auto;
 }
 
 .tituloTablaSegunElMes h1{
     font-weight: 100;
-    text-align: center;
+    text-align: left;
+    margin-left: 5%;
 }
 
 .btn_anterior{
+    margin-top: 25px;
     display: flex;
-    justify-content: space-around; /* Esto centrará los elementos con espacio alrededor */
+    justify-content: space-around;
     align-items: center;
-    width: 10%;
+    width: 100%;
     height: auto;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 1.5%;
+    margin-right: 2.5%;
 }
 
 .btn_anterior button{
-    background-size: cover;
-    cursor: pointer;
+    font-size: 12px;
+    color: white;
+    padding: 5px;
     border: none;
-    background-image: url("/img/001-anterior.png");
-    border-radius: 50%;
-    width: 90%;
-    height: 80px;
+    background-color: #343a40;
+}
+
+#prevMonth{
+    cursor: pointer;
+    font-size: 13px;
+    color: white;
+    padding: 5px;
+    border: none;
+    background-color: #343a40;
 }
 
 
@@ -44,17 +54,35 @@
     border-collapse: collapse;
 }
 
+.empleadoMes{
+    width: 100%;
+    height: 150px;
+}
+
+.ventaTotal{
+    width: 100%;
+    height: 150px;
+}
+
 .btn_siguiente{
     display: flex;
-    justify-content: space-around; /* Esto centrará los elementos con espacio alrededor */
+    justify-content: space-around;
     align-items: center;
     width: 10%;
     height: auto;
-    background-color: red;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
 }
 
+
+.btn_siguiente button{
+    font-size: 12px;
+    color: white;
+    padding: 5px;
+    border: none;
+    background-color: #343a40;
+    cursor: pointer;
+}
 /* Estilos del encabezado de la tabla */
 .tableVentas th {
     background-color: #343a40; /* Color de fondo oscuro para el encabezado */
@@ -102,3 +130,22 @@
     z-index: 1;
 }
 
+.estadisticas{
+    width: 25%;
+    height: auto;
+    margin-left: 2.5%;
+}
+
+
+.estadisticasDiv{
+    width: 20%;
+    height: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.tablasMeses{
+    width: 65%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}

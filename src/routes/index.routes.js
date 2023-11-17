@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {renderLogin, renderRegister,masterView,registerFromRoot,registerUser,loginUser,invitadoView, adminView, logoutUser, gestionarUsuarios,deleteUser,editUser,editUserToDatabase} from "../controllers/users.controller"
+import {renderLogin, renderRegister,masterView,registerFromRoot,registerUser,loginUser,invitadoView,vendedorView, adminView, logoutUser, gestionarUsuarios,deleteUser,editUser,editUserToDatabase} from "../controllers/users.controller"
 import {allProducts,editProduct,renderProducts ,addProduct,succesCreateProduct,deleteProduct,renderEditProduct} from "../controllers/products.controller";
 import {allProveedores, renderProveedores, addProveedor, proveedorAdd, renderEditProveedor, editProveedor, deleteProveedor } from "../controllers/proveedores.controller";
 import {allPedidos, editPedido, addPedido, deletePedido, pedidoAdd, facturaPedido} from "../controllers/pedidos.controller";
@@ -16,6 +16,8 @@ router.get("/", renderLogin)
 router.post("/login/user/", loginUser)
 
 router.get("/login/user/invitado/view/",requireAuth , invitadoView)
+
+router.get("/login/user/vendedor/view/", roleCheck("vendedor"), vendedorView)
 
 router.get("/login/user/admin/view/",  roleCheck("admin"), adminView)
 

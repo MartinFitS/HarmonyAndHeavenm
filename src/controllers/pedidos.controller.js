@@ -3,15 +3,21 @@ import PDFDocument from 'pdfkit';
 
 export const allPedidos = async (req, res) => {
   try {
-    const orders = await queryDatabase(`SELECT * FROM orders WHERE estado <> 'Entregado'`);
+    // Obtener los datos de los pedidos que NO están entregados
+    const ordersNotDelivered = await queryDatabase(`SELECT * FROM orders WHERE estado <> 'Entregado'`);
+
+    // Borrar los pedidos que SÍ están entregados
+    await queryDatabase(`DELETE FROM orders WHERE estado = 'Entregado'`);
+
+    // Resto de las consultas
     const users = await queryDatabase(`SELECT id, username FROM users WHERE name_role = 'master' OR name_role = 'admin'`);
     const products = await queryDatabase('SELECT modelo, unidades FROM products WHERE unidades <= 5');
 
-    res.render("masterPedidosView.hbs", { users, orders,products });
+    res.render("masterPedidosView.hbs", { users, orders: ordersNotDelivered, products });
   } catch (err) {
     res.json(err);
   }
-}; 
+};
 
 function queryDatabase(sql) {
   return new Promise((resolve, reject) => {

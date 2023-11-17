@@ -5,37 +5,12 @@
     <div class="titulo">
             <h1 class="title">H&H</h1>
     </div>
-    
 <div class="options">
     <ul>
         <li>
             <a href="/p-v/{{user.id}}">
                 <img src="/img/005-terminal-de-pago.png" alt="">
                 <span>Punto De Venta</span>
-            </a>
-        </li>
-        <li>
-            <a href="/master/user/gestionar">
-                <img src="/img/003-usuario.png" alt="">
-                <span>Gestionar Usuarios</span>
-            </a>
-        </li>
-        <li>
-            <a href="/products">
-                <img src="/img/001-agregar.png" alt="">
-                <span>Agregar Producto</span>
-            </a>
-        </li>
-        <li>
-            <a href="/proveedores">
-                <img src="/img/006-repartidor.png" alt="">
-                <span>Lista Distribuidores</span>
-            </a>
-        </li>
-        <li>
-            <a href="/pedidos">
-                <img src="/img/004-orden.png" alt="">
-                <span>Pedidos Tienda</span>
             </a>
         </li>
         <li>
@@ -74,9 +49,9 @@
         
     
     <div class="main">
-        
+         <h2 class="h2Titulo"> Listado de productos</h2>
     <div class="listaOrganizacion">
-    
+       
    <form action="/productos/categoria/" method="post">
     <h1>Ordenar</h1>
     
@@ -115,8 +90,6 @@
     </div>
         
     <div class="listadoDeProdu">
-
-        <h2 class="titulos h2">Listado de Productos</h2>
 
         {{#each products}}
             <div class="productoCard">
