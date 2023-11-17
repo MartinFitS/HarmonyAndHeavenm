@@ -1,90 +1,184 @@
-<link rel="stylesheet" href="/css/proveedor.css">
-<div class="header">
-    <div class="titulo">
-        <a href="/login/user/master/view/"><h1 class="title">H&H</h1></a>
-            
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/proveedor.css">
+    <link rel="stylesheet" href="/css/ventas.css">
+    <title>Ventas</title>
+</head>
+<body>
+    <div class="header">
+        <div class="titulo">
+            <a href="/login/user/master/view/"><h1 class="title">H&H</h1></a>
+        </div>
 
-    <div class="options">
-    <ul>
-        <li>
-            <a href="/p-v">
-                <img src="/img/005-terminal-de-pago.png" alt="">
-                <span>Punto De Venta</span>
-            </a>
-        </li>
-        <li>
-            <a href="/master/user/gestionar">
-                <img src="/img/003-usuario.png" alt="">
-                <span>Gestionar Usuarios</span>
-            </a>
-        </li>
-        <li>
-            <a href="/products">
-                <img src="/img/001-agregar.png" alt="">
-                <span>Agregar Producto</span>
-            </a>
-        </li>
-        <li>
-            <a href="/proveedores">
-                <img src="/img/006-repartidor.png" alt="">
-                <span>Lista Distribuidores</span>
-            </a>
-        </li>
-        <li>
-            <a href="/pedidos">
-                <img src="/img/004-orden.png" alt="">
-                <span>Pedidos Tienda</span>
-            </a>
-        </li>
-        <li>
-            <a href="/logout">
-                <img src="/img/002-cerrar-sesin.png" alt="">
-                <span>Cerrar Sesión</span>
-            </a>
-        </li>
-    </ul>
-</div>
-
-  
-
-</div>
-
-  <div class="mainDiv">
-        <div class="tableVentas">
-            <table class="tableVentas">
-                    <thead>
-                        <tr>
-                            <th>Id_Venta</th>
-                            <th>Total Venta</th>
-                            <th>Fecha De La Venta</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each ventas}}
-                        <tr>
-                            <td>{{id_venta}}</td>
-                            <td>{{totalVenta}}</td>
-                            <td>{{dia}}/{{mes}}/{{año}}</td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
-            </table>
+        <div class="options">
+            <ul>
+                <li>
+                    <a href="/p-v">
+                        <img src="/img/005-terminal-de-pago.png" alt="">
+                        <span>Punto De Venta</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/master/user/gestionar">
+                        <img src="/img/003-usuario.png" alt="">
+                        <span>Gestionar Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/products">
+                        <img src="/img/001-agregar.png" alt="">
+                        <span>Agregar Producto</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/proveedores">
+                        <img src="/img/006-repartidor.png" alt="">
+                        <span>Lista Distribuidores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/pedidos">
+                        <img src="/img/004-orden.png" alt="">
+                        <span>Pedidos Tienda</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <img src="/img/002-cerrar-sesin.png" alt="">
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 
-<div>
-  {{#if totalPages}}
-    {{#if (gt totalPages 1)}}
-      <p>Páginas:</p>
-      {{#each pages}}
-        {{#if (eq this ../page)}}
-          <span>{{this}}</span>
-        {{else}}
-          <a href="?page={{this}}">{{this}}</a>
-        {{/if}}
-      {{/each}}
-    {{/if}}
-  {{/if}}
-</div>
+
+    <div class="tituloTablaSegunElMes">
+        <h1></h1>
+    </div>
+
+
+    <div class="mainDiv">
+                <div class="estadisticasDiv"></div> 
+    <div class="tablasMeses">
+
+        <div class="tableVentas">
+            <table class="tableVentas">
+                <thead>
+                    <tr>
+                        <th>Id_Venta</th>
+                        <th>Total Venta</th>
+                        <th>Fecha De La Venta</th>
+                        <th>Hora</th>
+                        <th>Vendedor</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTabla">
+                    {{#each ventas}}
+                        <tr>
+                            <td>{{id_venta}}</td>
+                            <td>${{totalVenta}}</td>
+                            <td>{{dia}}/{{mes}}/{{año}}</td>
+                            <td>{{hora}}</td>
+                            <td>{{vendedor}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div class="btn_anterior">
+             <button id="prevMonth">Mes anterior</button>
+             <button id="nextMonth">Mes Siguiente</button>
+        </div>
+
+    </div>   
+
+    </div>
+
+
+
+
+<script>
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            function filterSalesByMonth(month) {
+                const salesRows = document.querySelectorAll('#cuerpoTabla tr');
+                
+                salesRows.forEach(row => {
+                    const saleMonth = row.querySelector('td:nth-child(3)').textContent.split('/')[1];
+                    
+                    if (saleMonth === month.toString()) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            function updateEmpleadoDelMes() {
+                const salesRows = document.querySelectorAll('#cuerpoTabla tr');
+                let maxSales = 0;
+                let maxSalesVendedor = "";
+
+                salesRows.forEach(row => {
+                    const totalVenta = parseFloat(row.querySelector('td:nth-child(2)').textContent.replace('$', ''));
+                    const vendedor = row.querySelector('td:nth-child(5)').textContent;
+
+                if (totalVenta > maxSales) {
+                 maxSales = totalVenta;
+                maxSalesVendedor = vendedor;
+        }
+    });
+
+    
+}
+
+
+
+          
+
+            const filterButtons = document.querySelectorAll('.filterButton');
+            const prevMonthButton = document.getElementById('prevMonth');
+            const nextMonthButton = document.getElementById('nextMonth');
+            const tituloTablaMes = document.querySelector('.tituloTablaSegunElMes h1');
+            let currentMonth = new Date().getMonth() + 1;
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const month = this.getAttribute('data-month');
+                    currentMonth = parseInt(month);
+                    filterSalesByMonth(currentMonth);
+                    updateTituloTablaMes(currentMonth);
+                    console.log(`Mostrando ventas para el mes ${currentMonth}`);
+                });
+            });
+
+            prevMonthButton.addEventListener('click', function () {
+                currentMonth = (currentMonth - 2 + 12) % 12 + 1;
+                filterSalesByMonth(currentMonth);
+                updateTituloTablaMes(currentMonth);
+                console.log(`Mostrando ventas para el mes ${currentMonth}`);
+            });
+
+            nextMonthButton.addEventListener('click', function () {
+                currentMonth = (currentMonth % 12) + 1;
+                filterSalesByMonth(currentMonth);
+                updateTituloTablaMes(currentMonth);
+                console.log(`Mostrando ventas para el mes ${currentMonth}`);
+            });
+
+            filterSalesByMonth(currentMonth);
+            updateTituloTablaMes(currentMonth);
+        });
+
+        function updateTituloTablaMes(month) {
+            const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            const tituloTablaMes = document.querySelector('.tituloTablaSegunElMes h1');
+            tituloTablaMes.textContent = `Ventas - ${monthNames[month - 1]}`;
+        }
+    </script>
 

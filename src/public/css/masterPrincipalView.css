@@ -29,8 +29,9 @@ ul{
 }
 
 .h2Titulo{
-    margin-top: 7px;
-    font-size: 15px;
+    padding-left: 73px;
+    position: fixed;
+    font-size: 18px;
     font-weight: 600;
     color: #734C29;
 }
@@ -74,8 +75,46 @@ ul{
 }
 
 .titulos{
+    display: flex;
     width: 100%;
     height: 50px;
+}
+
+.tituloH2{
+    width: 30%;
+    height: auto;
+}
+
+.buscadorProducts{
+    width: 100%;
+    height: auto;
+}
+
+.buscadorProducts input{
+    background-color: transparent;
+    padding-left: 5px;
+    width: 53%;
+    margin-left: 30%;
+    margin-top: 25px;
+    border: none;
+    border-bottom: 1px solid #734C29;
+}
+
+.buscadorProducts button{
+    border-radius: 2px;
+    cursor: pointer;
+    background-color: #734C29;
+    border: none;
+    color: white;
+    width: 11%;
+    height: auto;
+}
+
+.buscadorProducts button:hover{
+    background-color: transparent;
+    color: #734C29;
+    border: 1px solid #734C29;
+    transition: 250ms;
 }
 
 .titulos h2{
@@ -98,7 +137,7 @@ ul{
     border-radius: 15px;
     margin-top: 90px;
     position: fixed;
-    top: 70px;
+    top: 89px;
     width: 17%;
     height: 250px;
     margin-left: 5%;
@@ -122,7 +161,6 @@ ul{
 }
 
 .titulos h2{
-    position: fixed;
     top: 70px;
     width: 100%;
 
@@ -137,6 +175,7 @@ ul{
     height: auto;
     margin-left: 25%;
     margin-right: 2%;
+    min-height: 656px;
 }
 
 .filtrarPrecio{
@@ -152,15 +191,13 @@ ul{
 }
 
 .filtrarPrecio input{
-    border: 2px solid #734C29;
+    border: none;
     background-color: transparent;
-    width: 45%;;
+    width: 45%;
     height: 20px;
     padding: 5px;
-    box-shadow: 0 0 2px 2px #734C29; 
     color: #734C29;
-    border-radius: 20px;
-    border: 1px solid #734C29;
+    border-bottom: 1px solid #734C29;
 }
 
 .filtrarPrecio input::placeholder{
@@ -178,12 +215,10 @@ ul{
     cursor: pointer;
     color: white;
     background-color: #734C29;
-    font-weight: 600;
-    border-radius: 20px;
+    border-radius: 2px;
     width: 60%;
     height: 20px;
     margin-left: 20%;
-    box-shadow: 0 0 2px 2px #734C29; 
 }
 
 .btnFiltrar button:hover{
@@ -195,12 +230,11 @@ ul{
 
 select{
     margin-top: 8px;
-    box-shadow: 0 0 2px 2px #734C29; 
     color: #734C29;
-    border-radius: 20px;
-    border: 1px solid #734C29;
+    border-bottom: 1px solid #734C29;
     width: 98%;
     height: 20px;
+    border: none;
 }
 
 .minimo{
@@ -229,6 +263,7 @@ select{
     width: 27%;
     height: auto;
     margin-bottom: 20px;
+    height: 489px;
 }
 
 .productoCard .imgProduct{
