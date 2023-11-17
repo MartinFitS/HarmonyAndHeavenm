@@ -2,7 +2,7 @@ import {Router} from "express";
 import {renderLogin, renderRegister,masterView,registerFromRoot,registerUser,loginUser,invitadoView,vendedorView, adminView, logoutUser, gestionarUsuarios,deleteUser,editUser,editUserToDatabase} from "../controllers/users.controller"
 import {allProducts,editProduct,renderProducts ,addProduct,succesCreateProduct,deleteProduct,renderEditProduct} from "../controllers/products.controller";
 import {allProveedores, renderProveedores, addProveedor, proveedorAdd, renderEditProveedor, editProveedor, deleteProveedor } from "../controllers/proveedores.controller";
-import {allPedidos, editPedido, addPedido, deletePedido, pedidoAdd, facturaPedido} from "../controllers/pedidos.controller";
+import {allPedidos, editPedido, addPedido, deletePedido, pedidoAdd, facturaPedido, anadirUnidades} from "../controllers/pedidos.controller";
 import {categoriaProducto} from "../controllers/categoria.controller";
 import {requireAuth} from "../middlewares/auth"
 import {roleCheck} from "../middlewares/roleCheck"
@@ -81,6 +81,8 @@ router.post("/pedido/add",requireAuth, addPedido );
 router.get("/pedido/delete/:numSerie", multipleRoleCheck, deletePedido) 
 
 router.get("/pedido/factura/:numSerie", multipleRoleCheck, facturaPedido) 
+
+router.post("/pedido/anadir",multipleRoleCheck ,anadirUnidades)
 
 
 //categoria

@@ -198,13 +198,13 @@ export const ventaPuntoVenta = async(req,res) => {
   
   
 
-export const ventasRender = (req,res) => {
-  connection.query("SELECT * FROM venta ", (err, ventas)=>{
-    if(err){
-      console.log(err);
-    }else{
-      res.render("ventas.hbs", {ventas:ventas})
-    }
-  })
-  
-}
+  export const ventasRender = (req,res) => {
+    connection.query("SELECT * FROM venta ", (err, ventas)=>{
+      if(err){
+        console.log(err);
+      }else{
+        res.render("ventas.hbs", {ventas:ventas})
+      }
+    })
+    
+  }

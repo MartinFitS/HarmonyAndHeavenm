@@ -15,16 +15,9 @@
 
                 <div class="inputAdd">
                     <select class="marcaInput" name="marca" id="marca" required>
-                        <option>Yamaha</option>
-                        <option>Fender</option>
-                        <option>Takamine</option>
-                        <option>Marshall</option>
-                        <option>Gibson</option>
-                        <option>Casio</option>
-                        <option>LesPaul</option>
-                        <option>AudioTeck
-                            
-                        </option>
+                        {{#each proveedores}}
+                        <option>{{nombreProveedor}}</option>
+                        {{/each}}
                     </select>
                     <span class="line"></span>
                 </div>
@@ -40,17 +33,17 @@
                 </div>
 
                 <div class="inputAdd">
-                    <input type="number" id="precioPublico" name="precioPublico" placeholder="Precio Publico" required>
+                    <input type="number" id="precioPublico" name="precioPublico" placeholder="Precio Publico" required min="0">
                     <span class="line"></span>
                 </div>
 
                 <div class="inputAdd">
-                    <input type="number" id="precioTienda" name="precioTienda" placeholder="Precio Tienda" required>
+                    <input type="number" id="precioTienda" name="precioTienda" placeholder="Precio Tienda" required min="0">
                     <span class="line"></span>
                 </div>
 
                 <div class="inputAdd">
-                    <input type="number" id="unidades" name="unidades" placeholder="Unidades Disponibles"required>
+                    <input type="number" id="unidades" name="unidades" placeholder="Unidades Disponibles"required min="0">
                     <span class="line"></span>
                 </div>
 

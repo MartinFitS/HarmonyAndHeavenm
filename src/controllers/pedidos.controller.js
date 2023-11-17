@@ -1,6 +1,8 @@
 import connection from "../bd/bdConfig";
 import PDFDocument from 'pdfkit'; 
 
+//PDFDocument
+
 export const allPedidos = async (req, res) => {
   try {
     // Obtener los datos de los pedidos que NO están entregados
@@ -136,11 +138,11 @@ export const sumarUnidades = async (numSerie, estadoPedido) => {
 
 
 export const pedidoAdd = async(req,res) =>{
-  
-  const productos = await queryDatabase('SELECT modelo FROM products');
-  const proveedores = await queryDatabase('SELECT nombreProveedor FROM suppliers');
+
+  const proveedores = await queryDatabase('select distinct nombreProveedor from suppliers');
+  const productos = await queryDatabase('SELECT DISTINCT modelo, nombreProveedor FROM products JOIN suppliers ON products.marca = suppliers.nombreProveedor');
   const users = await queryDatabase(`SELECT id, username FROM users WHERE name_role = 'master' OR name_role = 'admin'`);
-  res.render("addPedido.hbs", {productos, proveedores, users});
+  res.render("addPedido.hbs", {productos, users,proveedores });
 
 }
 
@@ -190,12 +192,51 @@ async function obtenerPedidoPorId(numSerie){
   })
 }
 
+export const anadirUnidades = async (req, res) => {
+  try {
+    const numSerie = req.body.numSerie; 
+    const unidades = parseInt(req.body.unidades, 10);
+    const modelo = req.body.modelo;
+    const estado = req.body.estado; 
+    const sql = 'UPDATE products SET unidades = unidades + ? WHERE modelo = ?';
+
+    if (estado === "Entregado") {
+
+      connection.query(
+        sql,
+        [unidades, modelo],
+        (err, result) => {
+          if (err) {
+            console.error('Error al añadir las unidades al producto: ' + err.message);
+            res.status(500).json({ error: 'No se pudo añadir unidades al producto ' + numSerie });
+          } else {
+            if (req.session.userRole === "master") {
+              res.redirect("/pedidos");
+            } else {
+              res.redirect("/pedidos");
+            } 
+          }
+        }
+      );
+    } else {
+      const intento = "Estas intentando añadir unidades a un producto que no ha sido entregado";
+      const error = "No se pueden añadir al inventario productos que no hayan sido entregados"
+      res.render("alertasError.hbs", {error, intento});
+    }
+  } catch (e) {
+    console.error("Error:", e);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+
+
 export const facturaPedido = async (req, res) => {
   const {numSerie} = req.params; 
   const order = await obtenerPedidoPorId(numSerie);
 
     const doc = new PDFDocument({ bufferPages: true });
-    const filename = `factura_${numSerie}.pdf`;
+    const filename = `informe_${numSerie}.pdf`;
     const stream = res.writeHead(200, {
       'Content-Type': 'application/pdf',
       'Content-disposition': `attachment; filename=${filename}`,
@@ -209,35 +250,76 @@ export const facturaPedido = async (req, res) => {
       stream.end();
     });
 
+    doc.image('src/public/img/001-agregar.png', {
+      fit: [50, 30],
+      align: 'right',
+      valign: 'right'
+    });
+
     doc.font('Helvetica-Bold') 
     doc.fontSize(24) 
     doc.text('Harmony and Heaven', { align: 'center' }); 
-    
     // Añadir la fecha
     const today = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = today.toLocaleDateString('es-ES', options);
-    doc.fontSize(14); // Tamaño de fuente para la fecha
-    doc.text(`Fecha: ${formattedDate}`, 30,120, {align: 'right'});
-    doc.fontSize(16); // Tamaño de fuente para el informe
-    doc.text(`Informe del Pedido ${order.numSerie}`, 30,140,{ align: 'center' });
-    doc.text(`Pedido realizado por: ${order.username} con el ID: ${order.idUsuario}`, 30, 175);
-    doc.text(`Número de Serie: ${order.numSerie}`, 30, 210);
-    doc.text(`Estado: ${order.estado}`, 30, 245);
-    doc.text(`Marca: ${order.nombreProveedor}`, 30, 280);
-    doc.text(`Modelo: ${order.modelo}`, 30, 315);
-    doc.text(`Instrumento: ${order.instrumentoTipo}`, 30, 350);
-    doc.text(`Unidades: ${order.unidades}`, 30, 385);
-    doc.text(`Costo: $${order.precioTienda} pesos`, 30, 420);
-    doc.text(`Total: $${order.costoTotal} pesos`, 30, 455);
-    doc.fontSize(18);
-    doc.text(`Información sobre el proveedor:`, 30, 490);
+    doc.font('Helvetica-Oblique') 
+    doc.fontSize(12); // Tamaño de fuente para la fecha
+    doc.text(`Fecha: ${formattedDate}`, 30,128, {align: 'right'});
+    doc.font('Helvetica') 
     doc.fontSize(16); 
-    doc.text(`Proveedor: ${order.nombreProveedor}`, 30, 525);
-    doc.text(`Teléfono: ${order.telefono}`, 30, 560);
-    doc.text(`Correo electrónico: ${order.correo}`, 30, 595);
-    doc.text(`Firma del empleado`, 30, 650, {align: 'right'});
-    doc.moveTo(380, 640).lineTo(550, 640).stroke(); // Los valores (30, 640) y (200, 640) definen los puntos de inicio y final de la línea.
+    doc.text(`Informe del Pedido ${order.numSerie}`, 30,140);
+    doc.fontSize(14); // Tamaño de fuente para el informe
+    doc.text(`Pedido realizado por: ${order.username} con el ID: ${order.idUsuario}`, 30, 165);
+      // Crear una tabla
+      const tableStartY = 190;
+      const tableColumnWidth = 250;
+      const tableRowHeight = 20;
+      
+      const drawTableCell = (text, x, y) => {
+        doc.text(text, x, y);
+      };
+      
+      const drawTableRow = (row, rowIndex, startY) => {
+        const yOffset = startY + rowIndex * tableRowHeight;
+        drawTableCell(row[0], 30, yOffset);
+        drawTableCell(row[1], 30 + tableColumnWidth, yOffset);
+      };
+      
+      const tableData = [
+        ['Número de Serie', order.numSerie],
+        ['Estado', order.estado],
+        ['Marca', order.nombreProveedor],
+        ['Modelo', order.modelo],
+        ['Instrumento', order.instrumentoTipo],
+        ['Unidades', order.unidades],
+        ['Precio del producto', `$${order.precioTienda} pesos`],
+        ['Total', `$${order.costoTotal} pesos`],
+      ];
+      
+      tableData.forEach((row, index) => {
+        drawTableRow(row, index, tableStartY);
+      });
+      
+      const supplierTableStartY = tableStartY + tableData.length * tableRowHeight + 20;
+      
+      const tableData2 = [
+        ['Información sobre el proveedor', ''],
+        ['Proveedor', order.nombreProveedor],
+        ['Teléfono', order.telefono],
+        ['Correo electrónico', order.correo],
+      ];
+      
+      tableData2.forEach((row, index) => {
+        drawTableRow(row, index, supplierTableStartY);
+      });
+      
 
+
+  
+    // Additional text
+    doc.text('Firma del empleado', 30, 650, { align: 'right' });
+    doc.moveTo(380, 640).lineTo(550, 640).stroke(); // Los valores (30, 640) y (200, 640) definen los puntos de inicio y final de la línea.
+  
     doc.end();
-  }
+  };  
