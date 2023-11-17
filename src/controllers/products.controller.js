@@ -40,7 +40,8 @@ function queryDatabase(sql) {
 export const renderProducts = async (req, res) => {
   try {
     const proveedores = await queryDatabase('SELECT nombreProveedor FROM suppliers');
-    res.render('addProduct.hbs', { proveedores });
+    console.log(proveedores[0].nombreProveedor)
+    res.render('addProduct.hbs', { proveedores: proveedores });
   } catch (error) {
     console.error(error);
     res.status(500).send('Error interno del servidor');

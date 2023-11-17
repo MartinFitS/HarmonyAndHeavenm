@@ -1,5 +1,5 @@
 .centerDiv{
-    margin-top: 45px;
+    margin-top: 30px;
     display: flex;
     width: 90%;
     height: auto;
@@ -7,10 +7,30 @@
     margin-right: 5%;
 }
 
-.tablaGraficas{
-    width: 30%;
+.tablaGraficas {
+    width: 60%;
     min-height: 500px;
-    background-color: aqua;
+    margin: 20px auto; /* Centra el elemento */
+    background-color: #fff; /* Color de fondo */
+    border: 1px solid #ddd; /* Borde */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#graficaVentas {
+    width: 100%;
+    height: 100%;
+    max-width: 400px; /* Ajusta el ancho máximo según tus necesidades */
+    max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
+    margin: 0 auto; /* Centra la gráfica */
+    display: block;
+}
+
+
+.tablaGraficas{
+    width: 100%;
+    min-height: 371px;
 }
 
 .tablaVentasAnual{
@@ -18,5 +38,241 @@
     min-height: 500px;
     margin-left: 5%;
     margin-right: 5%;
-    background-color: azure;
+}
+
+.mainDiv{
+    padding-top: 50px;
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.tituloTablaSegunElMes {
+    margin-left: 30%;
+    margin-top: 20px;
+    width: 60%;
+    height: auto;
+}
+
+.tituloTablaSegunElMes h1{
+    font-weight: 100;
+    text-align: left;
+    margin-left: 5%;
+}
+
+.btn_anterior{
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    margin-left: 1.5%;
+    margin-right: 2.5%;
+}
+
+.btn_anterior button{
+    font-size: 12px;
+    color: white;
+    padding: 5px;
+    border: none;
+    background-color: #343a40;
+}
+
+#prevMonth{
+    cursor: pointer;
+    font-size: 13px;
+    color: white;
+    padding: 5px;
+    border: none;
+    background-color: #343a40;
+}
+
+
+
+.tableVentas{
+    width: 100%;
+    height: auto;
+    border-collapse: collapse;
+}
+
+.empleadoMes{
+    width: 100%;
+    height: 150px;
+}
+
+.ventaTotal{
+    width: 100%;
+    height: 150px;
+}
+
+.btn_siguiente{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 10%;
+    height: auto;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}
+
+.tableVentas tbody tr.total-row {
+    background-color: #f5f5f5; /* Color de fondo para resaltar */
+    font-weight: bold; /* Texto en negrita para resaltar */
+}
+
+
+.btn_siguiente button{
+    font-size: 12px;
+    color: white;
+    padding: 5px;
+    border: none;
+    background-color: #343a40;
+    cursor: pointer;
+}
+/* Estilos del encabezado de la tabla */
+.tableVentas th {
+    background-color: #343a40; /* Color de fondo oscuro para el encabezado */
+    color: #ffffff; /* Color del texto en el encabezado */
+    padding: 10px;
+}
+
+/* Estilos de las celdas de la tabla */
+.tableVentas td, .tableVentas th {
+    border: 1px solid #dee2e6; /* Borde de las celdas */
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilos de las filas pares e impares para alternar colores */
+.tableVentas tbody tr:nth-child(even) {
+    background-color: #f8f9fa; /* Color de fondo para filas pares */
+}
+
+/* Resaltar la fila al pasar el ratón sobre ella */
+.tableVentas tbody tr:hover {
+    background-color: #e2e6ea; /* Cambia esto al color que desees para el resaltado de la fila al pasar el ratón */
+}
+
+/* Restaurar el fondo transparente de las celdas en la fila al pasar el ratón */
+.tableVentas tbody tr:hover td {
+    background-color: transparent;
+}
+
+/* Resaltar toda la columna al pasar el ratón sobre ella */
+.tableVentas tbody tr:hover td:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffcc; /* Cambia esto al color que desees para el resaltado de la columna */
+    z-index: -1; /* Asegura que el fondo de la celda no cubra completamente la cruz */
+}
+
+/* Ajustes visuales adicionales para la cruz */
+.tableVentas tbody tr:hover td:hover {
+    position: relative;
+    z-index: 1;
+}
+
+.estadisticas{
+    width: 25%;
+    height: auto;
+    margin-left: 2.5%;
+}
+
+
+.estadisticasDiv{
+    width: 20%;
+    height: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.tablasMeses{
+    width: 65%;
+    margin-left: 17.5%;
+    margin-right: 17.5%;
+}
+
+
+
+.estadisticasDiv {
+    display: flex;
+    justify-content: space-around;
+}
+
+.empleadoMes, .ventasAnuales {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #ddd;
+    opacity: 1;
+    transition: opacity 1s ease-in-out, width 1s ease-in-out;
+    height: 250px;
+
+}
+
+.imgEmpleados, .imgVentas {
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+
+}
+
+.imgEmpleados{
+    background-image: url("/img/002-empleados.png");
+    background-size: contain;
+}
+
+.imgVentas{
+    background-image: url("/img/001-diagrama.png");
+    background-size: contain;
+}
+
+.ventasAnuales h1 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.empleadoMes h1{
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.empleadoMes a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ventasAnuales a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+.ventasAnuales a:hover{
+    background-color: #2980b9;
+}
+.empleadoMes a:hover {
+    background-color: #2980b9;
+}
+
+.hidden {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    pointer-events: none;
 }
