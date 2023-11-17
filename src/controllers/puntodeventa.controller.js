@@ -259,14 +259,20 @@ export const ventasAnuales = (req, res) => {
         const ventaTotalMesAnterior = ventasTotalesPorMes[`VentaTotal${i - 1}`] || 0;
         ventasTotalesPorMes[`DiferenciaMes${i}`] = ventaTotalMesActual - ventaTotalMesAnterior;
       }
+      // Calcular la venta total anual y agregar al objeto ventasTotalesPorMes
+const ventaTotalAnual = Object.values(ventasTotalesPorMes).reduce((total, ventaTotal) => total + ventaTotal, 0);
+ventasTotalesPorMes['VentaTotalAnual'] = ventaTotalAnual;
 
+// Console.log para verificar la venta total anual
+console.log('Venta total anual:', ventaTotalAnual);
       // Console.log para verificar las ventas totales por mes y la diferencia
       console.log('Ventas totales por mes:', ventasTotalesPorMes);
 
       // Renderizar la vista y pasar tanto los productos como las ventas totales y estadísticas del vendedor por mes
       res.render("ventasAnuales.hbs", {
         ventasTotalesPorMes: ventasTotalesPorMes,
-        estadisticasVendedorPorMes: estadisticasVendedorPorMes
+        estadisticasVendedorPorMes: estadisticasVendedorPorMes,
+        ventaTotalAnual: ventaTotalAnual
       });
     });
   });

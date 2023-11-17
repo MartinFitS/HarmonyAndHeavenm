@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/proveedor.css">
     <link rel="stylesheet" href="/css/ventaAnuales.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <title>Ventas</title>
 </head>
 <body>
@@ -56,7 +58,13 @@
     </div>
 
 <div class="centerDiv">
-    <div class="tablaGraficas"></div>
+    <div class="tablaGraficas">
+        <h3 style="text-align: center; font-weight: 100;">Grafica de ventas anual 2023.</h3>
+        <div class="tablaGraficas">
+            <canvas id="graficaVentas" width="400" height="400"></canvas>
+        </div>
+
+    </div>
     <div class="tablaVentasAnual">
             <div class="tablasMeses">
 
@@ -130,6 +138,10 @@
                             <td>$0</td>
                             <td>$0</td>
                         </tr>
+                        <tr class="total-row">
+                            <td colspan="3" style="text-align: center;">Venta Total Anual: </td>
+                            <td>${{ventasTotalesPorMes.VentaTotalAnual}}</td>
+                        </tr>               
                 </tbody>
             </table>
         </div>
@@ -137,6 +149,31 @@
     </div>
 </div>
    
+<!-- Script para inicializar el gráfico de pastel -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Datos para el gráfico de pastel
+        var datosGrafica = {
+            labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+            datasets: [{
+                data: [{{ventasTotalesPorMes.VentaTotal1}}, {{ventasTotalesPorMes.VentaTotal2}}, {{ventasTotalesPorMes.VentaTotal3}}, {{ventasTotalesPorMes.VentaTotal4}}, {{ventasTotalesPorMes.VentaTotal5}}, {{ventasTotalesPorMes.VentaTotal6}}, {{ventasTotalesPorMes.VentaTotal7}}, {{ventasTotalesPorMes.VentaTotal8}}, {{ventasTotalesPorMes.VentaTotal9}}, {{ventasTotalesPorMes.VentaTotal10}}, {{ventasTotalesPorMes.VentaTotal11}}, {{ventasTotalesPorMes.VentaTotal12}}],
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#8e5ea2', '#3cba9f', '#e8c3b9', '#c45850', '#7cb5ec', '#9e9e9e', '#607d8b', '#4caf50', '#ff5722', '#795548'],
+            }]
+        };
+
+        // Configuración del gráfico de pastel
+        var configGrafica = {
+            type: 'pie',
+            data: datosGrafica,
+        };
+
+        // Obtener el contexto del lienzo
+        var contexto = document.getElementById('graficaVentas').getContext('2d');
+
+        // Crear la instancia del gráfico de pastel
+        var graficaVentas = new Chart(contexto, configGrafica);
+    });
+</script>
 
   
 
