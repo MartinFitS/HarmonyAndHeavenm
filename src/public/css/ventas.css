@@ -149,3 +149,83 @@
     margin-left: 2.5%;
     margin-right: 2.5%;
 }
+
+
+
+.estadisticasDiv {
+    display: flex;
+    justify-content: space-around;
+}
+
+.empleadoMes, .ventasAnuales {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #ddd;
+    opacity: 1;
+    transition: opacity 1s ease-in-out, width 1s ease-in-out;
+    height: 250px;
+
+}
+
+.imgEmpleados, .imgVentas {
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+
+}
+
+.imgEmpleados{
+    background-image: url("/img/002-empleados.png");
+    background-size: contain;
+}
+
+.imgVentas{
+    background-image: url("/img/001-diagrama.png");
+    background-size: contain;
+}
+
+.ventasAnuales h1 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.empleadoMes h1{
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.empleadoMes a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ventasAnuales a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+.ventasAnuales a:hover{
+    background-color: #2980b9;
+}
+.empleadoMes a:hover {
+    background-color: #2980b9;
+}
+
+.hidden {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
