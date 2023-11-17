@@ -62,7 +62,18 @@
 
 
     <div class="mainDiv">
-                <div class="estadisticasDiv"></div> 
+                <div class="estadisticasDiv">
+                    <div class="empleadoMes">
+                        <h1>Conoce al empleado del mes!</h1>
+                        <div class="imgEmpleados"></div>
+                        <a href="">Ir</a>
+                    </div>
+                    <div class="ventasAnuales">
+                        <h1>Ventas Anuales.</h1>
+                        <div class="imgVentas"></div>
+                        <a href="/p-v/ventas/ventas-anuales">ir</a>
+                    </div>
+                </div> 
     <div class="tablasMeses">
 
         <div class="tableVentas">
@@ -180,5 +191,22 @@
             const tituloTablaMes = document.querySelector('.tituloTablaSegunElMes h1');
             tituloTablaMes.textContent = `Ventas - ${monthNames[month - 1]}`;
         }
+
+          document.addEventListener("DOMContentLoaded", function () {
+        // Inicialmente, muestra el div de empleadoMes y oculta el de ventasAnuales
+        const empleadoMesDiv = document.querySelector('.empleadoMes');
+        const ventasAnualesDiv = document.querySelector('.ventasAnuales');
+
+        setInterval(() => {
+            // Cambia la visibilidad de los divs cada 3 segundos
+            if (empleadoMesDiv.classList.contains('hidden')) {
+                empleadoMesDiv.classList.remove('hidden');
+                ventasAnualesDiv.classList.add('hidden');
+            } else {
+                empleadoMesDiv.classList.add('hidden');
+                ventasAnualesDiv.classList.remove('hidden');
+            }
+        }, 5000);
+    });
     </script>
 

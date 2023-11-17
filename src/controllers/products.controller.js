@@ -65,11 +65,11 @@ export const editProduct = async(req,res) =>{
   try{
     const productId = req.params.id;
     const product = req.body
-    const sql = 'UPDATE products SET modelo = ?, marca = ?, instrumentoTipo = ?, precioPublico = ?, precioTienda = ?, unidades = ?, foto = ? WHERE id = ?';
+    const sql = 'UPDATE products SET modelo = ?, precioPublico = ?, precioTienda = ?, unidades = ?, foto = ? WHERE id = ?';
     
     connection.query(
       sql,
-      [product.modelo, product.marca, product.instrumentoTipo, product.precioPublico, product.precioTienda, product.unidades,product.foto, productId],(err,result) => {
+      [product.modelo,  product.precioPublico, product.precioTienda, product.unidades,product.foto, productId],(err,result) => {
         if (err) {
           console.error('Error al editar el producto: ' + err.message);
           const intento=('Estas intentando editar un producto');

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/proveedor.css">
+    <link rel="stylesheet" href="/css/ventaAnuales.css">
+    <title>Ventas</title>
+</head>
+<body>
+    <div class="header">
+        <div class="titulo">
+            <a href="/login/user/master/view/"><h1 class="title">H&H</h1></a>
+        </div>
+
+        <div class="options">
+            <ul>
+                <li>
+                    <a href="/p-v">
+                        <img src="/img/005-terminal-de-pago.png" alt="">
+                        <span>Punto De Venta</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/master/user/gestionar">
+                        <img src="/img/003-usuario.png" alt="">
+                        <span>Gestionar Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/products">
+                        <img src="/img/001-agregar.png" alt="">
+                        <span>Agregar Producto</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/proveedores">
+                        <img src="/img/006-repartidor.png" alt="">
+                        <span>Lista Distribuidores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/pedidos">
+                        <img src="/img/004-orden.png" alt="">
+                        <span>Pedidos Tienda</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <img src="/img/002-cerrar-sesin.png" alt="">
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+<div class="centerDiv">
+    <div class="tablaGraficas"></div>
+    <div class="tablaVentasAnual">
+            <div class="tablasMeses">
+
+        <div class="tableVentas">
+            <table class="tableVentas">
+                <thead>
+                    <tr>
+                        <th>Mes</th>
+                        <th>Ingreso Total</th>
+                        <th>Ganancias o Perdidas</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTabla">
+                        <tr>
+                            <td>Enero</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal1}}</td>
+                            <td>$0</td>
+                        </tr>
+                        <tr>
+                            <td>Febrero</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal2}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes2}}</td>
+                        </tr>
+                        <tr>
+                            <td>Marzo</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal3}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes3}}</td>
+                        </tr>
+                        <tr>
+                            <td>Abril</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal4}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes4}}</td>
+                        </tr>
+                        <tr>
+                            <td>Mayo</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal5}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes5}}</td>
+                        </tr>
+                        <tr>
+                            <td>Junio</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal6}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes6}}</td>
+                        </tr>
+                        <tr>
+                            <td>Julio</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal7}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes7}}</td>
+                        </tr>
+                        <tr>
+                            <td>Agosto</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal8}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes8}}</td>
+                        </tr>
+                        <tr>
+                            <td>Septiembre</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal9}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes9}}</td>
+                        </tr>
+                        <tr>
+                            <td>Octubre</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal10}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes10}}</td>
+                        </tr>
+                        <tr>
+                            <td>Noviembre</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal11}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes11}}</td>
+                        </tr>
+                        <tr>
+                            <td>Diciembre</td>
+                            <td>$0</td>
+                            <td>$0</td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+   
+
+  
+
+
+
+
+

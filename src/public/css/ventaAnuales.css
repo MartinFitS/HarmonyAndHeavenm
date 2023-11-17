@@ -1,0 +1,22 @@
+.centerDiv{
+    margin-top: 45px;
+    display: flex;
+    width: 90%;
+    height: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.tablaGraficas{
+    width: 30%;
+    min-height: 500px;
+    background-color: aqua;
+}
+
+.tablaVentasAnual{
+    width: 60%;
+    min-height: 500px;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: azure;
+}
