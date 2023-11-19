@@ -37,7 +37,8 @@ ul{
 }
 
 .header .titulo .title{
-    padding: 20px;
+    padding-top: 12px;
+    padding-left: 20px;
     color: #734C29;
 }
 
@@ -45,30 +46,6 @@ ul{
     width: 70%;
     height: auto;
 }
-
-/* .options ul{
-    display: flex;
-    margin-left: 57%;
-}
-
-.options ul li {
-
-    padding: 20px;
-    text-align: end;
-} */
-
-/* .options a{
-
-    font-weight: 100;
-    color: #734C29;
-    text-decoration: none;
-}
-
-.options img{
-    width: 25px;
-} */
-
-/* Main de la vista */
 .body{
     width: 100%;
     height: auto;

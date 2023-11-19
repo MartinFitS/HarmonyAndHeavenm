@@ -33,11 +33,31 @@ function queryDatabase(sql) {
   }
 )};
 
+export const allPedidosAdmin = async (req, res) => {
+  try {
+    // Obtener los datos de los pedidos que NO están entregados
+    const ordersNotDelivered = await queryDatabase(`SELECT * FROM orders WHERE estado <> 'Entregado'`);
+
+    // Borrar los pedidos que SÍ están entregados
+    await queryDatabase(`DELETE FROM orders WHERE estado = 'Entregado'`);
+
+    // Resto de las consultas
+    const users = await queryDatabase(`SELECT id, username FROM users WHERE name_role = 'master' OR name_role = 'admin'`);
+    const products = await queryDatabase('SELECT modelo, unidades FROM products WHERE unidades <= 5');
+
+    res.render("adminPedidos.hbs", { users, orders: ordersNotDelivered, products });
+  } catch (err) {
+    res.json(err);
+  }
+};
+
+
+
 
 export const addPedido = async (req, res) => {
   try {
     const data = req.body;
-    
+    console.log(req.body)
     // Agregar el estado "pendiente" al pedido
     data.estado = "Pendiente";
 
@@ -234,6 +254,8 @@ export const anadirUnidades = async (req, res) => {
 export const facturaPedido = async (req, res) => {
   const {numSerie} = req.params; 
   const order = await obtenerPedidoPorId(numSerie);
+  const precioFinal = (order.unidades*order.precioTienda)
+  console.log(precioFinal)
 
     const doc = new PDFDocument({ bufferPages: true });
     const filename = `informe_${numSerie}.pdf`;
@@ -294,7 +316,7 @@ export const facturaPedido = async (req, res) => {
         ['Instrumento', order.instrumentoTipo],
         ['Unidades', order.unidades],
         ['Precio del producto', `$${order.precioTienda} pesos`],
-        ['Total', `$${order.costoTotal} pesos`],
+        ['Total', `$${precioFinal} pesos`],
       ];
       
       tableData.forEach((row, index) => {

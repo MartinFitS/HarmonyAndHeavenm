@@ -4,6 +4,7 @@ export const categoriaProducto = async (req, res) => {
     const minPrice = parseFloat(req.body.minPrice);
     const maxPrice = parseFloat(req.body.maxPrice);
     const instrumentoTipo = req.body.instrumentoTipo;
+    let role = req.session.userRole;
     const marca = req.body.marca;
 
     // where 1=1 se utiliza para consultas dinámicas
@@ -36,7 +37,16 @@ export const categoriaProducto = async (req, res) => {
         if (err) {
             res.json(err);
         } else {
-            res.render('masterPrincipalView', { products: productsf });
+            if(role === 'master'){
+                res.render('masterPrincipalView', { products: productsf });
+            }else if(role === 'admin'){
+                res.render('adminPrincipalView', { products: productsf });
+            }else if(role === 'vendedor'){
+                res.render('vendedorPrincipalView', { products: productsf });
+            }else if(role === 'invitado'){
+                res.render('invitadoPrincipalView', { products: productsf });
+            }
+
         }
     });
 };
