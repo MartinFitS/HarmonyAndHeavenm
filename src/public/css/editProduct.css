@@ -75,12 +75,13 @@
   }
   
   .formAddProduct{
-    margin-top: 50px;
-    height: 550px;
+    margin-bottom: 5%;
+    margin-top: 10%;
+    height: auto;
     margin-left: 10%;
     background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
     width: 40%;
     max-width: 400px;
     padding: 3em 2em;
@@ -95,9 +96,12 @@
   /* Imagenes */
   
   .imageAndMessage{
+    margin-bottom: 5%;
+    margin-top: 9%;
+    height: 550px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     width: 40%;
@@ -105,8 +109,6 @@
     max-width: 800px;
     padding: 0px;
     color: white;
-    height: 550px;
-    margin-top: 50px;
   }
   
   .button-container2 {

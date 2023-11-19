@@ -7,11 +7,11 @@ body{
 }
 
 header{
+    background-color: #f7f7f7;
     width: 100%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     height: 70px;
-    background-color: rgb(221, 214, 199);
     display: flex;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Puedes ajustar la sombra según tu diseño */
 }
 
 ul{
@@ -30,9 +30,12 @@ ul{
 
 
 .title{
-    padding: 10px;
     font-weight: 600;
+    font-size: 250%;
+    margin-left: 2%;
+    padding: 15px;
     color: #734C29;
+
 }
 
 
@@ -51,6 +54,7 @@ ul{
     flex-direction: column;
     width: 80%;
     margin-left: 3%;
+    margin-bottom: 2%;
 }
 
 .mainUsers{
@@ -64,7 +68,7 @@ ul{
 .leftSideUsers{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
-    width: 70%;
+    width: 90%;
     margin-left: 2%;
     height: auto;
     background-color: white;
