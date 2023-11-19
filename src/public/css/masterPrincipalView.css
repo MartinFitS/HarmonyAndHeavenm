@@ -4,8 +4,10 @@
 
 html{
     background-color: #f7f7f7
-}
-.header {
+  }
+  
+.header 
+{
     position: fixed;
     top: 0;
     left: 0;
@@ -13,7 +15,7 @@ html{
     height: 70px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
-    background-color: rgb(221, 214, 199);
+    background-color: white;
     z-index: 1000; /* Asegura que esté en la parte superior de otros elementos */
 }
 
@@ -40,7 +42,12 @@ ul{
     color: #734C29;
 }
 
-.header .titulo .title{
+.header .titulo .title
+{
+    font-weight: 600;
+    margin: -2%;
+    margin-top: -1.5%;
+    margin-left: 3%;
     padding: 20px;
     color: #734C29;
 }
@@ -49,28 +56,6 @@ ul{
     width: 70%;
     height: auto;
 }
-
-/* .options ul{
-    display: flex;
-    margin-left: 57%;
-}
-
-.options ul li {
-
-    padding: 20px;
-    text-align: end;
-} */
-
-/* .options a{
-
-    font-weight: 100;
-    color: #734C29;
-    text-decoration: none;
-}
-
-.options img{
-    width: 25px;
-} */
 
 /* Main de la vista */
 .body{
@@ -84,13 +69,22 @@ ul{
     height: 50px;
 }
 
+.titulos.h2{
+    margin-top: 5%;
+    font-size: 25px;
+    font-weight: 300;
+    color: #734C29;
+    text-align: left;
+    margin-left: 6%;
+  }
+  
 .tituloH2{
     width: 30%;
     height: auto;
 }
 
-.buscadorProducts{
-    margin-top: 2%;
+.buscadorProducts
+{
     width: 100%;
     height: auto;
 }
@@ -138,49 +132,36 @@ ul{
     height: auto;
 }
 
-.listaOrganizacion {
-    padding-top: 2%;
-    padding-bottom: 2%;
-    text-align: center;
+.listaOrganizacion{
     border-radius: 15px;
-    margin-top: 2%;
+    margin-top: 90px;
     position: fixed;
-    top: 89px;
-    width: 25%;
+    top: 5%;
+    width: 22%;
     height: auto;
-    margin-left: 1%;
-    margin-right: 1%;
-    background-color: #a59375;
+    margin-left: 3%;
+    margin-right: 2%;
+    background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
 }
 
-.listaOrganizacion h1{
-    text-align: center;
+.listaOrganizacion h1
+{
     font-size: 17px;
     font-weight: 600;
-    color: rgb(255, 255, 255);;
-    margin-bottom: 20px;
+    color: #753806;
 }
 
-.listaOrganizacion h2{
-    text-align: center;
-    margin-top: 30px;
+.listaOrganizacion h2
+{
+    margin-top: 7px;
     font-size: 15px;
     font-weight: 600;
-    color: rgba(243, 239, 233, 0.831);
+    color: #734C29;
 }
 
-.titulos.h2{
-    margin-top: 5%;
-    font-size: 25px;
-    font-weight: 300;
-    color: #734C29;
-    text-align: left;
-    margin-left: 6%;
-}
 .titulos h2{
-    margin-left: 0%;
-    position: fixed;
     top: 70px;
     width: 100%;
 
@@ -195,16 +176,14 @@ ul{
     height: auto;
     margin-left: 25%;
     margin-right: 2%;
+    min-height: 656px;
 }
 
 .filtrarPrecio{
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 80%;
+    width: 100%;
     height: auto;
     display: flex;
     margin-top: 5px;
-    margin-bottom: 20px;
 }
 
 .filtrarPrecio span{
@@ -213,26 +192,25 @@ ul{
 }
 
 .filtrarPrecio input{
-    text-align: center;
-    border: 2px solid #96816e;
-    background-color: rgba(243, 239, 233, 0.831);
-    width: 45%;;
+    border: none;
+    background-color: transparent;
+    width: 45%;
     height: 20px;
     padding: 5px;
-    box-shadow: 0 0 2px 2px #a38a73; 
-    color: #c3b1a1;
-    border-radius: 3px;
-    border: 1px solid #ab9480;
+    color: #734C29;
+    border-bottom: 1px solid #734C29;
 }
 
 .filtrarPrecio input::placeholder{
-    color: #9b7656;
+    color: #734C29;
 }
 
 .btnFiltrar{
+    padding: 3%;
     margin-top: 15px;
     width: 100%;
     height: auto;
+  
 }
 
 .btnFiltrar button{
@@ -240,11 +218,10 @@ ul{
     cursor: pointer;
     color: white;
     background-color: #734C29;
-    font-weight: 600;
-    border-radius: 20px;
+    border-radius: 5px;
     width: 60%;
     height: 20px;
-    box-shadow: 0 0 2px 2px #734C29; 
+    margin-left: 20%;
 }
 
 .btnFiltrar button:hover{
@@ -253,27 +230,24 @@ ul{
     color: #734C29;
 }
 
-select 
-{
-    text-align: center;
-    margin-left: 15%;
-    background-color: rgba(243, 239, 233, 0.831);
-    box-shadow: 0 0 2px 2px #a38a73; 
-    color: #9f8772;
-    border-radius: 3px;
-    border: 1px solid #ab8f76;
-    width: 50%;
+
+select{
+    margin-top: 8px;
+    color: #734C29;
+    border-bottom: 1px solid #734C29;
+    width: 98%;
     height: 20px;
+    border: none;
 }
 
-.minimo{
-    text-align: center;
+.minimo
+{
     width: 25%;
     height: 20px;
 }
 
-.maximo{
-    text-align: center;
+.maximo
+{
     width: 25%;
     height: 20px;
 }
@@ -292,9 +266,11 @@ select
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: white;
     margin-left: 5%;
-    width: 27%;
+    padding-right: 1%;
+    width: 28%;
     height: auto;
     margin-bottom: 20px;
+    height: 489px;
 }
 
 .productoCard .imgProduct{
@@ -342,26 +318,52 @@ select
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 .edit{
+    background-color: #ffffff;
+    border: 1px solid #753806;
+    color: rgb(144, 123, 95);
     border-radius: 7px;
     font-weight: 100;
     text-decoration: none;
-    color: white;
     font-size: 13px;
     margin-left: 7%;
-    background-color: #33922c;
+    padding: 3%;
+}
+.edit:hover{
+    transition: 250ms;
+    background-color: #c19470;
+    color: rgb(255, 255, 255);
+    border: 1px solid #d2d1d1;
+    border-radius: 7px;
+    font-weight: 100;
+    text-decoration: none;
+    font-size: 13px;
+    margin-left: 7%;
     padding: 3%;
 }
 
 .delete{
+    background-color: #ffffff;
+    border: 1px solid #753806;
+    color: rgb(122, 96, 63);
     border-radius: 7px;
     font-weight: 100;
     text-decoration: none;
-    color: white;
     font-size: 13px;
+    padding: 3%;
+}
 
-    background-color: #921111;
-    padding: 3%; 
+.delete:hover{
+    transition: 250ms;
+    background-color: #992e2e;
+    color: rgb(255, 255, 255);
+    border: 1px solid #d2d1d1;
+    border-radius: 7px;
+    font-weight: 100;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 3%;
 }
 
 
@@ -416,4 +418,3 @@ select
     transform: translateX(0);
     opacity: 1;
 }
-

@@ -1,10 +1,12 @@
 
 
 .header{
-    background-color: rgb(221, 214, 199);
+    background-color: #f7f7f7;
     width: 100%;
     height: 70px;
     display: flex;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 4%;
 }
 
 ul{
@@ -26,6 +28,9 @@ ul{
 }
 
 .header .titulo .title{
+    font-weight: 600;
+    margin-left: 2%;
+    margin-top: 1%;
     padding-top: 10px;
     padding-left: 20px;
     color: #734C29;
@@ -52,7 +57,7 @@ ul{
 }
 
 .titulos h2{
-    margin-top: 30px;
+    margin-top: 0%;
     font-size: 25px;
     font-weight: 300;
     color: #734C29;
@@ -240,34 +245,50 @@ select{
     font-size: 14px;
 }
 .edit{
+    background-color: #ffffff;
+    border: 1px solid #753806;
+    color: rgb(144, 123, 95);
     border-radius: 7px;
     font-weight: 100;
     text-decoration: none;
-    color: white;
     font-size: 15px;
     margin-left: 26%;
-    background-color: #33922c;
     padding: 3%;
 }
 
+.edit:hover{
+    transition: 250ms;
+    background-color: #c19470;
+    color: rgb(255, 255, 255);
+    border: 1px solid #d2d1d1;
+}
+
 .delete{
+    background-color: #ffffff;
+    border: 1px solid #753806;
+    color: rgb(122, 96, 63);
     border-radius: 7px;
     font-weight: 100;
     text-decoration: none;
-    color: white;
     font-size: 13px;
-
-    background-color: #921111;
     padding: 3%; 
+}
+
+.delete:hover{
+    transition: 250ms;
+    background-color: #992e2e;
+    color: rgb(255, 255, 255);
+    border: 1px solid #d2d1d1;
+    border-radius: 7px;
 }
 
 
 .formAddProduct{
-    margin-top: 20px;
-    height: 300px;
+    margin-top: 5%;
+    height: auto;
     background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
     padding: 3em 2em;
@@ -312,11 +333,12 @@ select{
   }
   
   .button-container button {
+    margin-top: 4%;
     width: 50%;
     height: 43px;
     font-size: 13px;
     margin-left: 20%;
-    background-color: #5a3b1f;
+    background-color: #927b66;
     color: white;
     border: none;
     border-radius: 5px;
@@ -324,6 +346,12 @@ select{
     transition: background-color 0.3s, color 0.3s;
   }
   
+  .button-container button:hover {
+    background-color: #ffffff;
+    color: #785b41;
+    border: 1px solid #785b41;
+    transition: 250ms;
+  }
   .options ul {
     margin-right: 35px;
     list-style: none;

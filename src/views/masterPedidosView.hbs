@@ -3,7 +3,7 @@
 
 <header>
     <div class="titulo">
-        <a href="/login/user/master/view/"><h1 class="title">H&H</h1></a>
+        <a href="javascript:history.go(-1)"><h1 class="title">H&H</h1></a>
             
     </div>
 
@@ -124,7 +124,7 @@
           <th>UNIDADES</th>
           <th>USUARIO</th>
           <th>ESTADO</th>
-          <th>OPCION</th>
+          <th>OPCIONES</th>
         </tr>
       </thead>
     <tbody>
@@ -138,6 +138,15 @@
       <td>
     <a class="deleteBtn" href="/pedido/delete/{{numSerie}}">Eliminar</a>
     <a class="btn btn-sm btn-outline-danger" href="/pedido/factura/{{numSerie}}">Pdf</a>
+    </td>
+    <td>
+        <form action="/pedido/anadir" method="post">
+        <input type="hidden" name="numSerie" value="{{numSerie}}">
+        <input type="hidden" name="modelo" value="{{modelo}}">
+        <input type="hidden" name="estado" value="{{estado}}">
+        <input type="hidden" name="unidades" value="{{unidades}}" min="1"> 
+        <button type="submit" class="btn btn-sm btn-outline-success">Añadir</button>
+      </form>
     </td>
 
 </tr>

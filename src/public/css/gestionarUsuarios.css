@@ -10,7 +10,7 @@ header{
     width: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     height: 70px;
-    background-color: rgb(221, 214, 199);
+    background-color: #f7f7f7;
     display: flex;
 }
 
@@ -23,13 +23,17 @@ ul{
     height: auto;
 }
 
-.titulo a{
-    
+.titulo a
+{
+    width: auto;
     text-decoration: none;
 }
 
 
 .title{
+    width: 10%;
+    font-size: 250%;
+    margin-left: 3%;
     padding: 15px;
     color: #734C29;
 }
