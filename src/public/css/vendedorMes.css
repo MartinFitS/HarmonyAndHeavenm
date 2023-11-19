@@ -21,7 +21,7 @@
 
 .textUp h3{
     color: #734C29;
-    padding-left: 50%;
+    margin-left: 17%;
     font-weight: 100;
 }
 
@@ -29,17 +29,19 @@
 .carousel-container{
     width: 100%;
     height: auto;
+    overflow: hidden;
 }
 
 .carousel {
     width: 70%;
     height: auto;
     margin-left: 15%;
-    display: flex;
+    display: -webkit-flex;
     transition: transform 1s ease-in-out;
 }
 
 .card {
+    width: auto;
     height: 350px;
     min-width: 30%;
     box-sizing: border-box;
@@ -51,6 +53,7 @@
 }
 
 .card img {
+    width: auto;
     max-width: 100%;
     height: auto;
     border-radius: 50%;
@@ -71,7 +74,7 @@ p {
     margin-top: 25px;
     width: 70%;
     height: auto;
-    margin-left: 25%;
+    margin-left: 15%;
     display: flex;
     align-items: center;
     justify-content: center;
