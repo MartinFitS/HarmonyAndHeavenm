@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/proveedor.css">
+    <link rel="stylesheet" href="/css/vendedorMes.css">
+    <title>Ventas</title>
+</head>
+<body>
+    <div class="header">
+        <div class="titulo">
+            <a href="/login/user/master/view/"><h1 class="title">H&H</h1></a>
+        </div>
+
+        <div class="options">
+            <ul>
+                <li>
+                    <a href="/p-v">
+                        <img src="/img/005-terminal-de-pago.png" alt="">
+                        <span>Punto De Venta</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/master/user/gestionar">
+                        <img src="/img/003-usuario.png" alt="">
+                        <span>Gestionar Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/products">
+                        <img src="/img/001-agregar.png" alt="">
+                        <span>Agregar Producto</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/proveedores">
+                        <img src="/img/006-repartidor.png" alt="">
+                        <span>Lista Distribuidores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/pedidos">
+                        <img src="/img/004-orden.png" alt="">
+                        <span>Pedidos Tienda</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <img src="/img/002-cerrar-sesin.png" alt="">
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="textUp">
+        <a href="/p-v/ventas/">Volver a ventas</a>
+        <h3>Empleado del mes</h3>
+    </div>
+    <div class="carousel-container">
+        <div id="carousel" class="carousel">
+            {{#each estadisticasVendedorPorMes}}
+                <div class="card">
+                    <h2 class="titleCard">Empleado del mes de {{this.nombreMes}}</h2>
+                    <img src="/img/001-trabajando.png">
+                    <p class="nameVendedor">{{this.vendedor}}</p>
+                    <p><strong>Número de Ventas:</strong> {{this.numeroVentas}}</p>
+                    <p><strong>Total de Ventas:</strong> ${{this.totalVentas}}</p>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+    
+
+ <!-- Tu HTML y CSS existentes -->
+
+<!-- Tu HTML y CSS existentes -->
+
+<!-- Agrega este script al final de tu documento -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+
+        const carousel = document.getElementById('carousel');
+        const cards = document.querySelectorAll('.card');
+        const nextButton = document.getElementById('nextButton');
+
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            const offset = -currentIndex * 25;
+            carousel.style.transform = `translateX(${offset}%)`;
+
+            // Marcar cuando llega al final
+            if (currentIndex === cards.length - 1) {
+                nextButton.classList.add('end-of-carousel');
+            } else {
+                nextButton.classList.remove('end-of-carousel');
+            }
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % cards.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+            updateCarousel();
+        }
+
+        // Cambiar de diapositiva cada 5 segundos
+        setInterval(function () {
+            nextSlide();
+            if (currentIndex === 0) {
+                setTimeout(() => updateCarousel(), 0); // Vuelve al principio inmediatamente
+            }
+        }, 4000);
+
+        // Manejar clics para cambiar la diapositiva hacia la izquierda
+        document.getElementById('prevButton').addEventListener('click', function () {
+            prevSlide();
+        });
+
+        // Manejar clics para cambiar la diapositiva hacia la derecha
+        nextButton.addEventListener('click', function () {
+            nextSlide();
+            if (currentIndex === 0) {
+                setTimeout(() => updateCarousel(), 0); // Vuelve al principio inmediatamente
+            }
+        });
+    });
+</script>
+
+<!-- Agrega estos botones para permitir la navegación -->
+<div class="btn_sig-prev">
+    <button id="prevButton">Anterior</button>
+    <button id="nextButton" class="end-of-carousel">Siguiente</button>
+</div>
+
