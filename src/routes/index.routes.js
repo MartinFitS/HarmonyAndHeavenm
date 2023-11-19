@@ -7,7 +7,7 @@ import {categoriaProducto} from "../controllers/categoria.controller";
 import {requireAuth} from "../middlewares/auth"
 import {roleCheck} from "../middlewares/roleCheck"
 import {multipleRoleCheck,multipleRoleCheckVendedor} from "../middlewares/multipleRoleCheck"
-import {renderPuntoDeVenta,ventaPuntoVenta,ventasRender,apiVentas,ventasAnuales} from "../controllers/puntodeventa.controller"
+import {renderPuntoDeVenta,ventaPuntoVenta,ventasRender,apiVentas,ventasAnuales,empleadoDelMesRender} from "../controllers/puntodeventa.controller"
 const router = Router();
 
 //users
@@ -99,5 +99,7 @@ router.get("/ventas/api", apiVentas)
 router.get("/p-v/ventas/", requireAuth,multipleRoleCheckVendedor, ventasRender)
 
 router.get("/p-v/ventas/ventas-anuales",multipleRoleCheckVendedor, ventasAnuales )
+
+router.get("/p-v/ventas/empleado-mes", multipleRoleCheckVendedor, empleadoDelMesRender)
 
 export default router;
