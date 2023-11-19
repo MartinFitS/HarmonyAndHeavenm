@@ -20,10 +20,26 @@ async function obtenerUserById(userId){
   }
 
 
-  export const renderPuntoDeVenta = (req, res) => {
+export const renderPuntoDeVenta = (req, res) => {
     // Consulta para obtener las ventas totales agrupadas por mes
     const queryVentasPorMes = 'SELECT mes, SUM(totalVenta) AS ventaTotal FROM venta GROUP BY mes';
+    let ventasLink; 
+    let indexLink; 
+    const userRole = req.session.userRole;
+    console.log(userRole)
 
+    if (userRole == 'admin') {
+      ventasLink = '/p-v/ventas/admin';
+      indexLink = '/login/user/admin/view/'
+    }else if(userRole == 'vendedor'){
+      ventasLink = '/p-v/ventas/vendedor';
+      indexLink = '/login/user/vendedor/view/'
+    } else if(userRole =='master') {
+      ventasLink = '/p-v/ventas/';
+      indexLink = '/login/user/master/view/'
+    }
+
+    console.log(ventasLink)
     connection.query(queryVentasPorMes, (err, ventasPorMes) => {
         if (err) {
             console.error(err);
@@ -88,7 +104,9 @@ async function obtenerUserById(userId){
                 res.render("puntoDeVentaIndex.hbs", {
                     products: products,
                     ventasTotalesPorMes: ventasTotalesPorMes,
-                    estadisticasVendedorPorMes: estadisticasVendedorPorMes
+                    estadisticasVendedorPorMes: estadisticasVendedorPorMes,
+                    ventasLink: ventasLink,
+                    indexLink: indexLink
                 });
             });
         });
@@ -200,6 +218,17 @@ export const ventasRender = (req,res) => {
       console.log(err);
     }else{
       res.render("ventas.hbs", {ventas:ventas})
+    }
+  })
+  
+}
+
+export const ventasRenderAdmin =(req,res) => {
+  connection.query("SELECT * FROM venta ", (err, ventas)=>{
+    if(err){
+      console.log(err);
+    }else{
+      res.render("ventasAdmin.hbs", {ventas:ventas})
     }
   })
   
