@@ -37,6 +37,7 @@ export const allProveedores = async (req, res) => {
   });
 };
 
+
   export const proveedorAdd = async(req,res) =>{
     res.render("addProveedor.hbs")
 }
