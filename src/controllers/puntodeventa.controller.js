@@ -125,9 +125,7 @@ export const findUserById = async (id) => {
 
 
 export const ventaPuntoVenta = async(req,res) => {
-  const user = await findUserById(req.session.userId);
-  console.log("HOLA: ", user[0].username);
-  console.log(req.session.userId)
+    const user = await findUserById(req.session.userId);
     let total = req.body.total;
     const selectedProducts = req.body.selectedProducts;
     const hashVenta = generateRandomHash();
@@ -194,9 +192,7 @@ export const ventaPuntoVenta = async(req,res) => {
         }
       });
   
-  };
-  
-  
+  };  
 
 export const ventasRender = (req,res) => {
   connection.query("SELECT * FROM venta ", (err, ventas)=>{
@@ -208,3 +204,94 @@ export const ventasRender = (req,res) => {
   })
   
 }
+
+
+export const ventasAnuales = (req, res) => {
+  // Consulta para obtener las ventas totales agrupadas por mes
+  const queryVentasPorMes = 'SELECT mes, SUM(totalVenta) AS ventaTotal FROM venta GROUP BY mes';
+
+  connection.query(queryVentasPorMes, (err, ventasPorMes) => {
+    if (err) {
+      console.error(err);
+      res.json(err);
+      return;
+    }
+
+    // Objeto para almacenar las ventas totales por mes
+    const ventasTotalesPorMes = {};
+
+    // Iterar sobre los resultados de la consulta y almacenar en el objeto
+    ventasPorMes.forEach(venta => {
+      const mes = venta.mes;
+      const ventaTotal = venta.ventaTotal;
+
+      // Agregar al objeto con el formato "VentaTotalMes"
+      ventasTotalesPorMes[`VentaTotal${mes}`] = ventaTotal;
+    });
+
+    // Consulta para obtener las estadísticas del vendedor en cada mes
+    const queryEstadisticasVendedor = 'SELECT mes, vendedor, COUNT(*) AS numeroVentas, SUM(totalVenta) AS totalVentas FROM venta GROUP BY mes, vendedor';
+
+    connection.query(queryEstadisticasVendedor, (err, estadisticasVendedor) => {
+      if (err) {
+        console.error(err);
+        res.json(err);
+        return;
+      }
+
+      // Calcular la diferencia de mes a mes y agregar al objeto ventasTotalesPorMes
+      for (let i = 2; i <= 12; i++) {
+        const ventaTotalMesActual = ventasTotalesPorMes[`VentaTotal${i}`] || 0;
+        const ventaTotalMesAnterior = ventasTotalesPorMes[`VentaTotal${i - 1}`] || 0;
+        ventasTotalesPorMes[`DiferenciaMes${i}`] = ventaTotalMesActual - ventaTotalMesAnterior;
+      }
+      // Calcular la venta total anual y agregar al objeto ventasTotalesPorMes
+const ventaTotalAnual = Object.values(ventasTotalesPorMes).reduce((total, ventaTotal) => total + ventaTotal, 0);
+ventasTotalesPorMes['VentaTotalAnual'] = ventaTotalAnual;
+
+// Console.log para verificar la venta total anual
+console.log('Venta total anual:', ventaTotalAnual);
+      // Console.log para verificar las ventas totales por mes y la diferencia
+      console.log('Ventas totales por mes:', ventasTotalesPorMes);
+
+      // Renderizar la vista y pasar tanto los productos como las ventas totales y estadísticas del vendedor por mes
+      res.render("ventasAnuales.hbs", {
+        ventasTotalesPorMes: ventasTotalesPorMes,
+
+        ventaTotalAnual: ventaTotalAnual
+      });
+    });
+  });
+};
+
+export const empleadoDelMesRender = (req, res) => {
+  try {
+    // Declarar estadisticasVendedorPorMes al principio de la función
+    const estadisticasVendedorPorMes = {};
+    const meses = ["enero", "febrero", "marzo", "abril" , "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
+
+    // Consulta para obtener las estadísticas del vendedor en cada mes
+    const queryEstadisticasVendedor = 'SELECT mes, vendedor, COUNT(*) AS numeroVentas, SUM(totalVenta) AS totalVentas FROM venta GROUP BY mes, vendedor';
+
+    connection.query(queryEstadisticasVendedor, (err, estadisticasVendedor) => {
+      if (err) {
+        console.error(err);
+        res.json(err);
+        return;
+      }
+
+      // Iterar sobre estadisticasVendedor y agregar al objeto con el formato "MesVendedo
+     
+
+      estadisticasVendedor.forEach(({mes,  vendedor, numeroVentas, totalVentas }) => {
+        const nombreMes = meses[mes - 1]; // Restar 1 porque los meses en JavaScript son indexados desde 0
+        estadisticasVendedorPorMes[`${nombreMes}`] = {nombreMes, vendedor, numeroVentas, totalVentas };
+      });
+      console.log(estadisticasVendedorPorMes)
+      res.render("vendedorMes.hbs", { estadisticasVendedorPorMes });
+    });
+
+  } catch (e) {
+    console.log(e);
+  }
+};

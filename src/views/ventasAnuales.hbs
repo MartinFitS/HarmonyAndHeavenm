@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/proveedor.css">
+    <link rel="stylesheet" href="/css/ventaAnuales.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Ventas</title>
+</head>
+<body>
+    <div class="header">
+        <div class="titulo">
+            <a href="/login/user/master/view/"><h1 class="title">H&H</h1></a>
+        </div>
+
+        <div class="options">
+            <ul>
+                <li>
+                    <a href="/p-v">
+                        <img src="/img/005-terminal-de-pago.png" alt="">
+                        <span>Punto De Venta</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/master/user/gestionar">
+                        <img src="/img/003-usuario.png" alt="">
+                        <span>Gestionar Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/products">
+                        <img src="/img/001-agregar.png" alt="">
+                        <span>Agregar Producto</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/proveedores">
+                        <img src="/img/006-repartidor.png" alt="">
+                        <span>Lista Distribuidores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/pedidos">
+                        <img src="/img/004-orden.png" alt="">
+                        <span>Pedidos Tienda</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <img src="/img/002-cerrar-sesin.png" alt="">
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style="width:90%; height:auto; margin-left: 10%; margin-top:15px;"class="btns">
+        <a style="text-decoration: none; color: #734C29; padding:5px 10px 5px 10px; border:1px solid #734C29;" href="/p-v/ventas/">Regresar a ventas mensuales</a>
+    </div>
+<div class="centerDiv">
+    <div class="tablaGraficas">
+        <h3 style="text-align: center; font-weight: 100;">Grafica de ventas anual 2023.</h3>
+        <div class="tablaGraficas">
+            <canvas id="graficaVentas" width="400" height="400"></canvas>
+        </div>
+
+    </div>
+    <div class="tablaVentasAnual">
+            <div class="tablasMeses">
+
+        <div class="tableVentas">
+            <table class="tableVentas">
+                <thead>
+                    <tr>
+                        <th>Mes</th>
+                        <th>Ingreso Total</th>
+                        <th>Ganancias o Perdidas</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTabla">
+                        <tr>
+                            <td>Enero</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal1}}</td>
+                            <td>$0</td>
+                        </tr>
+                        <tr>
+                            <td>Febrero</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal2}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes2}}</td>
+                        </tr>
+                        <tr>
+                            <td>Marzo</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal3}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes3}}</td>
+                        </tr>
+                        <tr>
+                            <td>Abril</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal4}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes4}}</td>
+                        </tr>
+                        <tr>
+                            <td>Mayo</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal5}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes5}}</td>
+                        </tr>
+                        <tr>
+                            <td>Junio</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal6}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes6}}</td>
+                        </tr>
+                        <tr>
+                            <td>Julio</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal7}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes7}}</td>
+                        </tr>
+                        <tr>
+                            <td>Agosto</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal8}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes8}}</td>
+                        </tr>
+                        <tr>
+                            <td>Septiembre</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal9}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes9}}</td>
+                        </tr>
+                        <tr>
+                            <td>Octubre</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal10}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes10}}</td>
+                        </tr>
+                        <tr>
+                            <td>Noviembre</td>
+                            <td>${{ventasTotalesPorMes.VentaTotal11}}</td>
+                            <td>${{ventasTotalesPorMes.DiferenciaMes11}}</td>
+                        </tr>
+                        <tr>
+                            <td>Diciembre</td>
+                            <td>$0</td>
+                            <td>$0</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td colspan="3" style="text-align: center;">Venta Total Anual: </td>
+                            <td>${{ventasTotalesPorMes.VentaTotalAnual}}</td>
+                        </tr>               
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+   
+<!-- Script para inicializar el gráfico de pastel -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Datos para el gráfico de pastel
+        var datosGrafica = {
+            labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+            datasets: [{
+                data: [{{ventasTotalesPorMes.VentaTotal1}}, {{ventasTotalesPorMes.VentaTotal2}}, {{ventasTotalesPorMes.VentaTotal3}}, {{ventasTotalesPorMes.VentaTotal4}}, {{ventasTotalesPorMes.VentaTotal5}}, {{ventasTotalesPorMes.VentaTotal6}}, {{ventasTotalesPorMes.VentaTotal7}}, {{ventasTotalesPorMes.VentaTotal8}}, {{ventasTotalesPorMes.VentaTotal9}}, {{ventasTotalesPorMes.VentaTotal10}}, {{ventasTotalesPorMes.VentaTotal11}}, {{ventasTotalesPorMes.VentaTotal12}}],
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#8e5ea2', '#3cba9f', '#e8c3b9', '#c45850', '#7cb5ec', '#9e9e9e', '#607d8b', '#4caf50', '#ff5722', '#795548'],
+            }]
+        };
+
+        // Configuración del gráfico de pastel
+        var configGrafica = {
+            type: 'pie',
+            data: datosGrafica,
+        };
+
+        // Obtener el contexto del lienzo
+        var contexto = document.getElementById('graficaVentas').getContext('2d');
+
+        // Crear la instancia del gráfico de pastel
+        var graficaVentas = new Chart(contexto, configGrafica);
+    });
+</script>
+
+  
+
+
+
+
+

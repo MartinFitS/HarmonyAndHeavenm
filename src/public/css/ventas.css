@@ -50,19 +50,7 @@ ul{
     height: auto;
 }
 
-/* .options ul{
-    display: flex;
-    margin-left: 57%;
-}
-
-.options ul li {
-
-    padding: 20px;
-    text-align: end;
-} */
-
-/* .options a{
-
+.tituloTablaSegunElMes h1{
     font-weight: 100;
     color: #734C29;
     text-decoration: none;
@@ -416,4 +404,3 @@ select
     transform: translateX(0);
     opacity: 1;
 }
-

@@ -3,7 +3,7 @@ import connection from "../bd/bdConfig";
 export const addProduct = async(req,res) => {
     try{
         const data = req.body;
-        await connection.query('INSERT INTO products set ?', [data], (err, product) =>{
+        await connection.query('INSERT INTO products set ?', [data],(err, product) =>{
             if(req.session.userRole === "master"){
               res.redirect("/login/user/master/view/")
             }else{
@@ -18,16 +18,35 @@ export const addProduct = async(req,res) => {
 }
 
 export const allProducts = async(req,res) => {
-    connection.query('SELECT modelo,proveedor,instrumentoTipo,precioPublico,unidades FROM products', (err, products)=>{
+    connection.query('SELECT modelo,proveedor,instrumentoTipo,precioPublico,unidades FROM products',(err, products)=>{
         if(err){
              res.json(err)
         }
     })
 }
 
-export const renderProducts = async(req,res) =>{
-        res.render("addProduct.hbs")
-}
+function queryDatabase(sql) {
+  return new Promise((resolve, reject) => {
+    connection.query(sql, (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  }
+)};
+
+export const renderProducts = async (req, res) => {
+  try {
+    const proveedores = await queryDatabase('SELECT nombreProveedor FROM suppliers');
+    console.log(proveedores[0].nombreProveedor)
+    res.render('addProduct.hbs', { proveedores: proveedores });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error interno del servidor');
+  }
+};
 
 async function obtenerProductoPorId(productId){
   return new Promise((resolve,reject) =>{
@@ -65,11 +84,11 @@ export const editProduct = async(req,res) =>{
   try{
     const productId = req.params.id;
     const product = req.body
-    const sql = 'UPDATE products SET modelo = ?, marca = ?, instrumentoTipo = ?, precioPublico = ?, precioTienda = ?, unidades = ?, foto = ? WHERE id = ?';
+    const sql = 'UPDATE products SET modelo = ?, precioPublico = ?, precioTienda = ?, unidades = ?, foto = ? WHERE id = ?';
     
     connection.query(
       sql,
-      [product.modelo, product.marca, product.instrumentoTipo, product.precioPublico, product.precioTienda, product.unidades,product.foto, productId],(err,result) => {
+      [product.modelo,  product.precioPublico, product.precioTienda, product.unidades,product.foto, productId],(err,result) => {
         if (err) {
           console.error('Error al editar el producto: ' + err.message);
           const intento=('Estas intentando editar un producto');

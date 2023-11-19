@@ -9,25 +9,26 @@
             <form class="inputForm" action="/pedido/add" method="post">
 
                 <div class="inputAdd">
-                    <select class="modeloInput" name="modelo" id="modelo" required>
-                    {{#each productos}}
-                        <option>{{modelo}}</option>
-                    {{/each}}
-                    </select>
-                    <span class="line"></span>
-                </div>
+    <select class="modeloInput" name="modelo" id="modelo" required>
+        {{#each productos}}
+            <option data-proveedor="{{nombreProveedor}}">{{modelo}}</option>
+        {{/each}}
+    </select>
+    <span class="line"></span>
+</div>
 
-                <div class="inputAdd">
-                    <input type="number" id="unidades" name="unidades" placeholder="Unidades a pedir" required>
-                    <span class="line"></span>
-                </div>
-                <div class="inputAdd">
-                    <select class="proveedorInput" name="proveedor" id="proveedor" required>
-                    {{#each proveedores}}
-                        <option>{{nombreProveedor}}</option>
-                    {{/each}}
-                    </select>
-                </div>
+<div class="inputAdd">
+    <input type="number" id="unidades" name="unidades" placeholder="Unidades a pedir" required min="0">
+    <span class="line"></span>
+</div>
+
+<div class="inputAdd">
+    <select class="proveedorInput" name="proveedor" id="proveedor" required>
+        {{#each proveedores}}
+            <option>{{nombreProveedor}}</option>
+        {{/each}}
+    </select>
+</div>
                 <div class="inputAdd">
                 <select id="idUsuario" name="idUsuario">
                     {{#each users}}
@@ -41,10 +42,8 @@
                     <span class="line"></span>
                 </div>
             </form>
-        </div>
 
-
-        <div class="imageAndMessage">
+                    <div class="imageAndMessage">
 
                 <div class="slider-frame">
                     <ul>
@@ -60,11 +59,26 @@
                 </div>
 
         </div>
-    </div>
+        </div>
+
+
+
     <script>
         function goBack() {
             // Utiliza el método `history.back()` para regresar a la página anterior
             window.history.back();
         }
     </script>
+
+    <script>
+    document.getElementById('modelo').addEventListener('change', function () {
+        var selectedModel = this.options[this.selectedIndex];
+        var proveedor = selectedModel.getAttribute('data-proveedor');
+        
+        // Actualiza el proveedor seleccionado
+        document.getElementById('proveedor').value = proveedor;
+    });
+</script>
+
+    
 </body>
