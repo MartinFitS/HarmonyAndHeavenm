@@ -13,8 +13,6 @@ html{
     height: 70px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
-    background-color: rgb(221, 214, 199);
-    z-index: 1000; /* Asegura que esté en la parte superior de otros elementos */
 }
 
 .body {

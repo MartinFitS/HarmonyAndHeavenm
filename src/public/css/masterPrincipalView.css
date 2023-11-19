@@ -168,20 +168,9 @@ ul{
     margin-top: 30px;
     font-size: 15px;
     font-weight: 600;
-    color: rgba(243, 239, 233, 0.831);
-}
-
-.titulos.h2{
-    margin-top: 5%;
-    font-size: 25px;
-    font-weight: 300;
     color: #734C29;
-    text-align: left;
-    margin-left: 6%;
 }
 .titulos h2{
-    margin-left: 0%;
-    position: fixed;
     top: 70px;
     width: 100%;
 
@@ -347,7 +336,6 @@ select
     border-radius: 7px;
     font-weight: 100;
     text-decoration: none;
-    color: white;
     font-size: 13px;
     margin-left: 7%;
     background-color: #33922c;
@@ -417,4 +405,3 @@ select
     transform: translateX(0);
     opacity: 1;
 }
-
