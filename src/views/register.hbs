@@ -7,7 +7,7 @@
             </div>
 
             <div class="menu">
-                <a href="">Acerca de la tienda</a>
+                <a href="#" id="aboutStoreLink">Acerca de la tienda</a>
             </div>
         </nav>
     </header>
@@ -56,13 +56,75 @@
                 </div>
             </form>
 
+            <div id="termsPopup" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                    <!-- Aquí puedes colocar el contenido de tus términos y condiciones -->
+                    <h1>TERMINOS Y CONDICIONES</h1>
+                    <br>
+                    <p>Sección 1: En Harmony & Heaven nos preocupamos por tu seguridad y privacidad. Por eso, te informamos que al ingresar tus datos personales en nuestros sitios web, los tratamos con el máximo cuidado y respeto, de acuerdo con la ley vigente. Te garantizamos que tus datos personales sólo se usarán para los fines que tú autorices, y que no los compartiremos ni venderemos a terceros sin tu consentimiento. Además, te damos la posibilidad de ejercer tus derechos de acceso, rectificación, cancelación y oposición al tratamiento de tus datos personales, mediante un procedimiento sencillo y gratuito. Si tienes alguna duda o consulta sobre el resguardo de tus datos personales, no dudes en contactarnos.
+</p>
+                    <br>
+                    <p>Sección 2: En nuestra aplicación web Harmony & Heaven - Store solo se te pedirá nombre de usuario y contraseña única para esta web, no se utilizarán tus correo electrónico o datos personales ya que al ser empleado de la misma empresa ya se tendrán esos datos resguardados a disposición legal de esta con los mismos términos y condiciones mencionados en la sección anterior, en caso de que se requiera se le será informado. Los datos recopilados serán utilizados para crear una cuenta en la página para permitir la administración y gestión del inventario de Harmony & Heaven, los datos para la web (usuario y contraseña de ingreso) serán creados y otorgados única y exclusivamente para el uso propio de cada empleado. El empleado tiene la posibilidad de al momento de requerir, eliminar su cuenta, hacerlo para mantener seguro sus datos e información sobre la empresa, por renuncia o simplemente cambio de puesto.
+</p>
+<br>
+                </div>
+            </div>
+
+            <div id="aboutStorePopup" class="popup1">
+                <div class="popup-content1">
+                    <span class="close1" onclick="closeAboutStorePopup()">&times;</span>
+                    <p>Tienda de Instrumentos CRUD</p>
+                </div>
+            </div>
+
+            {{!-- POPUPs --}}
             <script>
+                
+                // CHECK TERMINOS Y CONDICIONES
                 const acceptTermsCheckbox = document.getElementById('acceptTerms');
                 const registerButton = document.getElementById('registerButton');
 
-                acceptTermsCheckbox.addEventListener('change', function() {
+                acceptTermsCheckbox.addEventListener('change', function () {
                     registerButton.disabled = !acceptTermsCheckbox.checked;
                 });
+
+                // TERMINOS Y CONDICIONES POPUP
+                // Funciones para abrir y cerrar el popup
+                function openPopup() {
+                    document.getElementById('termsPopup').style.display = 'block';
+                }
+
+                function closePopup() {
+                    document.getElementById('termsPopup').style.display = 'none';
+                }
+
+                // Enlace para abrir el popup
+                const termsLink = document.querySelector('.aRegister');
+                termsLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    openPopup();
+                })
+
+                //POPUP ACERCA DE
+                 // Funciones para abrir y cerrar el popup de Acerca de la tienda
+                function openAboutStorePopup() {
+                    document.getElementById('aboutStorePopup').style.display = 'block';
+                    document.getElementById('termsPopup').style.display = 'none';
+
+                }
+
+                function closeAboutStorePopup() {
+                    document.getElementById('aboutStorePopup').style.display = 'none';
+                }
+
+                // Enlace para abrir el popup de Acerca de la tienda
+                const aboutStoreLink = document.getElementById('aboutStoreLink'); // Identificador del enlace
+                aboutStoreLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    openAboutStorePopup();
+                });
+
             </script>
         <br><br><br><br>
         </div>
