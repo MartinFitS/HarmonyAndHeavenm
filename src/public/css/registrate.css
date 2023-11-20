@@ -1,31 +1,39 @@
-*{
-    background-color: #734C29;
+html{
+    width: 100%;
+    background-color: #1f1a17;
 }
-
-.header .nav .logo
-{
-    color: white;
-    font-size: 40px;
+::-webkit-scrollbar {
+    display: none;
 }
-
 .header {
     position: static;
-    width: 100%;
+    width: auto;
     height: auto;
     display: flex; 
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding-top: 1%;
     align-items: center;
-    padding: 10px 20px;
     z-index: 99;
 }
 
+.header .nav .logo
+{
+    margin-top: 5px;
+    margin-left: 20px;
+    color: #ffffff;
+    font-size: 40px;
+    z-index: 98;
+}
+
 .header .nav {
+    padding-right: 2%;
     width: 100%;
     display: flex;
     gap: 20px;
+    z-index: 999;
 }
+
 .menu{
     text-align: end;
     width: 100%;
@@ -36,15 +44,14 @@
 .menu a{
     text-align: end;
     text-decoration: none;
-    color: white;
+    color: #e7e4d7;
 }
 
 
 .header .nav a:hover {
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
     outline: none;
-    color: white;
-    background: transparent;
+    color: #ede5d8;
 }
 
 .header .search {
@@ -69,7 +76,7 @@
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    color: white;
+    color: var(--Fprimaria);
     cursor: pointer;
 }
 
@@ -77,7 +84,7 @@
 ::placeholder
 {
     padding-top: 1000px;
-    color: white;
+    color: var(--Fprimaria);
     font-size: 18px;
 }
 ::placeholder:active
@@ -103,10 +110,9 @@
 .home
 {
     position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 75%;
-    height: 75%;
+    width: 100%;
+    top: -10px;
+    height: 101.2%;
     transform: translate(-50% , - 50%);
     background-position: center;
     background-size: cover;
@@ -119,128 +125,97 @@
 
 /* TEXTO IZQUIERDA */
 
-.content
-{
-    display: flex;
-    flex-direction: column;
-    width: 700px;
-    padding: 30px;
+.content {
+    background-color: #1f1a17;
+    width: 60%;
+    height: 100%;
+    font-size: 20px;
+    display: flex; /* Establece el contenedor como un contenedor flexible */
+    flex-direction: column; /* Establece la dirección de los elementos hijos a columnas */
+    padding: 0; /* Asegúrate de que no haya relleno interno */
+    background-size: cover; /* Escala la imagen para cubrir completamente el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen dentro del contenedor */
+    z-index: 1;
 }
 
-.content .photo
-{
-    display: flex;
-    padding-left: 30px;
-    width: 100%;
-    padding-right: 30px;
-    background-repeat: no-repeat;
-    padding-top: 0px;
-    padding-bottom: 30px;
-}
-
-
-.content .photo .img1{
-    margin-right: 1%;
-    margin-top: 45px;
-    margin-left: 3%;
-    background-image: url("../img/imagen.jpeg");
-    width: 30%;
-    height: 200px;
-    display: flex;
-    display: block;
-    background-size: cover;
-}
-
-.img1:hover{
-    cursor: pointer;
-    transition: 250ms;
-    opacity: 0.7;
-    scale: 103%;
-}
-
-.img2:hover{
-    cursor: pointer;
-    transition: 250ms;
-    opacity: 0.7;
-    scale: 103%;
-}
-
-.img3:hover{
-    cursor: pointer;
-    transition: 250ms;
-    opacity: 0.7;
-    scale: 103%;
-}
-
-.content .photo .img2{
-    margin-right: 1%;
-    margin-top: 45px;
-    width: 30%;
-    height: 200px;
-    background-image: url("../img/imagen2.jpg");
-    background-size: cover;
-}
-.content .photo .img3{
-    margin-right: 1%;
-    margin-top: 45px;
-    width: 30%;
-    height: 200px;
-    background-image: url("../img/imagen3.jpg");
-    background-size: cover;
-}
-.content h2
-{
+.content h2{
+    padding-left: 7%;
+    width: 90%;
+    padding-top: 30%;
     font-weight: 100;
-    font-size: 2.5em;
+    font-size: 350%;
     text-align: center;
-    color: white;
-}
-.content pre{
-    font-weight: 600;
-    margin-top: 10px;
-    text-align: center;
-    font-size: 1em;
-    color: white;
+    color: #ffffff;
 }
 
+.content pre
+{
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: -5%;
+    width: 90%;
+    text-align: center;
+    font-size: 100%;
+    color: #ffffff;
+    text-shadow: 0px 0px 50px rgb(255, 255, 255);
+}
 
-
-
+.content::before {
+    content: "";
+    background-image: url('https://images.pexels.com/photos/2118046/pexels-photo-2118046.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: contain;
+    width: 60%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    z-index: -1;
+}
 
 /* BOX DE LOGIN */
 
 /* Este .div es para agregar marcos responsivos al box */
 div.login 
 {
-    padding: 30px 30px;
+    margin-top: 0%;
+    background-color: #2b29267f;
+    width: 40%;
+    height: 100%;
+    box-shadow: 0 0 50px rgb(70, 70, 70);
+    z-index: 100;
 }
 
-.login
-{
-    width:  450px;
-    height: 450px;
+.login{
     position: relative;
-    padding: 70px 0px;
     backdrop-filter: blur(70px);
-    border-radius: 30px;
-    box-shadow: 0 0 50px #a67e5b;
-
 }
 
 .login h2
 {
+    padding-top: 30%;
     font-weight: 100;
     margin-top: -100;
     font-size: 2em;
     text-align: center;
     margin-bottom: 20px;
-    color: white;
+    color: #e7e4d7;
+}
+
+.login .input .terms{
+    width: 100%;
+    position: relative;
+    padding-left: 10%;
+    padding-right: 0%;
 }
 
 .login .input
 {
+    width: 80%;
     position: relative;
-    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
     height:  30px;
     margin-bottom: 34px;
 
@@ -248,17 +223,21 @@ div.login
 
 .login .input .input1
 {
+    margin-left: 8%;
+    margin-right: 8%;
+    width: 115%;
+    padding: 2%;
+    border-radius: 5px;
     font-size: 16px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: transparent;
-    border: white;
-    outline: white;
-    border-bottom: 2px solid white;
-    color: white;
-    width: 100%;
+    background: #e7e4d759;
+    border: black;
+    outline: black;
+    border-bottom: 2px solid #e7e4d753;
+    color: #e7e4d7;
     height: 100%;
 }
 .login .input .input1:active
@@ -266,15 +245,11 @@ div.login
     box-shadow: 0 0 50px rgba(232, 232, 232, 0.8);
 }
 
-span{
-    color: white;
-}
-
 ::placeholder
 {
-    padding-top: 1000px;
-    color: white;
-    font-size: 15px;
+    padding-top: 0;
+    color: #e7e4d7;
+    font-size: 18px;
 }
 ::placeholder:active
 {
@@ -284,9 +259,9 @@ span{
 .login .input i
 {
     position:absolute;
-    right: -20px;
+    right: 10%;
     bottom: 27px;
-    color: var(--Fprimaria);
+    color: #e7e4d7;
 }
 
 .check
@@ -295,24 +270,50 @@ span{
     margin-top: -10px;
     justify-content: space-between;
     margin-bottom: 40px;
-    color: var(--Fprimaria);
+    color: #e7e4d7;
 }
 .check a:hover
 {
     text-decoration: underline;
     box-shadow: 0 0 50px rgba(232, 232, 232, 0.8);
-
 }
 
-.aRegister{
-    font-size: 18px;
+.acepto 
+{
+    padding-left: 10%;
+    color: #e7e4d7;
+}
+
+.login .span1
+{
+    margin-left: 15%;
+    color: #e7e4d7;
+}
+
+.aRegister
+{
     font-weight: 700;
-    color: white;
+    color: #e7e4d7;
     margin-bottom: 15px;
+}
+.aRegister:hover{
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    font-weight: 700;
+    color: #e7e4d7;
+    margin-bottom: 15px;
+}
+
+.input .checkbx
+{
+    width: 1%;
+    position: fixed;
+    margin-top: -3.5%;
+    margin-left: 55%;
 }
 
 .login .button
 {
+    color: #e7e4d7;
     margin-top: 25px;
     width: 100%;
     height: 10%;
@@ -324,20 +325,20 @@ button
     margin-left: 15%;
     width: 70%;
     height: 50px;
-    background-color: white;
+    background-color: #e7e4d7;
     border: none;
     outline: none;
     font-size: 20px;
     font-weight: 100;
     border-radius: 10px;
-    color: var(--Fprimaria);
+    color: rgb(21, 21, 21);
 }
 
 .btn:hover{
     transition: 350ms;
-    background-color: var(--Fprimaria);
-    color: white;
-    border: 2px solid white;
+    background-color: rgb(62, 54, 42);
+    color: #e7e4d7;
+    border: 2px solid #e7e4d7;
     cursor: pointer;
 }
 
@@ -348,4 +349,71 @@ button
 
 .tyc a{
     color: white;
+}
+
+/* Agrega esto a tu sección de estilos CSS */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    position: fixed;
+    margin-top: 13%;
+    margin-left: -88%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 120%;
+}
+
+.popup-content h1 {
+    text-align: center;
+}
+.close {
+    position: absolute;
+    top: 94%;
+    right: 3%;
+    font-size: 20px;
+    cursor: pointer;
+    color: red;
+}
+
+
+/* POPUP */
+.popup1 {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 80%;
+}
+
+.close1 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: red; /* Cambia el color a rojo */
+    cursor: pointer;
 }
