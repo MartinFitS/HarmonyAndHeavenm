@@ -6,7 +6,7 @@
 }
 
 .tituloTablaSegunElMes {
-    margin-left: 30%;
+    margin-left: 35%;
     margin-top: 20px;
     width: 60%;
     height: auto;
@@ -139,7 +139,7 @@
 
 
 .estadisticasDiv{
-    width: 20%;
+    width: auto;
     height: auto;
     margin-left: 5%;
     margin-right: 5%;
@@ -154,18 +154,20 @@
 
 
 .estadisticasDiv {
+    margin-left: 7%;
+    width: 300px;
     display: flex;
     justify-content: space-around;
 }
 
 .empleadoMes, .ventasAnuales {
+    width: 400px;
     text-align: center;
     padding: 20px;
     border: 2px solid #ddd;
     opacity: 1;
     transition: opacity 1s ease-in-out, width 1s ease-in-out;
     height: 250px;
-
 }
 
 .imgEmpleados, .imgVentas {
@@ -173,7 +175,6 @@
     width: 100px;
     height: 100px;
     margin-bottom: 10px;
-
 }
 
 .imgEmpleados{

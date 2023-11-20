@@ -1,7 +1,13 @@
 ::-webkit-scrollbar {
     display: none;
 }
-.header {
+
+html{
+    background-color: #f7f7f7
+  }
+  
+.header 
+{
     position: fixed;
     top: 0;
     left: 0;
@@ -36,9 +42,13 @@ ul{
     color: #734C29;
 }
 
-.header .titulo .title{
-    padding-top: 12px;
-    padding-left: 20px;
+.header .titulo .title
+{
+    font-weight: 600;
+    margin: -2%;
+    margin-top: -1.5%;
+    margin-left: 3%;
+    padding: 20px;
     color: #734C29;
 }
 
@@ -57,12 +67,22 @@ ul{
     height: 50px;
 }
 
+.titulos.h2{
+    margin-top: 5%;
+    font-size: 25px;
+    font-weight: 300;
+    color: #734C29;
+    text-align: left;
+    margin-left: 6%;
+  }
+  
 .tituloH2{
     width: 30%;
     height: auto;
 }
 
-.buscadorProducts{
+.buscadorProducts
+{
     width: 100%;
     height: auto;
 }
@@ -110,27 +130,29 @@ ul{
     height: auto;
 }
 
-.listaOrganizacion {
+.listaOrganizacion{
     border-radius: 15px;
     margin-top: 90px;
     position: fixed;
-    top: 89px;
-    width: 17%;
-    height: 250px;
-    margin-left: 5%;
-    margin-right: 5%;
+    top: 5%;
+    width: 22%;
+    height: auto;
+    margin-left: 3%;
+    margin-right: 2%;
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 10px;
 }
 
-.listaOrganizacion h1{
+.listaOrganizacion h1
+{
     font-size: 17px;
     font-weight: 600;
     color: #753806;
 }
 
-.listaOrganizacion h2{
+.listaOrganizacion h2
+{
     margin-top: 7px;
     font-size: 15px;
     font-weight: 600;
@@ -182,9 +204,11 @@ ul{
 }
 
 .btnFiltrar{
+    padding: 3%;
     margin-top: 15px;
     width: 100%;
     height: auto;
+  
 }
 
 .btnFiltrar button{
@@ -192,7 +216,7 @@ ul{
     cursor: pointer;
     color: white;
     background-color: #734C29;
-    border-radius: 2px;
+    border-radius: 5px;
     width: 60%;
     height: 20px;
     margin-left: 20%;
@@ -214,15 +238,18 @@ select{
     border: none;
 }
 
-.minimo{
+.minimo
+{
     width: 25%;
     height: 20px;
 }
 
-.maximo{
+.maximo
+{
     width: 25%;
     height: 20px;
 }
+
 .buscarBtn{
     margin-left: 5px;
     border: none;
@@ -237,7 +264,8 @@ select{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: white;
     margin-left: 5%;
-    width: 27%;
+    padding-right: 1%;
+    width: 28%;
     height: auto;
     margin-bottom: 20px;
     height: 489px;
@@ -288,26 +316,52 @@ select{
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 .edit{
+    background-color: #ffffff;
+    border: 1px solid #753806;
+    color: rgb(144, 123, 95);
     border-radius: 7px;
     font-weight: 100;
     text-decoration: none;
-    color: white;
     font-size: 13px;
     margin-left: 7%;
-    background-color: #33922c;
+    padding: 3%;
+}
+.edit:hover{
+    transition: 250ms;
+    background-color: #c19470;
+    color: rgb(255, 255, 255);
+    border: 1px solid #d2d1d1;
+    border-radius: 7px;
+    font-weight: 100;
+    text-decoration: none;
+    font-size: 13px;
+    margin-left: 7%;
     padding: 3%;
 }
 
 .delete{
+    background-color: #ffffff;
+    border: 1px solid #753806;
+    color: rgb(122, 96, 63);
     border-radius: 7px;
     font-weight: 100;
     text-decoration: none;
-    color: white;
     font-size: 13px;
+    padding: 3%;
+}
 
-    background-color: #921111;
-    padding: 3%; 
+.delete:hover{
+    transition: 250ms;
+    background-color: #992e2e;
+    color: rgb(255, 255, 255);
+    border: 1px solid #d2d1d1;
+    border-radius: 7px;
+    font-weight: 100;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 3%;
 }
 
 
