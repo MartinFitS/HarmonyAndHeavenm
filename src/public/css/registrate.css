@@ -348,3 +348,70 @@ button
 .tyc a{
     color: white;
 }
+
+/* Agrega esto a tu sección de estilos CSS */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    position: fixed;
+    margin-top: 20%;
+    margin-left: -25%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 120%;
+}
+
+.popup-content h1 {
+    text-align: center;
+}
+.close {
+    position: absolute;
+    top: 94%;
+    right: 3%;
+    font-size: 20px;
+    cursor: pointer;
+    color: red;
+}
+
+
+/* POPUP */
+.popup1 {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 80%;
+}
+
+.close1 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: red; /* Cambia el color a rojo */
+    cursor: pointer;
+}

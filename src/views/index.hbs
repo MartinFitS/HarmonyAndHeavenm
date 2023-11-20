@@ -7,8 +7,9 @@
             </div>
 
             <div class="menu">
-                <a href="">Acerca de la tienda</a>
+                <a href="#" id="aboutStoreLink">Acerca de la tienda</a>
             </div>
+
         </nav>
     </header>
 
@@ -42,9 +43,35 @@
                 </div>
   
             </form>
+
+            <div id="aboutStorePopup" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closeAboutStorePopup()">&times;</span>
+                    <p>Tienda de Instrumentos CRUD</p>
+                </div>
+            </div>
+
+            <script>
+                // Funciones para abrir y cerrar el popup de Acerca de la tienda
+                function openAboutStorePopup() {
+                    document.getElementById('aboutStorePopup').style.display = 'block';
+                }
+
+                function closeAboutStorePopup() {
+                    document.getElementById('aboutStorePopup').style.display = 'none';
+                }
+
+                // Enlace para abrir el popup de Acerca de la tienda
+                const aboutStoreLink = document.getElementById('aboutStoreLink'); // Identificador del enlace
+                aboutStoreLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    openAboutStorePopup();
+                });
+            </script>
         <br><br><br><br>
         </div>
 </section>
+
 
 {{#if error}}
     <!-- Código para mostrar el modal con un botón de aceptar -->
@@ -67,5 +94,6 @@
             var modal = document.getElementById('myModal');
             modal.style.display = 'block';
         };
+        
     </script>
 {{/if}}
