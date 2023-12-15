@@ -1,11 +1,23 @@
 # Harmony And Heaven
 
-## Descripción
+## Description
 Harmony and heaven, is the catalog of a virtual musical instrument store.
 
 Which consists of an inventory, a supplier ordering system, a point of sale, which generates sales, monthly and annual statistics.
 
 ## ScreenShoots
+
+![MainScreen](./src/imagesReadMd/main.jpeg)
+
+![PrincipalView](./src/imagesReadMd/principalView.jpeg)
+
+![point sell](./src/imagesReadMd/pv.jpeg)
+
+![users](./src/imagesReadMd/users.jpeg)
+
+![add product](./src/imagesReadMd/addPR.jpeg)
+
+![pedidos](./src/imagesReadMd/pedidos.jpeg)
 
 ## Features
 
