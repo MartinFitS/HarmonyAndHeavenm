@@ -53,7 +53,4 @@ Contributions are welcome! If you'd like to contribute to the development of the
 ## Contributors
 
 - **@MartinFitS**
-- **@joseluis-dls**
-- **@gasperro**
-- **@FranciscoRodriguez**
-- **@AxelSandoval**
+- **@arielrosasc**
